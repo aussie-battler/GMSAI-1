@@ -1,0 +1,4 @@
+Current Issues and bugs
+
+1. when deleting debug markers for static areas the area marker is deleted rather than the debug marker - why.
+2. vehicles should hunt players a bit more after a drive by.
