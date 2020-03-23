@@ -16,7 +16,7 @@ for "_i" from 1 to (count GMSAI_emptyVehicles) do
 				deleteVehicle _v;
 			} else {
 				//diag_log format["_monitorEmptyVehicles: player(s) near vehicle %1 so defering its deletion"];
-				_v setVariable["GMSAI_deleteAt",diag_tickTime + GMSAI_vehicleDeleteTimer];
+				_v setVariable["deleteAt",diag_tickTime + GMSAI_vehicleDeleteTimer];
 				GMSAI_emptyVehicles pushBack _v;				
 			};
 		} else {

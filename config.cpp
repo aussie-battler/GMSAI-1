@@ -37,17 +37,12 @@ class CfgFunctions {
 		class Units {
 			// Stuff that happens when events fire on units in GMSAI; some of these are in addition to EH that fire on GMSCore
 			file = "addons\GMSAI\Compiles\Units";
-		   //class EH_InfantryKilled {};
-			//class EH_InfantryHit {};
-			//class EH_infantryReloaded {};	
 			class infantryKilled {};
-			//class processUnitKill {};
 			class infantryHit {};
 			class addEventHandlersInfantry {};
 		};
 		class Groups {
 			file = "addons\GMSAI\Compiles\Groups";
-
 			class addGroupDebugMarker {};
 			class deleteGroupDebugMarker {};
 			class getGroupDebugMarker {};
@@ -58,11 +53,11 @@ class CfgFunctions {
 		class AirVehicles {
 			// Everything having do with spawning and monitoring Air/UAV patrols is dealt with by these functions.
 			file = "addons\GMSAI\Compiles\AirVehicles";
-			class flyInParatroops {};		
+			class flyInReinforcements {};		
 			class initializeAircraftWaypoints {};
 			class monitorAirPatrols {};  
 			class monitorUAVPatrols {};					
-			class monitorParatroopSpawns {};				
+			class monitorParatroopGroups {};				
 			class nextWaypointAircraft {};			
 			class processAircraftCrewHit {};
 			class processAircraftCrewKilled {};	

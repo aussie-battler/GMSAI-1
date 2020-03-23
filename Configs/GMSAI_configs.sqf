@@ -148,7 +148,8 @@ GMSAI_UAVRespawnTime = [600,900]; // Min, Max
 GMSAI_UAVChanceOfPParatroops = 0.99999; // Chance that detection of enemy players will trigger paratroopers
 
 GMSAI_maxParagroups = 5;  // maximum number of groups of paratroups spawned at one time.
-GMSAI_oddsParatroops = 0.99999;
+GMSAI_chanceParatroopsSpawn = 0.99999;
+GMSAI_chancePlayerDetected = 0.999;
 GMSAI_numberParatroops = [2,4]; // can be a single value (1, [1]) or a range
 GMSAI_paratroopDifficulty = [GMSAI_difficultyBlue,0.40,GMSAI_difficultyRed,0.40,GMSAI_difficultyGreen,0.15,GMSAI_difficultyOrange,0.05];
 GMSAI_paratroopRespawnTimer = 10;

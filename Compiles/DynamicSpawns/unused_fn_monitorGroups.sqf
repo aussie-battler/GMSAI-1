@@ -30,15 +30,15 @@ for "_i" from 1 to (count GMSAI_infantryGroups) do
             {
                 _marker setMarkerPos getPos (leader _group);
             };
-            if (_group getVariable["GMSAI_deleteAt",0] == 0) then  
+            if (_group getVariable["deleteAt",0] == 0) then  
             {
-                _group setVariable["GMSAI_deleteAt",diag_tickTime + (_group getVariable["GMSAI_DespawnTime",120])];
+                _group setVariable["deleteAt",diag_tickTime + (_group getVariable["GMSAI_DespawnTime",120])];
             };
-            if (diag_tickTime > _group getVariable "GMSAI_deleteAt") then
+            if (diag_tickTime > _group getVariable "deleteAt") then
             {
                 //diag_log format["_monitorInfantryGroups: time-dependent delete criteria met for group %1: test for nearby players",_group];
                 //private _nearbyPlayers = allPlayers select {(leader _group) distance _x < _group getVariable["GMSAI_despawnDistance",300]};
-                private _nearbyPlayers = allPlayers inAreaArray [getPos (leader _group),_group getVariable["GMSAI_despawnDistance",300],_group getVariable["GMSAI_despawnDistance",300]];
+                private _nearbyPlayers = allPlayers inAreaArray [getPos (leader _group),_group getVariable["despawnDistance",300],_group getVariable["despawnDistance",300]];
                 if (_nearbyPlayers isEqualTo [])  then
                 {
                    // diag_log format["_monitorInfantryGroups: no players near, deleting group %1",_group];
@@ -46,7 +46,7 @@ for "_i" from 1 to (count GMSAI_infantryGroups) do
                     deleteMarker _marker;                    
                 } else {
                     //diag_log format["_monitorInfantryGroups: players nearby, defer deletion of group %1",_group];
-                    _group setVariable["GMSAI_deleteAt",diag_tickTime + (_group getVariable["GMSAI_DespawnTime",120])];
+                    _group setVariable["deleteAt",diag_tickTime + (_group getVariable["despawnTime",120])];
                 };
             };
             GMSAI_infantryGroups pushBack _g;

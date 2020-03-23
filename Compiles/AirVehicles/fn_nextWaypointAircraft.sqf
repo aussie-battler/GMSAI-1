@@ -37,7 +37,7 @@ if ([_group] call GMS_fnc_isStuck) exitWith
 };
 
 private _nearestEnemy = objNull;
-private _target = _group getVariable["GMSAI_target",objNull];
+private _target = _group getVariable["target",objNull];
 if !(_target isEqualTo objNull) then 
 {
 	if (alive _target) then 
@@ -52,10 +52,10 @@ if !(_target isEqualTo objNull) then
 
 if !(isNull _nearestEnemy) then
 {
-	_group setVariable["GMSAI_target",_nearestEnemy];
+	_group setVariable["target",_nearestEnemy];
 	// TODO: revisit the logic here
 	_pos = position _nearestEnemy getPos[ [3,30/(_leader knowsAbout _nearestEnemy)] call GMS_fnc_getNumberFromRange,random(359)];
-	_group setVariable["GMSAI_timeStamp",diag_tickTime];	
+	_group setVariable["timeStamp",diag_tickTime];	
 	private _wp = [_group,0];
 	_wp setWaypointPosition [_pos,5];
 	_wp setWaypointType "SAD";

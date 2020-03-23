@@ -7,11 +7,11 @@ if (alive _unit) then {
 	} else {
 		(group _unit) reveal[_instigator,1];
 		// Possible heal functions here
-		if !(_unit getVariable["GMSAI_hasHealed",false]) then
+		if !(_unit getVariable["hasHealed",false]) then
 		{
 			[_unit,"SmokeShellPurple",_instigator getRelDir _unit] call GMS_fnc_throwSmoke;
 			[_unit] call GMS_fnc_healSelf;
-			_unit setVariable["GMSAI_hasHealed",true];
+			_unit setVariable["hasHealed",true];
 		};
 	};
 	(leader (group _unit)) call GMSAI_fnc_nextWaypoint;	

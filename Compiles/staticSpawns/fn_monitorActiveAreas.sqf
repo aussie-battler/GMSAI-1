@@ -4,7 +4,7 @@
 #define timesSpawned 5
 
 #define GMSAI_staticDespawnDistance 300
-[format["monitorActiveAreas<START>: GMSAI_activeStaticSpawns = %1",GMSAI_activeStaticSpawns]] call GMSAI_fnc_log;
+//[format["monitorActiveAreas<START>: GMSAI_activeStaticSpawns = %1",GMSAI_activeStaticSpawns]] call GMSAI_fnc_log;
 //if (true) exitWith {};
 
 for "_i" from 1 to (count GMSAI_activeStaticSpawns) do
@@ -65,4 +65,4 @@ for "_i" from 1 to (count GMSAI_activeStaticSpawns) do
 		};
 	};
 };
-[format["monitorActiveAreas<END>: GMSAI_activeStaticSpawns = %1",GMSAI_activeStaticSpawns]] call GMSAI_fnc_log;
+//[format["monitorActiveAreas<END>: GMSAI_activeStaticSpawns = %1",GMSAI_activeStaticSpawns]] call GMSAI_fnc_log;

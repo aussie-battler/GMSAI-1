@@ -10,7 +10,7 @@ if (isPlayer _killer && GMSAI_runoverProtection && !(vehicle _killer isEqualTo _
 //diag_log format["[GMSAI] processUnitKilled: _killer = %1  |  typeOf _killer = %2 | side killer = %3 | faction killer = %4",_killer, typeOf _killer,side _killer, faction _killer];
 //diag_log format["[GMSAI] processUnitKilled: Side _unit = %1 | side _killer = %2 | group = %3 | side group = %4",side _unit,side _killer, group _unit, side(group _unit)];
 
-_unit setVariable ["GMSAI_deleteAt", (diag_tickTime) + GMSAI_bodyDeleteTimer];
+_unit setVariable ["deleteAt", (diag_tickTime) + GMSAI_bodyDeleteTimer];
 private _group = group _unit;
 //_group call GMS_fnc_stripDeadorNullUnits;
 
@@ -43,17 +43,17 @@ if (GMSAI_launcherCleanup) then
 //diag_log "processUnitKilled: line 28 reached";
 if (isPlayer _killer) then 
 {
-	_group setVariable["GMSAI_target",_killer];
+	_group setVariable["target",_killer];
 	if (_isLegal) then
 	{
-		_lastkill = _killer getVariable["GMSAI_timeOfLastkill",diag_tickTime];
-		_killer setVariable["GMSAI_timeOfLastkill",diag_tickTime];
-		_kills = (_killer getVariable["GMSAI_kills",0]) + 1;
+		_lastkill = _killer getVariable["timeOfLastkill",diag_tickTime];
+		_killer setVariable["timeOfLastkill",diag_tickTime];
+		_kills = (_killer getVariable["kills",0]) + 1;
 		if ((diag_tickTime - _lastkill) < 240) then
 		{
-			_killer setVariable["GMSAI_kills",_kills];
+			_killer setVariable["kills",_kills];
 		} else {
-			_killer setVariable["GMSAI_kills",0];
+			_killer setVariable["kills",0];
 		};
 		//[_unit, ["Eject", vehicle _unit]] remoteExec ["action",(owner _unit)];
 		if (GMSAI_useKillMessages) then

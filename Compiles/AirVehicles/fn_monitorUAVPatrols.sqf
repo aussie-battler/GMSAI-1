@@ -14,24 +14,13 @@ for "_i" from 1 to (count GMSAI_uavPatrols) do
 				(leader _crewGroup) call GMSAI_fnc_nextWaypointAircraft;
 			};
 			//  Do a check for spawning paratroops
-			if (_aircraft getVariable ["paratroopsSpawnedTime",0] == 0 || ( _aircraft getVariable ["paratroopsSpawnedTime",0] != 0) && diag_tickTime > (_aircraft getVariable ["paratroopsSpawnedTime",0]) + selectRandom(getArray(configFile >> "CfgUAVpatrols" >> "respawnTime"))) then
-			{
-				private _nearestEnemy =  (leader _crewGroup) findNearestEnemy (leader _crewGroup);
-				if !(isNull _nearestEnemy) then
-				{
-					if (random(1) < GMSAI_UAVChanceOfPParatroops) then
-					{
-						[_aircraft] call GMSAI_fnc_flyInParatroops;
-					};
-					_crewGroup setVariable["paratroopsSpawnedTime",diag_tickTime];  //  reset timer whether or not paratroops were spawned.
-				};
-			};
-			GMSAI_uavPatrols pushBack _uavPatrol;
+			[_crewGroup,_aircraft] spawn GMSAI_fnc_spawnParatroops;
+			_crewGroup setVariable["respawnParaDropAt", diag_tickTime + GMSAI_paratroopRespawnTimer];
 		} else {
 			_uavPatrol set[4,diag_tickTime + [GMSAI_UAVRespawnTime] call GMS_fnc_getNumberFromRange];
 			_uavPatrol set[2,-1];
-			GMSAI_uavPatrols pushBack _uavPatrol;			
 		};
+		GMSAI_uavPatrols pushBack _uavPatrol;
 	} else {
 		if (GMSAI_uavPatrolResapwns == -1 || _timesSpawned <= GMSAI_uavPatrolResapwns) then
 		{

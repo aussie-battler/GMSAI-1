@@ -6,7 +6,7 @@
 #define GMSAI_staticDespawnDistance 300
 
 private _spawns = [];
-[format["monitorInactiveSpawns<START>: GMSAI_StaticSpawns = %1",GMSAI_activeStaticSpawns]] call GMSAI_fnc_log;
+//[format["monitorInactiveSpawns<START>: GMSAI_StaticSpawns = %1",GMSAI_activeStaticSpawns]] call GMSAI_fnc_log;
 for "_i" from 1 to (count GMSAI_StaticSpawns) do
 {
 	if (_i > (count GMSAI_StaticSpawns)) exitWith {};
@@ -45,17 +45,17 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 								] call GMSAI_fnc_spawnInfantryGroup;
 								// TODL: think about whether to have these hunt or, instead, have encounters be random.
 								//[_group,_players select 0] call GMS_fnc_assignTargetAreaPatrol;
-								_group setVariable["GMSAI_groupParameters",_staticAiDescriptor];
-								_group setVariable["GMSAI_despawnDistance",GMSAI_staticDespawnDistance];
-								_group setVariable["GMSAI_DespawnTime",GMSAI_staticDespawnTime];
-								_group setVariable["GMSAI_patrolAreaMarker",_patrolAreaMarker];
-								_group setVariable["GMSAI_waypointSpeed","NORMAL"];
-								_group setVariable["GMSAI_waypointLoiterRadius",30];
-								_group setVariable["GMSAI_blacklistedAreas",["water"]];
+								_group setVariable["groupParameters",_staticAiDescriptor];
+								_group setVariable["despawnDistance",GMSAI_staticDespawnDistance];
+								_group setVariable["despawnTime",GMSAI_staticDespawnTime];
+								_group setVariable["patrolAreaMarker",_patrolAreaMarker];
+								_group setVariable["waypointSpeed","NORMAL"];
+								_group setVariable["waypointLoiterRadius",30];
+								_group setVariable["blacklistedAreas",["water"]];
 
 								if (GMSAI_debug >= 1) then { [_group] call GMSAI_fnc_addGroupDebugMarker;};
 
-								_group setVariable ["GMSAI_lastChecked",diag_tickTime];
+								_group setVariable ["lastChecked",diag_tickTime];
 								_spawnedGroups pushBack _group;
 								//GMSAI_infantryGroups pushBack [_group,_m];
 							} forEach _spawns;
@@ -78,4 +78,4 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 		};
 	};
 };
-[format["monitorInactiveSpawns<END>: GMSAI_StaticSpawns = %1",GMSAI_activeStaticSpawns]] call GMSAI_fnc_log;
+//[format["monitorInactiveSpawns<END>: GMSAI_StaticSpawns = %1",GMSAI_activeStaticSpawns]] call GMSAI_fnc_log;

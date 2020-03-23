@@ -22,18 +22,18 @@ for "_i" from 1 to (count GMSAI_UGVPatrols) do
 				
 				if (!(isUAVConnected _vehicle) && (ropes _vehicle isEqualTo [])) then
 				{
-					private _deleteAt = _vehicle getVariable "GMSAI_deleteAt";
+					private _deleteAt = _vehicle getVariable "deleteAt";
 					if (isNil "GMSAI_deleteAt") then
 					{
 						[_vehicle] call GMSAI_fnc_processEmptyVehicle;
 						_deleteAt = diag_tickTime + GMSAI_UGVdespawnTime;
-						_vehicle setVariable["GMSAI_deleteAt",_deleteAt];
+						_vehicle setVariable["deleteAt",_deleteAt];
 					};
 					private _nearbyPlayers = allPlayers inAreaArray [position _vehicle, 300, 300]; 
 					if !(_nearbyPlayers isEqualTo []) then
 					{  //  Defer deletion when players are nearby
 						_deleteAt = diag_tickTime + GMSAI_UGVdespawnTime;
-						_vehicle setVariable["GMSAI_deleteAt",_deleteAt];						
+						_vehicle setVariable["deleteAt",_deleteAt];						
 					};
 					if (diag_tickTime > _deleteAt) then
 					{
