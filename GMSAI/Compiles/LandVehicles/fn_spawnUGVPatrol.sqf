@@ -11,6 +11,7 @@
 		_size			The size of the patrol area or mapsize if the mode is "Map" 
 		_shape			Normally, this is a rectangle 
 		_timeout		how quickly the group is sent back if it wanders out of the mission area.
+		
 	Returns: [_group,_ugv]
 		_group ( the group spawned) 
 		_ugv (the vehicle spawned)
