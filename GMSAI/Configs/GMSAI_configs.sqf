@@ -13,6 +13,10 @@
 #define GMSAI_difficultyRed 1
 #define GMSAI_difficultyGreen 2
 #define GMSAI_difficultyOrange 3
+
+GMSAI_maxHeals = 1;  // Maximum # of times the AI can heal. Set to 0 to disable self heals.
+GMSAI_minDamageForSelfHeal = 0.4;  // The damage a unit must sustain to self-heal. 
+GMSAI_unitSmokeShell = "SmokeShellRed"; // The type of smoke units throw if damaged. Set to "" to disable.
 GMSAI_baseSkill = 0.7;  // Base skill level for AI.
 GMSAI_baseSkilByDifficulty = [
 	0.5,  // blue 
@@ -25,7 +29,7 @@ GMSAI_defaultAlertDistance = 350;
 GMSA_alertDistanceByDifficulty = [200, 300,450,600];
 GMSAI_defaultInteligence = 0.5;
 GMSAI_intelligencebyDifficulty = [0.1,0.3,0.5,0.8];
-
+GMSAI_maxReloadsInfantry = -1;  // Set to 0 to prevent reloads, 1..N to have a finite # of them
 GMSAI_skillBlue = [ 
 	// _skills params["_accuracy","_aimingSpeed","_shake","_spotDistance","_spotTime","_courage","_reloadSpeed","_commanding","_general"];
 	[0.05,0.08],  // accuracy
@@ -102,7 +106,7 @@ GMSAI_forbidenWeapons = ["LMG_RCWS","LMG_M200","HMG_127","HMG_127_APC","HMG_M2",
 /*********************************
 	Aircraft Patrol Spawn Configs
 *********************************/
-GMSAI_numberOfAircraftPatrols = 5;
+GMSAI_numberOfAircraftPatrols = 0;
 GMSAI_aircraftPatrolDifficulty =  [GMSAI_difficultyBlue,0.90,GMSAI_difficultyRed,0.10];
 GMSAI_aircraftRespawnTime = [600,900];  //  Min, Max respawn time
 GMSAI_aircraftDesapwnTime = 120;
@@ -131,7 +135,7 @@ GMSAI_aircraftPatrolDestinations = [
 	"Airport"  // self-evident
 ];
 
-GMSAI_numberOfUAVPatrols = 1;
+GMSAI_numberOfUAVPatrols = 0;
 GMSAI_UAVTypes = [  //  note that faction may matter here.
 
 	// East 
@@ -213,7 +217,7 @@ GMSAI_removeNVG = false;
 GMSAI_runoverProtection = true;
 GMSAI_bodyDeleteTimer = 60;
 
-GMSAI_useDynamicSpawns = false;
+GMSAI_useDynamicSpawns = true;
 GMSAI_maximumDynamicRespawns = -1;  //  Set to 0 to spawn only once. Set to -1 to have infinite respawns (default).
 GMSAI_dynamicRespawnTime = 10;
 GMSAI_dynamicDespawnTime = 10;
@@ -222,7 +226,7 @@ GMSAI_dynamicRandomGroups = [1];
 GMSAI_dynamicRandomUnits = [3];
 GMSAI_dynamicRandomChance = 0.999;
 
-GMSAI_useStaticSpawns = false;
+GMSAI_useStaticSpawns = true;
 GMSAI_staticRespawns = -1;  //  Set to -1 to have infinite respawns (default). If set == 0 then there will be no spawns in towns/cities.
 GMSAI_staticRespawnTime = 10;
 GMSAI_staticDespawnTime = 10;

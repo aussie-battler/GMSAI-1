@@ -27,14 +27,22 @@ private _group = [
 		GMSAI_baseSkill,
 		GMSAI_alertAIDistance,
 		GMSAI_intelligence,
-		true  // add the group to those monitored to see if they escaped their patrol areas
-		] call GMS_fnc_spawnInfantryGroup;
+		GMSAI_bodyDeleteTimer,
+		GMSAI_maxReloadsInfantry,
+		GMSAI_launcherCleanup,
+		GMSAI_removeNVG,
+		GMSAI_minDamageForSelfHeal,
+		GMSAI_maxHeals,
+		GMSAI_unitSmokeShell  
+	] call GMS_fnc_spawnInfantryGroup;
+
 //[format["GMSAI_fnc_spawnInfantryGroup: _group returned = %1",_group]] call GMSAI_fnc_log;
 //private _unitDifficulty = selectRandomWeighted GMSAI_dynamicUnitsDifficulty;
+
  [_group,GMSAI_skillbyDifficultyLevel select _difficulty] call GMS_fnc_setupGroupSkills;  // TODO: revisit this once a system for skills is determined - simpler the better
 [_group, GMSAI_unitLoadouts select _difficulty, GMSAI_LaunchersPerGroup, GMSAI_useNVG, GMSAI_blacklistedGear] call GMS_fnc_setupGroupGear;
 [_group,_difficulty,GMSAI_money] call GMS_fnc_setupGroupMoney;
-[_group,GMSAI_bodyDeleteTimer] call GMS_fnc_setGroupBodyDespawnTime;
+//[_group,GMSAI_bodyDeleteTimer] call GMS_fnc_setGroupBodyDespawnTime;
 #define waypointTimeoutInfantryPatrols 180
 if !(_patrolAreaMarker isEqualTo "") then // setup waypoints using the information stored in the marker 
 {

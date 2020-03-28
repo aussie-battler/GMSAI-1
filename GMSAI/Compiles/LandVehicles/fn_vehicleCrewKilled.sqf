@@ -1,5 +1,9 @@
+/*
+	Just need to alert the crew and maybe any other units 
+	and notify player and send any rewards. 
 
-
+	body cleanup, removal of event handlers and disabling AI behaviors is handled by GMSCore
+*/
 params["_unit","_killer","_instigator"];
 private _vehicle = vehicle _unit;
 private _group = group _unit;
@@ -15,7 +19,4 @@ if ((currentWeapon _instigator) in GMSAI_forbidenWeapons) exitWith
 };
 
 [_unit,_killer,true] call GMSAI_fnc_processUnitKill;
-if ({alive _x} count (crew _vehicle) == 0) then
-{
-	[_vehicle] call GMSAI_fnc_processEmptyVehicle;
-};
+

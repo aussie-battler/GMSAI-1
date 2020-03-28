@@ -43,6 +43,7 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 									_unitDifficulty,
 									_patrolAreaMarker
 								] call GMSAI_fnc_spawnInfantryGroup;
+								[format["_fnc_monitorInactiveAreas: _group spawned = %1",_group]] call GMSAI_fnc_log;
 								// TODL: think about whether to have these hunt or, instead, have encounters be random.
 								//[_group,_players select 0] call GMS_fnc_assignTargetAreaPatrol;
 								_group setVariable["groupParameters",_staticAiDescriptor];
