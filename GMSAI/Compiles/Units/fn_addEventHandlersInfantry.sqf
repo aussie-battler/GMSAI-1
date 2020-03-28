@@ -1,5 +1,18 @@
 /*
+	GMSAI_fnc_addEventHandlersInfantry 
+
+	Purpose: add stacked EH to units.
+
+	Parameters: _group, the group for which you wish to add EH to the units. 
+
+	Returns: none 
+	
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes: 
+	 	these EH perform GMSAI=specific functions for MPHit, MPKilled, reload.
+		a handleDamage EH is already added by GMS so is not needed here. 
+		This EH just has to deal with hunting, player notifications, etc. 
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 

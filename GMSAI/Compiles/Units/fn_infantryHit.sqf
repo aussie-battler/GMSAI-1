@@ -1,5 +1,24 @@
 /*
+	GMSAI_fnc_infantryHit 
+
+	Purpose: handle GMSAI specific actions when a unit is hit including changing hunting behavior. 
+
+	Parameters: per https://community.bistudio.com/wiki/Arma_3:_Event_Handlers#MPHit  
+
+	Returns: none 
+
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes:
+		TODO: need to review this to see what is duplicated from the GMS mpHit EH. 
+			That one handles healing if damage > a certain value, 
+			throws smoke based ona parameter passed when the group is spawned 
+			Knows how many times heals can be done base on a parameter passed when the group is spawned 
+			Set the group to compat mode for GMS 
+
+			The only thing left is bumping stats and starting deeper hunting logic. 
+		TODO: need to think about what, if anything this should do, such as allerating other nearby groups. 
+		Note that the standard GMS hit EH puts the group on alert and I believe increases that groups knowsAbout for the player
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 

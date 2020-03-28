@@ -1,5 +1,22 @@
 /*
+	GMSAI_fnc_infantryKilled 
+
+	Purpose: execute GMSAI specific functions when a unit is killed 
+
+	Parameters: per https://community.bistudio.com/wiki/Arma_3:_Event_Handlers#MPKilled 
+
+	Returns: none 
+
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes:
+		TODO: needs reworking so it does not duplicate what GMS already does 
+			that is put the body in the sceduler for deletion 
+			add the body to a graveyard group 
+			delete nvg and launcher if needed 
+			put the group on combat status.
+		TODO: need to think about what, if anything this should do, such as allerating other nearby groups. 
+		Note that the standard GMS hit EH puts the group on alert and I believe increases that groups knowsAbout for the player	
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 

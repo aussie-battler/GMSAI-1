@@ -23,33 +23,6 @@ class CfgPatches {
 };
 class CfgFunctions {
 	class GMSAI {
-		class main {
-			file = "addons\GMSAI\init";
-			class initialize {
-				postInit = 1;
-			};
-		};
-		class Players {
-			// Things that GMSAI does to players.
-			file = "addons\GMSAI\Compiles\Players";
-			class rewardPlayer {};
-		};
-		class Units {
-			// Stuff that happens when events fire on units in GMSAI; some of these are in addition to EH that fire on GMSCore
-			file = "addons\GMSAI\Compiles\Units";
-			class infantryKilled {};
-			class infantryHit {};
-			class addEventHandlersInfantry {};
-		};
-		class Groups {
-			file = "addons\GMSAI\Compiles\Groups";
-			class addGroupDebugMarker {};
-			class deleteGroupDebugMarker {};
-			class getGroupDebugMarker {};
-			class monitorGroupDebugMarkers {};
-			class spawnInfantryGroup {};			
-			class updateGroupDebugMarker {};
-		};
 		class AirVehicles {
 			// Everything having do with spawning and monitoring Air/UAV patrols is dealt with by these functions.
 			file = "addons\GMSAI\Compiles\AirVehicles";
@@ -67,6 +40,38 @@ class CfgFunctions {
 			class spawnUAVPatrol {};	
 			class spawnHelicoptorPatrol {};															
 		};
+		class dynamicSpawns {
+			// Thesee functions monitor and spawn infantry groups in the vicinity of the player
+			file = "addons\GMSAI\Compiles\DynamicSpawns";
+			class dynamicAIManager {};				
+		};
+		class Functions {
+			//  Core and generic support functions.
+			file = "addons\GMSAI\Compiles\Functions";
+			class addStaticSpawnInfantry {};
+			class mainThread {};  // This is a scheduler for all of the events that must happen for spawns, despawns and such.
+			class monitorEmptyVehicles {};
+			class monitorDeadUnits {};  // This can be handled by GMSCore
+		};	
+		class Groups {
+			file = "addons\GMSAI\Compiles\Groups";
+			class addGroupDebugMarker {};
+			class deleteGroupDebugMarker {};
+			class getGroupDebugMarker {};
+			class monitorGroupDebugMarkers {};
+			class spawnInfantryGroup {};			
+			class updateGroupDebugMarker {};
+		};			
+		class Initialization {
+			// Initialization of static spawn points is handled by these functions
+			file = "addons\GMSAI\Compiles\Initialization";
+			class initializeStaticSpawnsForLocations {};
+			class initializeRandomSpawnLocations {};				
+			class initializeAircraftPatrols {};
+			class initializeUAVPatrols {};		
+			class initializeUGVPatrols {};	
+			class initializeVehiclePatrols {};
+		};	
 		class LandVehicles {
 			//  Everything related spawning/monitoring land / sea surface / SDV ehicle patrols is handled here.
 			file = "addons\GMSAI\Compiles\LandVehicles";
@@ -85,36 +90,31 @@ class CfgFunctions {
 			class vehicleHandleDamage {};
 			class spawnVehiclePatrol {};	
 			class spawnUGVPatrol {};
+		};			
+		class main {
+			file = "addons\GMSAI\init";
+			class initialize {
+				postInit = 1;
+			};
 		};
-		class Initialization {
-			// Initialization of static spawn points is handled by these functions
-			file = "addons\GMSAI\Compiles\Initialization";
-			class initializeStaticSpawnsForLocations {};
-			class initializeRandomSpawnLocations {};				
-			class initializeAircraftPatrols {};
-			class initializeUAVPatrols {};		
-			class initializeUGVPatrols {};	
-			class initializeVehiclePatrols {};
-		};
-		class Functions {
-			//  Core and generic support functions.
-			file = "addons\GMSAI\Compiles\Functions";
-			class addStaticSpawnInfantry {};
-			class mainThread {};  // This is a scheduler for all of the events that must happen for spawns, despawns and such.
-			class monitorEmptyVehicles {};
-			class monitorDeadUnits {};  // This can be handled by GMSCore
-		};
+		class Players {
+			// Things that GMSAI does to players.
+			file = "addons\GMSAI\Compiles\Players";
+			class rewardPlayer {};
+		};	
 		class staticSpawns {
 			// These functions monitor and spawn infantry groups as fixed locations as players approach or leave these areas.
 			file = "addons\GMSAI\Compiles\staticSpawns";		
 			class monitorActiveAreas {};
 			class monitorInactiveAreas {};
-		};
-		class dynamicSpawns {
-			// Thesee functions monitor and spawn infantry groups in the vicinity of the player
-			file = "addons\GMSAI\Compiles\DynamicSpawns";
-			class dynamicAIManager {};				
-		};
+		};			
+		class Units {
+			// Stuff that happens when events fire on units in GMSAI; some of these are in addition to EH that fire on GMSCore
+			file = "addons\GMSAI\Compiles\Units";
+			class infantryKilled {};
+			class infantryHit {};
+			class addEventHandlersInfantry {};
+		};		
 		class Utilities {
 			// Utilities such as logging messages for GMSAI
 			file = "addons\GMSAI\Compiles\Util";
