@@ -1,4 +1,13 @@
 /*
+	GMSAI_fnc_monitorAirPatrols 
+
+	Purpose: ensure that air patrols do not get 'stuck' finding a waypoint 
+			and are recalled when the wander too far from the patrol area
+	
+	Parameters: None 
+
+	Returns: None 
+	
 	Copyright 2020 Ghostrider-GRG-
 */
 

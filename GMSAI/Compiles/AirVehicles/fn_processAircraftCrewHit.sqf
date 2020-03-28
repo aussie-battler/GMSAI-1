@@ -1,9 +1,17 @@
 /*
-	GMS_fnc_processAircraftCrewMPeHit 
-	- Damage due to collisions is handled elsewhere.
-	- otherwise the script informst the group about the instigator and runs a new waypoint update which will automatically include targeting the nearest known enemy.
+	GMS_fnc_processAircraftCrewHit 
+
+	Purpose: Called when the MPHit event handler for the aircraft crew for GMSAI function fires 
+	
+	Parameters: per https://community.bistudio.com/wiki/Arma_3:_Event_Handlers#MPHit  
+
+	Returns: none 
 
 	Copyright 2020 by Ghostrider-GRG-
+
+	Notes: 
+	- Damage due to collisions is handled elsewhere.
+	- otherwise the script informst the group about the instigator and runs a new waypoint update which will automatically include targeting the nearest known enemy.
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 

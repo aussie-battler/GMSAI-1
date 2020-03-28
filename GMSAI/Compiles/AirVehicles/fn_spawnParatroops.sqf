@@ -1,23 +1,34 @@
 /*
-	Check whether conditions for spawning reinforcements are met and if so call them in. 
+	GMSAI_fnc_spawnParatroops 
 
+	Purpose: Check whether conditions for spawning reinforcements are met and if so call them in. 
+
+	Parameters: 
+		_crewGroup, the group for the crew for that heli 
+		_aircraft, the aircraft patroling 
+
+	Returns: None 
+
+	Copywrite 2020 by Ghostrider-GRG- 
+
+	Notes: 
+ 		conditions under which the crew would look for a player to trigger having new reinforcements brought in 
+
+		1. number of active reinforcements < max.
+			(count GMSAI_paratroopGroupsSpawned) < GMSAI_maxParagroups;
+		2. there are helis in the air.
+			assumed if we get this far in the script
+		3. there are players within 300 m 
+				_players = nearestObjects[getPosATL (leader _crewGroup), ["Man", ]300] select {isPlayer _x};
+		4. there are no reinforcements tied to that aircraft 
+			private _paraGroup = _crewGroup getVariable "GMSAI_paraGroup";  //  should be nil
+			private _inbound = _crewGroup getVariable "GMSAI_heliInbound";  // should be nil
+		5. time elapsed since last import of reinforcements > respawn time. 
+			private _respawnAt = _crewGroup getVariable["respawnParaDropAt",-1];
+			if (_lastSpawned == -1) || (diag_tickTime > _respawnAt) then ... blah blah	
 */
 
-// conditions under which the crew would look for a player to trigger having new reinforcements brought in 
-/*
-	1. number of active reinforcements < max.
-		(count GMSAI_paratroopGroupsSpawned) < GMSAI_maxParagroups;
-	2. there are helis in the air.
-		assumed if we get this far in the script
-	3. there are players within 300 m 
-			_players = nearestObjects[getPosATL (leader _crewGroup), ["Man", ]300] select {isPlayer _x};
-	4. there are no reinforcements tied to that aircraft 
-		private _paraGroup = _crewGroup getVariable "GMSAI_paraGroup";  //  should be nil
-		private _inbound = _crewGroup getVariable "GMSAI_heliInbound";  // should be nil
-	5. time elapsed since last import of reinforcements > respawn time. 
-		private _respawnAt = _crewGroup getVariable["respawnParaDropAt",-1];
-		if (_lastSpawned == -1) || (diag_tickTime > _respawnAt) then ... blah blah
-*/
+
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 params["_crewGroup","_aircraft"];

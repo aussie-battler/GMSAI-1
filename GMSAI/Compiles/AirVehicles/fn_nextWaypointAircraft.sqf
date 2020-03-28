@@ -1,7 +1,17 @@
 /*
 	GMSAI_fnc_nextWaypointAircraft 
-	Uses a location-based method for finding waypoings so that those pesky helis will circle overhead at interesting objectives for a bit. 
-	Includes a hunting function by which helis will pursue targets until killed or called back.
+
+	Purpose: Set the next waypoint for an aircraft patrol (UAV or otherwise)
+
+	Parameters: None  
+
+	Returns: none 
+
+	Copyright 2020 Ghostrider-GRG-
+
+	Notes:
+		Uses a location-based method for finding waypoings so that those pesky helis will circle overhead at interesting objectives for a bit. 
+		Includes a hunting function by which helis will pursue targets until killed or called back.
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 

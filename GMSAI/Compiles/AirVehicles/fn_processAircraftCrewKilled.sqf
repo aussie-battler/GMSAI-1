@@ -1,5 +1,17 @@
 /*
+	GMSAI_fnc_processAircraftCrewKilled 
+
+	Purpose: called when the MPKilled event handler first for aircraft crew 
+
+	Parameters: per https://community.bistudio.com/wiki/Arma_3:_Event_Handlers#MPKilled  
+
+	Returns: none 
+
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes: 
+	TODO: Need to add stuff to message and reward players, boost skills, and other functions like that.
+	      Probably need a one size fits all function for this.
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 

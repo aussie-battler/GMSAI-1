@@ -1,5 +1,18 @@
 /*
+	GMSAI_fnc_dropReinforcements 
+
+	Purpose: drop a group at a set location by parachutes. 
+
+	Parameters: 
+		_group, the group to be airdroped 
+		_aircraft, the aircraft from which to release them 
+		_target, the player targetd by these reinforcements 
+
+	Returns: none 
+
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes: this is intended to be used to bring in paras when a UAV detects a player and requests reinforcements.
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 

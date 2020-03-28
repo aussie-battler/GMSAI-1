@@ -1,5 +1,12 @@
 /*
+	GMSAI_fnc_flyInParatroops 
+
+	Purpose: bring in paratroops 
+	
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes: may be unused. 
+	TODO: test if this is used.
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 

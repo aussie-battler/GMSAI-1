@@ -1,5 +1,17 @@
 /*
+	GMSAI_fnc_monitorParatroopSpawns 
+
+	Purpose: monitor para groups to keep them hunting till nothing is left then despawn them.
+
+	Parameters: None 
+
+	Returns: None 
+
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes: may not be used 
+
+	TODO: check if this can be deleted
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 

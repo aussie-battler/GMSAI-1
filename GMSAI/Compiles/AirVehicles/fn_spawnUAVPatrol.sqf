@@ -2,8 +2,25 @@
 /*
 	GMS_fnc_spawnUAVPatrol 
 	Purpose: spawn a UAV patrol that will go from location to location on the map hunting for players 
-	Locations: are any town, city etc defined at startup. 
+
+	Parameters: 
+	Parameters: 
+		_pos, position to spawn chopper 
+		_patrolType - can be "Map" or "Region". "Region will respect the boundaries of a map marker while Map will patrol the entire map. 
+		_blackListed - areas to avoid formated as [[x,y,z],radius]
+		_center, center of the area, either mapCenter of center of the patrol area 
+		_size, size of the area to be patroled, either mapSize or dimension of the patrol area 
+		_shape, shap of the patrol area (rectangle by default)
+		_timeout - how long to wait before deciding the chopper is 'stuck'
+
+	Returns: [
+		_group, the group spawned to man the heli 
+		_uav, the UAV spawned selected by selectRandomWeighted GMSAI_aircraftTypes,  
+	]
+
 	Copywrite 2020 by Ghostrider-GRG-
+
+	Notes: 
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp"  

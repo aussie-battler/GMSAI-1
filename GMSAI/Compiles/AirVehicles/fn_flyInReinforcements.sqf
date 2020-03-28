@@ -1,4 +1,15 @@
 /*
+	GMSAI_fnc_flyInReinforcements 
+
+	Purpose: fly in a heli and drop reinforcements by parachute at a specified location 
+
+	Parameters: 
+		_dropPos, where the drop should occure 
+		_group, the group the be dropped 
+		_targetedPlayer, the player target to be hunted by the reinforcements 
+
+	Returns: None 
+	
 	Copyright 2020 Ghostrider-GRG-
 */
 

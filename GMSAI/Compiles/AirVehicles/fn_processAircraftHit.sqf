@@ -1,5 +1,16 @@
 /*
+	GMSAI_fnc_processAircraftHit 
+
+	Purpose: called when the MPHit event handler fires for the aircraft 
+
+	Parameters: per https://community.bistudio.com/wiki/Arma_3:_Event_Handlers#MPHit  
+
+	Returns: None 
+
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes:
+	TODO: think about how to add hunting logic here and if any is needed beyond that for nextWaypointAircraft
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 

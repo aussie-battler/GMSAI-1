@@ -1,4 +1,12 @@
 /*
+	GMSAI_fnc_monitorUAVPatrols 
+
+	Purpose: monitor UAV patrols, check if the are stuck or out of bounds, deal with this if so. 
+
+	Parameters: None 
+
+	Returns: None 
+	
 	Copyright 2020 Ghostrider-GRG-
 */
 
