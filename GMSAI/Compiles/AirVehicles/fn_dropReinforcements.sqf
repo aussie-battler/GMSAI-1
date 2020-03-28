@@ -1,4 +1,8 @@
+/*
+	Copyright 2020 Ghostrider-GRG-
+*/
 
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 params["_group","_aircraft","_target"];
 [[format["dropReinforcements called: _group = %1 | _aircraft = %2 | _target = %3",_group,_aircraft,_target]]] call GMSAI_fnc_log;
 

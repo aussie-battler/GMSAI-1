@@ -1,3 +1,8 @@
+/*
+	Copyright 2020 Ghostrider-GRG-
+*/
+
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 params["_group"];
 {
 	_x addEventHandler ["Reload", {_this call GMSAI_fnc_infantryReloaded;}];

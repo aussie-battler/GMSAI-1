@@ -1,3 +1,8 @@
+/*
+	Copyright 2020 Ghostrider-GRG-
+*/
+
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 params["_unit","_killer"];  //,"_instigator"];
 diag_log format["[GMSAI] crewKilled_EH: typeOf _killer = %1  |  typeOf _killer = %2",typeOf _killer, typeOf _killer];
 private _vehicle = vehicle _unit;

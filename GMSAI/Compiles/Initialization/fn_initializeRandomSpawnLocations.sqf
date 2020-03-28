@@ -1,3 +1,8 @@
+/*
+	Copyright 2020 Ghostrider-GRG-
+*/
+
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 diag_log format["[GMSAI] _initializeRandomSpawnLocations: GMSAI_StaticSpawnsRandom = %1",GMSAI_StaticSpawnsRandom];
 if (GMSAI_StaticSpawnsRandom <= 0 || !(GMSAI_useStaticSpawns)) exitWith {};
 params[["_locations",[]]];

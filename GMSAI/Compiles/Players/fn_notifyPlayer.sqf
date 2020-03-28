@@ -1,3 +1,8 @@
+/*
+	Copyright 2020 Ghostrider-GRG-
+*/
+
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 params["_player","_distance"];
 //diag_log format["GMSAI] _rewardPlayer:  _player = %1 | _distance = %2",_player,_distance];
 if (toLower(GMS_modType) isEqualTo "epoch") then

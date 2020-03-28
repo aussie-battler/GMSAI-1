@@ -1,5 +1,8 @@
+/*
+	Copyright 2020 Ghostrider-GRG-
+*/
 
-
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 params["_dropPos","_group","_targetedPlayer"];
 [format["flyInReinforcements CALLED"]] call GMSAI_fnc_log;
 /*

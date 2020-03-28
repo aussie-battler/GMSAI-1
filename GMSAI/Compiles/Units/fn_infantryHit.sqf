@@ -1,3 +1,8 @@
+/*
+	Copyright 2020 Ghostrider-GRG-
+*/
+
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 params["_unit","_causedBy","_damage","_instigator"];
 [format["infantryHit _unit = %1 | _instigator = %2",_unit,_instigator]] call GMSAI_fnc_log;
 if (!(isPlayer _instigator)) exitWith {};

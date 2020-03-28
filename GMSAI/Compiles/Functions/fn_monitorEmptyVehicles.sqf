@@ -1,3 +1,8 @@
+/*
+	Copyright 2020 Ghostrider-GRG-
+*/
+
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 //diag_log format["_monitorEmptyVehicles called at %1 with queue = %2",diag_tickTime,GMSAI_emptyVehicles];
 for "_i" from 1 to (count GMSAI_emptyVehicles) do
 {

@@ -1,3 +1,7 @@
+/*
+	Copyright 2020 Ghostrider-GRG-
+*/
+
 #define GMSAI_definesLoaded true
 #define GMSAI_difficultyBlue 0
 #define GMSAI_difficultyRed 1

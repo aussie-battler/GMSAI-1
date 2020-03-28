@@ -1,3 +1,8 @@
+/*
+	Copyright 2020 Ghostrider-GRG-
+*/
+
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 params["_aircraft","_causedBy","_damage","_instigator"];
 diag_log format["[GMSAI] processAircraftHit _unit = %1 | _instigator = %2",_unit,_instigator];
 _group = group((crew _aircraft) select 0);

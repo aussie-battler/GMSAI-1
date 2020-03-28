@@ -6,6 +6,7 @@
 	Copyright 2020 by Ghostrider-GRG-
 */
 
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 params["_unit","_causedBy","_damage","_instigator"];
 [format["processAircraftCrewHit: _unit %1 hit by %2",_unit,_causedBy]] call GMSAI_fnc_log;
 _group reveal[_instigator,((group _unit) knowsabout _instigator) + ([_group] call GMS_fnc_getGroupIntelligence)];

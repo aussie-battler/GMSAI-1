@@ -1,3 +1,8 @@
+/*
+	Copyright 2020 Ghostrider-GRG-
+*/
+
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 private _1sec = diag_tickTime;
 private _5sec = diag_tickTime;
 private _15sec = diag_tickTime;

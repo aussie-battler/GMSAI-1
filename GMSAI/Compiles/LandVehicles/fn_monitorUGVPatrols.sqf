@@ -1,3 +1,7 @@
+/*
+	Copyright 2020 Ghostrider-GRG-
+*/
+
 diag_log format["[GMSAI] _monitorUGVPatrols called at %1",diag_tickTime];
 for "_i" from 1 to (count GMSAI_UGVPatrols) do
 {

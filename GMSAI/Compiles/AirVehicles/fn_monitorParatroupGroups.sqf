@@ -1,4 +1,8 @@
 /*
+	Copyright 2020 Ghostrider-GRG-
+*/
+
+/*
 	possible actions:
 	1. Delete if all units dead or the target and other known enemies are dead. 
 	2. the group knows about the target and should keep hunting it.
@@ -8,6 +12,7 @@
 
 */
 
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 diag_log format["_fnc_monitorParatroopGroups: called at %1",diag_tickTime];
 
 for "_i" from 1 to (count GMSAI_paratroopGroups) do

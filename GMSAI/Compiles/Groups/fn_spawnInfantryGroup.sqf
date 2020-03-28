@@ -1,7 +1,8 @@
 /*
-	spawns an infantry group.
-
+	Copyright 2020 Ghostrider-GRG-
 */
+
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 // TODO add difficulty-based alert distance and intelligence
 #define GMSAI_dynamicSpawnDistance 200    //  TODO: further develop this
 #define GMSAI_dynamicDespawnDistance 400  //  TODO: further develop this

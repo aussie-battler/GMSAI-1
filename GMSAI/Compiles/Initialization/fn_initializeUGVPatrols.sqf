@@ -1,3 +1,8 @@
+/*
+	Copyright 2020 Ghostrider-GRG-
+*/
+
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 diag_log format["[GMSAI] _initializeUGVPatrols: Begining script | GMSAI_noVehiclePatrols = %1",GMSAI_noVehiclePatrols];
 private _blacklistedAreas = ["water"];
 for "_i" from 1 to GMSAI_numberOfUGVPatrols do

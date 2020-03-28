@@ -1,3 +1,8 @@
+/*
+	Copyright 2020 Ghostrider-GRG-
+*/
+
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 fn_selectDropWaypoint = {
 	diag_log format ["heli %1 slowing for paratroop deployment",vehicle _this];
 	private _group = group _this;

@@ -1,3 +1,8 @@
+/*
+	Copyright 2020 Ghostrider-GRG-
+*/
+
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 diag_log format["[GMSAI] _monitorUAVPatrols called at %1",diag_tickTime];
 // 
 for "_i" from 1 to (count GMSAI_uavPatrols) do

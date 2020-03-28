@@ -18,6 +18,8 @@
 		private _respawnAt = _crewGroup getVariable["respawnParaDropAt",-1];
 		if (_lastSpawned == -1) || (diag_tickTime > _respawnAt) then ... blah blah
 */
+
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 params["_crewGroup","_aircraft"];
 // Basic conditions for spawns must be met
 if (count GMSAI_paratroopGroups > GMSAI_maxParagroups) exitWith {["spawnParatroops: maximum number of active reinforments reached"] call GMSAI_fnc_log};

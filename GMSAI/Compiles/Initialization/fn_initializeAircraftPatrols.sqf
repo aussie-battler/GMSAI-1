@@ -1,3 +1,8 @@
+/*
+	Copyright 2020 Ghostrider-GRG-
+*/
+
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 diag_log format["[GMSAI] _initializeAircraftPatrols: Begining script | GMSAI_numberOfAircraftPatrols = %1",GMSAI_numberOfAircraftPatrols];
 private _blacklistedAreas = ["water"];
 for "_i" from 1 to GMSAI_numberOfAircraftPatrols do

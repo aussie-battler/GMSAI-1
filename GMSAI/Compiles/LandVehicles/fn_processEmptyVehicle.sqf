@@ -1,3 +1,7 @@
+/*
+	Copyright 2020 Ghostrider-GRG-
+*/
+
 params["_vehicle"];
 //diag_log format["_processEmptyVehicle: _vehicle = %1",_vehicle];
 if (GMSAI_releaseVehiclesToPlayers == 1) then

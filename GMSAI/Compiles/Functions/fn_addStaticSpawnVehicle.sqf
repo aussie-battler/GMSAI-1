@@ -1,4 +1,8 @@
+/*
+	Copyright 2020 Ghostrider-GRG-
+*/
 
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 //diag_log format["[GMSAI] _addStaticAiSpawn: _this = %1",_this];
 params["_areaDescriptor","_staticAiDescriptor"];
 #define respawnAt 0

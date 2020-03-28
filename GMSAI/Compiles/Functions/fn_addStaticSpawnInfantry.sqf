@@ -3,6 +3,8 @@
 	Purpose: add a spawn for infantry within a speciried area.
 	Purpose: add a spawn for infantry within a speciried area.
 */
+
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 //diag_log format["[GMSAI] _addStaticAiSpawn: _this = %1",_this];
 params["_areaDescriptor","_staticAiDescriptor"];
 #define respawnAt 0

@@ -10,6 +10,8 @@ Parameters:
 	_overallskillincrement - default 0.1 
 	_subskills [] increment - default - accuracy 0.5, all other skill 0.1 
 */
+
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 params["_group",["_subskillIncrement",-.05]];
 {
 	private _unit = _x;

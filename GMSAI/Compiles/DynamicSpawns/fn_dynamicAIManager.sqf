@@ -1,3 +1,8 @@
+/*
+	Copyright 2020 Ghostrider-GRG-
+*/
+
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 #define GMSAI_dynamicSpawnDistance 300
 #define GMSAI_dynamicDespawnDistance 400
 #define GMSAI_alertAIDistance 300

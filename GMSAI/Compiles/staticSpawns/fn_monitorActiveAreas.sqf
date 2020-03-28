@@ -1,3 +1,8 @@
+/*
+	Copyright 2020 Ghostrider-GRG-
+*/
+
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 #define respawnAt 4
 #define patrolAreaMarker 0
 #define areaGroups 3

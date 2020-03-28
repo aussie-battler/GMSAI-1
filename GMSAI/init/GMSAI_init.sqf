@@ -1,3 +1,7 @@
+/*
+	Copyright 2020 Ghostrider-GRG-
+*/
+
 #include "\addons\GMSAI\init\GMSAI_defines.hpp"
 
 call compileFinal preprocessFileLineNumbers "addons\GMSAI\Variables\GMSAI_Variables.sqf";

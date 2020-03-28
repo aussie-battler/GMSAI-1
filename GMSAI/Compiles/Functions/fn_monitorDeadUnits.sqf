@@ -1,4 +1,8 @@
+/*
+	Copyright 2020 Ghostrider-GRG-
+*/
 
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 for "_i" from 1 to (count GMSAI_deadAI) do
 {
 	_v = GMSAI_deadAI deleteAt 0;

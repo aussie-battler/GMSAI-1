@@ -3,6 +3,8 @@
 	Uses a location-based method for finding waypoings so that those pesky helis will circle overhead at interesting objectives for a bit. 
 	Includes a hunting function by which helis will pursue targets until killed or called back.
 */
+
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 [format["nextWaypointAircraft: _this = %1 | typeName _this 5 %2",_this,typeName _this]] call GMSAI_fnc_log;
 private _leader = _this;
 private _group = group _leader;

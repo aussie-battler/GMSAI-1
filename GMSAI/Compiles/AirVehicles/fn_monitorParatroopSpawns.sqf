@@ -1,3 +1,8 @@
+/*
+	Copyright 2020 Ghostrider-GRG-
+*/
+
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 diag_log format["_fnc_monitorParatroopSpawns: called at %1",diag_tickTime];
 {
 	//  There are a lot of checks to do so break them down by most to least common where possible

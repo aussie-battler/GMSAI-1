@@ -1,3 +1,8 @@
+/*
+	Copyright 2020 Ghostrider-GRG-
+*/
+
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 params["_group",["_vehicle","Man"]];
 private _m = createMarker[format["GMSAI_debugMarker%1",random(1000000)],getPosATL(leader _group)];
 _m setMarkerType "mil_triangle";

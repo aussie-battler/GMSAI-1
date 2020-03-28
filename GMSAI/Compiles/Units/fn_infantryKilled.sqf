@@ -1,3 +1,8 @@
+/*
+	Copyright 2020 Ghostrider-GRG-
+*/
+
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 params["_unit","_killer"];
 private _isLegal = true;
 {format["nfantryKilled: typeOf _killer = %1  |  typeOf _killer = %2",typeOf _killer, typeOf _killer] call GMSAI_fnc_log;
