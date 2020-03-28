@@ -1,5 +1,16 @@
 /*
+	GMSAI_fnc_dynamicAIManager 
+
+	Purpose: handles spawning, monitoring and despawning of dynamic AI. 
+			These spawn with the intent of hunting a specific player but can hunt others in the area if that player is gone. 
+
+	Parameters: None 
+
+	Returns: None 
+
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes: checks if other AI units are nearby and cools down if so to avoid having dynamics spawned in an area for more than one player.
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 
