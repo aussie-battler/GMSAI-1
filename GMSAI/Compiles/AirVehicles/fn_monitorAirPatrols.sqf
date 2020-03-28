@@ -7,7 +7,7 @@
 	Parameters: None 
 
 	Returns: None 
-	
+
 	Copyright 2020 Ghostrider-GRG-
 */
 
@@ -33,7 +33,7 @@ for "_i" from 1 to (count GMSAI_airPatrols) do
 			_crewGroup setVariable["respawnParaDropAt", diag_tickTime + GMSAI_paratroopRespawnTimer];
 		} else {
 			// handle the case where aircraft has been destroyed or crew killed.
-			_airPatrol set[4,diag_tickTime + [GMSAI_aircraftRespawnTime] call GMS_fnc_getNumberFromRange];
+			_airPatrol set[4,diag_tickTime + ([GMSAI_aircraftRespawnTime] call GMS_fnc_getNumberFromRange)];
 			_airPatrol set[2,-1];
 						
 		};

@@ -6,7 +6,7 @@
 	Parameters: None 
 
 	Returns: None 
-	
+
 	Copyright 2020 Ghostrider-GRG-
 */
 
@@ -30,7 +30,7 @@ for "_i" from 1 to (count GMSAI_uavPatrols) do
 			[_crewGroup,_aircraft] spawn GMSAI_fnc_spawnParatroops;
 			_crewGroup setVariable["respawnParaDropAt", diag_tickTime + GMSAI_paratroopRespawnTimer];
 		} else {
-			_uavPatrol set[4,diag_tickTime + [GMSAI_UAVRespawnTime] call GMS_fnc_getNumberFromRange];
+			_uavPatrol set[4,diag_tickTime + ([GMSAI_UAVRespawnTime] call GMS_fnc_getNumberFromRange)];
 			_uavPatrol set[2,-1];
 		};
 		GMSAI_uavPatrols pushBack _uavPatrol;

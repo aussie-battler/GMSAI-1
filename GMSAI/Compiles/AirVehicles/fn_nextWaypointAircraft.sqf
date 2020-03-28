@@ -20,24 +20,32 @@ private _leader = _this;
 private _group = group _leader;
 
 // If the timestamp has not bee updated for a while then find a new waypoint
+
 if ([_group] call GMS_fnc_isStuck) exitWith 
 {
+
+	// Group is stuck so handle that 
+	// Need group to disengage as well.
+
 	private _nearLocations = nearestLocations [
 		position _leader, 
 		GMSAI_aircraftPatrolDestinations,
 		5000
 	];
 	private _pos = position _leader;
-	private _loc = selectRandom _nearLocations;
+	private _loc = selectRandom _nearLocations;  // where the aircraft should move
 	private _lastWaypointPos = waypointPosition [_group,0];
 	while { (locationPosition _loc) distance _lastWaypointPos < 1500 || _leader distance _pos < 1500 || (text _loc) in GMSAI_blackListedAreasVehicles} do
 	{
 		_loc = selectRandom _nearLocations;
 		_pos = locationPosition _loc;
 	};	
-	_group setBehaviour "CARELESS";
-	_group setCombatMode "BLUE";
+
+	[_group,"disengage"] call GMS_fnc_setGroupBehaviors;
+	//_group setBehaviour "CARELESS";
+	//_group setCombatMode "BLUE";
 	_group setSpeedMode "NORMAL";
+
 	private _wp = [_group,0];
 	_wp setWaypointType "MOVE";
 	_wp setWaypointTimeout [0.1, 0.2, 0.3]; // want this to roll over to a normal waypoint soon after it is reached.
@@ -64,6 +72,9 @@ if !(_target isEqualTo objNull) then
 
 if !(isNull _nearestEnemy) then
 {
+
+	// If there are enemies near then set a waypoint to them and engage
+
 	_group setVariable["target",_nearestEnemy];
 	// TODO: revisit the logic here
 	_pos = position _nearestEnemy getPos[ [3,30/(_leader knowsAbout _nearestEnemy)] call GMS_fnc_getNumberFromRange,random(359)];
@@ -72,12 +83,17 @@ if !(isNull _nearestEnemy) then
 	_wp setWaypointPosition [_pos,5];
 	_wp setWaypointType "SAD";
 	_wp setWaypointSpeed "LIMITED";
-	_wp setWaypointTimeout [45,60,75];	
-	_group setBehaviour "CARELESS";
-	_group setCombatMode "RED";
+	_wp setWaypointTimeout [45,60,75];
+
+	[_group,"combat"] call GMS_fnc_setGroupBehaviors;
+	_group setSpeedMode "LIMITED";
+
 	_group setCurrentWaypoint _wp;
 	diag_log format["_nextWaypointAircraft: waypoint for group %1 updated to SAD waypoint at %2",_group,_pos];
 } else {
+	
+	// No enemies so treat like a normal waypoint.
+
 	private _nearLocations = nearestLocations [
 		position _leader,
 		GMSAI_aircraftPatrolDestinations,
@@ -94,6 +110,11 @@ if !(isNull _nearestEnemy) then
 	};	
 	//diag_log format["_nextWaypointAircraft: _pos = %1",_pos];
 	_group setVariable["timeStamp",diag_tickTime];
+	
+	// just in case they were changed before this waypoint was completed.
+	[_group,""] call GMS_fnc_setGroupBehaviors;  
+	_group setSpeedMode "LIMITED";
+	
 	private _wp = [_group, 0];
 	_wp setWaypointPosition [_pos,5];
 	_wp setWaypointSpeed "LIMITED";
