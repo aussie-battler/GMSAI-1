@@ -1,4 +1,12 @@
 /*
+	GMSAI_fnc_monitorInactiveAreas 
+
+	Purpose: check static spawns without AI for players and spawn AI if players are in the patrol area. 
+
+	Parameters: none 
+
+	Returns: none 
+	
 	Copyright 2020 Ghostrider-GRG-
 */
 

@@ -1,4 +1,14 @@
 /*
+	GMSAI_fnc_monitorActiveAreas 
+
+	Purpose: monitor static spawns with AI in them 
+			Make sure the hunt properly 
+			delete them if no players are around after a certain time. 
+
+	Parameters: none 
+
+	Return: none 
+	
 	Copyright 2020 Ghostrider-GRG-
 */
 
