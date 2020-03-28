@@ -1,5 +1,18 @@
 /*
+	GMSAI_fnc_rewardPlayer 
+
+	Purpose: send a player a rewaard for a kill or other success 
+
+	Parameters: 
+		_player, the player to _reward 
+		_distance, distance for the kill or other rewardable activity 
+
+	Returns: none 
+
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes: 
+		TODO: add a check for difficulty, e.g., the weapon used.
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 

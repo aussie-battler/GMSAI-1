@@ -1,5 +1,18 @@
 /*
+	GMSAI_fnc_notifyPlayer 
+
+	Purpose: send players notifications about kills, updates to respect or tabs, kill streaks, etc 
+
+	Parameters: 
+		_player, the player who made the kill 
+		_distance, the distance from which the AI was killed 
+
+	Returns: none 
+
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes:
+		TODO: consider adding a difficulty factor, e.g., kills with a pistol are harder
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 
