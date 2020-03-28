@@ -1,4 +1,12 @@
 /*
+	GMSAI_fnc_getGroupDebugMarker
+	
+	Purpose: a simple get function that returns the marker used as a debug marker for the group. 
+
+	Parameters: _group, the group to get from 
+
+	Returns: the marker in question 
+	
 	Copyright 2020 Ghostrider-GRG-
 */
 

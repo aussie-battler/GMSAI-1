@@ -1,4 +1,12 @@
 /*
+	GMSAI_fnc_monitorGroupDebugMarkers 
+
+	Purpose: monitors known debug markers so that if a group is accidently deleted without clearing the marker the debug marker is removed. 
+
+	Parameters: none 
+
+	Returns: none 
+
 	Copyright 2020 Ghostrider-GRG-
 */
 

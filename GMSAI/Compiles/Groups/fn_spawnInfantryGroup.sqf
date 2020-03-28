@@ -1,5 +1,20 @@
 /*
+	GMSAI_fnc_spawnInfantryGroup 
+
+	Purpose: a core function to spawn a group and configure all of the parameters needed by GMS and GMSAI.
+		These parameters are sorted by setVariable commands for the group. 
+
+	Parameters:
+		_spawnPos, where the group should be centered
+		[_unit], number of units formated as [_min,_max], [_min] or _miin
+		_difficulty, a number 1 to N corresponding to the difficulty level for the group. 
+		_patrolAreaMarker, the marker describing the area within which the group should patrol. Set this to "" to ignore all that.
+	
+	Returns: _group, the group that was spawned. 
+
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes: 
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 

@@ -1,4 +1,14 @@
 /*
+	GMSAI_fnc_addGroupDebugMarker 
+
+	Purpose: add a debug marker for the group 
+
+	Parameters: 
+		_group, the group to track 
+		_vehicle, type of vehicle, "man" by default; this will be shown next to the marker on the map along with the group identifier
+	
+	Returns: none 
+	
 	Copyright 2020 Ghostrider-GRG-
 */
 
