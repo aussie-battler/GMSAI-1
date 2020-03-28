@@ -1,5 +1,17 @@
 /*
-	Copyright 2020 Ghostrider-GRG-
+	GMSAI_fnc_checkClassNames  
+
+    Purpose: check classNames in an array, remove invalid ones, and return the cleaned up array. 
+    
+    Parameters: _classnameInfo, an array of classnames 
+
+    Returns: _classnameInfo after being filtered for illeagal classnames 
+
+    Copyright 2020 Ghostrider-GRG-
+
+    Notes: 
+        GMS_fnc_checkClassnNmesArray does the same thing 
+        Why have two of these - run search and replace ?
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 

@@ -1,5 +1,16 @@
 /*
+	GMSAI_fnc_monitorEmptyVehicles 
+
+	Purpose: make sure empty vehicles (those with no vehicle crew) get properly deleted or released from GMSAI control. 
+
+	Parameters: none 
+
+	Returns: none 
+
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes:
+		This functionality should probably be part of GMS since it is generic to missions and roamers 
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 

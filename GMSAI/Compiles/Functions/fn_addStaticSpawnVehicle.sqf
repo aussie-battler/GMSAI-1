@@ -1,5 +1,20 @@
 /*
+	GMSAI_fnc_addStaticSpawnVehicle 
+
+	Purpose: add a static vehicle spawn (e.g. for missions or user-define patrols of areas)
+
+	Parameters: 
+		_areaDescriptor,  Information about the map marker/location, size etc
+		_staticAiDescriptor, information about the AI to be spawned 
+
+	Returns: None 
+
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes:
+		TODO: need to confirm the nature of the two parameters but I think the description of them is correct
+		TODO: this one needs testing
+
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 

@@ -1,5 +1,17 @@
 /*
+	GMSAI_fnc_monitorDeadUnits 
+
+	Purpose: ensure cleanup of dead AI 
+
+	Parameters: None 
+
+	Return: None 
+	
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes 
+		Probably not needed since GMS handles this using deleteAt times passed to it by GMSAI 
+		in GMS_fnc_spawnInfantryGroup
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 

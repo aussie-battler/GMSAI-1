@@ -1,5 +1,17 @@
 /*
-	Copyright 2020 Ghostrider-GRG-
+	GMSAI_fnc_mainThread 
+
+    Purpose: run scripts at pre-specified intervals. 
+
+    Parameters: None 
+
+    Returns: None 
+    
+    Copyright 2020 Ghostrider-GRG-
+
+    Notes: in theory, on exile, these calls could be added to the exile scheduler on the first pass 
+    - save that for later 
+    - may be a bit slower to do that since the exile schedule has to figure out what function to run.
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 
