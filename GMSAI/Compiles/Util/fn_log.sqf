@@ -1,5 +1,17 @@
 /*
+	GMSAI_fnc_log 
+
+	Purpose: provide mod specific loging 
+
+	Parameters:	
+		_msg, the message to log 
+		_type, an optional code that can be warning, error or "" if included 
+
+	Returns: none 
+
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes: 
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 
