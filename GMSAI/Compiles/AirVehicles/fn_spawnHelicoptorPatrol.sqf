@@ -44,7 +44,13 @@ private _group = [
 	GMSAI_baseSkilByDifficulty select _difficulty,
 	GMSA_alertDistanceByDifficulty select _difficulty,
 	GMSAI_intelligencebyDifficulty select _difficulty,
-	false
+	GMSAI_bodyDeleteTimer,
+	GMSAI_maxReloadsInfantry,
+	GMSAI_launcherCleanup,
+	GMSAI_removeNVG,
+	GMSAI_minDamageForSelfHeal,
+	GMSAI_maxHeals,
+	GMSAI_unitSmokeShell 
 ] call GMS_fnc_spawnInfantryGroup;
 
 private _crew = units _group;
@@ -58,7 +64,7 @@ diag_log format["_fnc_spawnMissionHeli: group %1 contains %2 crew | _pos = %3",_
 [_group,GMSAI_unitDifficulty select (_difficulty)] call GMS_fnc_setupGroupSkills;
 [_group, GMSAI_unitLoadouts select _difficulty, 0 /* launchers per group */, GMSAI_useNVG, GMSAI_blacklistedGear] call GMS_fnc_setupGroupGear;
 [_group,_difficulty,GMSAI_money] call GMS_fnc_setupGroupMoney;
-[_group,GMSAI_bodyDeleteTimer] call GMS_fnc_setGroupBodyDespawnTime;
+//[_group,GMSAI_bodyDeleteTimer] call GMS_fnc_setGroupBodyDespawnTime;
 
 //  TODO: build in additional check for blacklisted turrets.
 private _gunnerCount = if (_maxGunners > count _turrets) then {count _turrets} else {_maxGunners};

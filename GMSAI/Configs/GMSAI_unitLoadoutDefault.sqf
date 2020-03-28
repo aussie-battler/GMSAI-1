@@ -1,3 +1,8 @@
+/*
+	Default configurations for unit loadouts used when neither exile nor epoch are loaded. 
+	Copyright 2020 Ghostrider-GRG-
+*/
+
 GMSAI_money = [0];
  
 _headgear = [

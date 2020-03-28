@@ -20,7 +20,7 @@ _ugv setFuel 1;
 _ugv engineOn true;
 _ugv setVehicleLock "LOCKED";
 [_ugv] call GMS_fnc_emptyObjectInventory;
-private _group = createVehicleCrew _ugv;  // Make sure the vehicle faction is the same as the GMS_side faction
+private _group = _ugv call GMS_fnc_createUnmanedVehicleCrew;  // Make sure the vehicle faction is the same as the GMS_side faction
 private _difficulty = selectRandomWeighted GMSAI_UGVdifficulty;
 [_group,GMSAI_unitDifficulty select _difficulty] call GMS_fnc_setupGroupSkills;
 

@@ -35,7 +35,6 @@ if (GMSAI_useDynamicSpawns) then
 							_player setVariable["respawnAt",(diag_tickTime + GMSAI_dynamicRespawnTime)];
 							deleteMarker (_player getVariable["GMSAI_debugMarker",""]);	
 							deleteMarker (_player getVariable ["GMSAI_patrolAreaMarker",""]);
-
 						};
 					} else {
 						_group setVariable ["lastChecked",diag_tickTime];
@@ -77,7 +76,6 @@ if (GMSAI_useDynamicSpawns) then
 						if (_dynamicAI isEqualTo []) then  //  Only spawn dynamic AI if there are no other roamers around.
 						{	// TODO: add loop to spawn groups accordiing to number set in GMSAI_dynamicRandomGroups
 							private _spawnPos = (getPosATL _player) getPos[GMSAI_dynamicSpawnDistance,random(359)];											
-
 							private _patrolAreaMarker = createMarker[format["GMSAI_dynamic%1",diag_tickTime],_spawnPos];
 							_patrolAreaMarker setMarkerShape "RECTANGLE";
 							_patrolAreaMarker setMarkerSize [GMSAI_dynamicSpawnDistance + 100,GMSAI_dynamicSpawnDistance + 100];
@@ -94,7 +92,6 @@ if (GMSAI_useDynamicSpawns) then
 							
 							_group setVariable["despawnDistance",GMSAI_dynamicDespawnDistance];
 							_group setVariable["despawnTime",GMSAI_dynamicDespawnTime];	
-
 							_group reveal[_player,0.1];	
 							[_group,_player] call GMS_fnc_assignTargetAreaPatrol;					
 							[

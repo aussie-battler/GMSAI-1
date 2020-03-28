@@ -25,12 +25,11 @@ _uav engineOn true;
 _uav flyInHeight 100;
 _uav setVehicleLock "LOCKED";
 [_uav] call GMS_fnc_emptyObjectInventory;
-private _group = createVehicleCrew _uav;
+private _group = _uav call GMS_fnc_createUnmanedVehicleCrew;
 (driver _uav)  doMove (_pos getPos[3000,random(359)]); 
 private _difficulty = selectRandomWeighted GMSAI_UAVDifficulty;
 [_group,GMSAI_unitDifficulty select (_difficulty)] call GMS_fnc_setupGroupSkills;
 [_group] call GMS_fnc_setupGroupBehavior;
-
 _uav addMPEventHandler["MPHit",{_this call GMSAI_fnc_processAircraftHit}];
 _uav addMPEventHandler["MPKilled",{_this call GMSAI_fnc_processVehicleKilled}];
 _uav addEventHandler["HandleDamage",{_this call GMSAI_fnc_vehicleHandleDamage}];

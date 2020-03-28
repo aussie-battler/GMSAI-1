@@ -1,3 +1,7 @@
+/*
+	Unit loadouts for exile 
+	Copyright 2020 Ghostrider-GRG-	
+*/
 _GMSAI_moneyBlue = 30;
 _GMSAI_moneyRed = 45;
 _GMSAI_moneyGreen = 60;

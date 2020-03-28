@@ -1,3 +1,13 @@
+/*
+    config.hpp 
+
+    Purpose: used for config-based settings  
+
+    Note: Not used: 3-28-20 
+
+	Copyright 2020 Ghostrider-GRG-    
+*/
+
 class GMSAI_PlayerMessaging {
     GMSAI_useKillMessages = true;
     GMSAI_useKilledAIName = true; // when true, the name of the unit killed will be included in the kill message.

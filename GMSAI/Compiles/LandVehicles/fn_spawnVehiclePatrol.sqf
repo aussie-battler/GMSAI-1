@@ -30,10 +30,17 @@ private _group = [
 	GMS_side,
 	GMSAI_baseSkilByDifficulty select _difficulty,
 	GMSA_alertDistanceByDifficulty select _difficulty,
-	GMSAI_intelligencebyDifficulty select _difficulty
+	GMSAI_intelligencebyDifficulty select _difficulty,
+	GMSAI_bodyDeleteTimer,
+	GMSAI_maxReloadsInfantry,
+	GMSAI_launcherCleanup,
+	GMSAI_removeNVG,
+	GMSAI_minDamageForSelfHeal,
+	GMSAI_maxHeals,
+	GMSAI_unitSmokeShell  	
 ] call GMS_fnc_spawnInfantryGroup;
 diag_log format["GMSAI_fnc_spawnVehiclePatrol: _group = %1",_group];
-uisleep 1;
+//uisleep 1;
 [_vehicle,units _group] call GMS_fnc_loadVehicleCrew;
 [_group,GMSAI_unitDifficulty select _difficulty] call GMS_fnc_setupGroupSkills;
 [_group, GMSAI_unitLoadouts select _difficulty, 0 /* launchers per group */, GMSAI_useNVG, GMSAI_blacklistedGear] call GMS_fnc_setupGroupGear;

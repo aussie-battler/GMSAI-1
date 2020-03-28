@@ -1,14 +1,11 @@
 /*
-	By Ghostrider [GRG]
-	Copyright 2016
-	
-	--------------------------
-	License
-	--------------------------
-	All the code and information provided here is provided under an Attribution Non-Commercial ShareAlike 4.0 Commons License.
+	GMSAI_variables.sqf 
 
-	http://creativecommons.org/licenses/by-nc-sa/4.0/	
+	Purpose: list variables used by the mission system 
+
+	Copyright 2020 Ghostrider-GRG-
 */
+
 GMSAI_StaticSpawns = [];
 GMSAI_inactiveStaticSpawns = [];
 GMSAI_activeStaticSpawns = [];

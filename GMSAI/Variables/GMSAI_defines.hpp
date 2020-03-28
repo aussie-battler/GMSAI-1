@@ -1,12 +1,10 @@
 /*
-	By Ghostrider [GRG]
-	Copyright 2016
-	
-	--------------------------
-	License
-	--------------------------
-	All the code and information provided here is provided under an Attribution Non-Commercial ShareAlike 4.0 Commons License.
+	GMSAI_defines.hpp 
 
-	http://creativecommons.org/licenses/by-nc-sa/4.0/	
+	Purpose: centralize collection of defines 
+
+	Copyright 2020 Ghostrider-GRG-	
+
+	Notes: duplicates the file in \init ?
 */
 
