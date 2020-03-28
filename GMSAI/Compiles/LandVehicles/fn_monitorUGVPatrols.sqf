@@ -1,5 +1,16 @@
 /*
+	GMSAI_fnc_monitorUGVPatrols 
+
+	Purpose: keep an eye on UGV patrols, unstuck them where needed, return them to the patrol area if needed. 
+
+	Parameters: none 
+
+	Returns: none 
+
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes:
+		-May want to take advantage of the setMode commands in GMS for these monitoring script for the case where the thing went outside the patrol area
 */
 
 diag_log format["[GMSAI] _monitorUGVPatrols called at %1",diag_tickTime];

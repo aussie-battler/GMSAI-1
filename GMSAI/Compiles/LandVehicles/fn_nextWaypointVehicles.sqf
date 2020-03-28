@@ -1,5 +1,17 @@
 /*
+	GMSAI_fnc_nextWaypointVehicles 
+
+	Purpose: set the next waypoint for land vehicles 
+
+	Parameters: none 
+
+	Returns: none 
+
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes: 
+
+		None
 */
 
 private _driver = _this;
@@ -7,10 +19,6 @@ private _driver = _this;
 private _group = group _driver;
 private _veh = vehicle _driver;
 
-_fn_updateVehicleWaypoint = {
-
-};
-// TODO: Add antiStuck
 if (_group call GMS_fnc_isStuck) exitWith 
 {
 	private _nearLocations = nearestLocations [position _driver, GMSAI_vehiclePatrolDestinations,3000];
@@ -24,11 +32,13 @@ if (_group call GMS_fnc_isStuck) exitWith
 		_pos = locationPosition _loc;
 	};
 	//private _wp = _group addWaypoint [_pos,0,0,format["%1",text _loc]];
+	// TODO: use the GMS function to change mode
 	_group setBehaviour "CARELESS";
 	_group setCombatMode "BLUE";
 	_group setSpeedMode "NORMAL";
 	private _wp = [_group,0];
 	_wp setWaypointPosition _pos;
+	// TODO: use the GMS function to change mode
 	_wp setWaypointBehaviour "SAFE";
 	_wp setWaypointCombatMode "YELLOW";
 	_group setCurrentWaypoint [_group,0]; 	
@@ -66,6 +76,7 @@ if !(isNull _nearestEnemy) then
 	_wp setWaypointPosition[_pos,10];
 	_wp setWaypointTimeout[5,7,9];
 	_wp setWaypointType "MOVE";
+	// TODO: look at using GMS function to change mode 
 	_wp setWaypointBehaviour "AWARE";
 	_wp setWaypointSpeed "LIMITED";
 	_wp setWaypointStatements ["true","this call GMSAI_fnc_nextWaypointVehicles;"];	

@@ -1,6 +1,19 @@
 /*
 	GMSAI_fnc_initializeVehicleWaypoints 
-	Initialize waypoints for vehicle patrols using a location-based system whereby they can patrol the entire map. 
+
+	Purpose: Initialize waypoints for vehicle patrols using a location-based system whereby they can patrol the entire map. 
+
+	Parameters: _driver, the driver of the vehicle 
+
+	Returns: none 
+
+	Copyright 2020 Ghostrider-GRG-
+
+	Notes:
+		- this function is used to get the newly spawn vehicle from a random location to the road. 
+		- condier hiding it till this has happened and disable AI from firing just to give them a chance to catch up. 
+		- consider helping them identify nearby players on spawn for the same reason. 
+
 */
 
 params ["_driver"]; 

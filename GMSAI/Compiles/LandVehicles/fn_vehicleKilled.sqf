@@ -1,10 +1,19 @@
 /*
-	GMS_fnc_processVehicleHit 
-	- if damage was not due to a player then damage is negated and the script exits 
-	- otherwise the script informst the group about the instigator and runs a new waypoint update which will automatically include targeting the nearest known enemy.
+	GMSAI_fnc_vehicleKilled 
 
+	Purpose: called whent the MPKilled EH fires for the vehicle. 
+		provides a means for any GMSAI actions needed when a vehicle is killed such as allerting nearby groups. 
+
+	Parameters: per https://community.bistudio.com/wiki/Arma_3:_Event_Handlers#MPKilled 
+
+	Returns: none 
+	
 	Copyright 2020 by Ghostrider-GRG-
+
+	Notes:
+		GMS handles all the basics including cleaning up the wreck. 
+		Nothing is done by GMS about alerting nearby groups
+		TODO: think about increasing alertness or bumping skills of nearby groups when this happens.
 */
 
-params["_vehicle"];
-[_vehicle,240] call GMS_fnc_addObjectToDeletionCue;
+

@@ -1,9 +1,28 @@
 /*
 	GMS_fnc_spawnVehiclePatrol 
 	Purpose: spawn a vehicle patrol that will go from location to location on the map or patrols a proscribed area hunting for players 
-	when '_isSubmersible == true the script will assume it should set swimInDepth as well
-	Locations: are any town, city etc defined at startup. 
+	
+		Parameters: 
+		_pos,  			center of the region in which the group will operate 
+		_patrolType, 	"Map" or Region, where region would be am area proscribed by a marker defined by center, size and shape 
+		_blackListed     positions to be avoided formated as [[x,y,z], radious]
+		_center			the center of the patrol area or map center if the mode is "Map"
+		_size			The size of the patrol area or mapsize if the mode is "Map" 
+		_shape			Normally, this is a rectangle 
+		_timeout		how quickly the group is sent back if it wanders out of the mission area.
+		_isSubmersible  true/false  When true, and if the vehicle is on or in water, it will be set to move below the surface 
+		
+	Returns: [_group,_vehicle]
+		_group ( the group spawned) 
+		_vehicle (the vehicle spawned)
+
 	Copywrite 2020 by Ghostrider-GRG- 
+
+	Notes:
+		Locations: are any town, city etc defined at startup.
+		when '_isSubmersible == true the script will assume it should set swimInDepth as well
+		Locations: are any town, city etc defined at startup. 
+ 
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp"

@@ -1,8 +1,24 @@
 /*
-	GMS_fnc_spawnUGVePatrol 
+	GMSAI_fnc_spawnUGVPatrol 
+	
 	Purpose: spawn a UGV patrol that will go from location to location on the map hunting for players 
-	Locations: are any town, city etc defined at startup. 
+
+	Parameters: 
+		_pos,  			center of the region in which the group will operate 
+		_patrolType, 	"Map" or Region, where region would be am area proscribed by a marker defined by center, size and shape 
+		_blackListed     positions to be avoided formated as [[x,y,z], radious]
+		_center			the center of the patrol area or map center if the mode is "Map"
+		_size			The size of the patrol area or mapsize if the mode is "Map" 
+		_shape			Normally, this is a rectangle 
+		_timeout		how quickly the group is sent back if it wanders out of the mission area.
+	Returns: [_group,_ugv]
+		_group ( the group spawned) 
+		_ugv (the vehicle spawned)
+
 	Copywrite 2020 by Ghostrider-GRG- 
+
+	Notes:
+		Locations: are any town, city etc defined at startup. 
 */
 #include "\addons\GMSAI\init\GMSAI_defines.hpp"
 params["_pos",					// Random position for patrols that roam the whole map 

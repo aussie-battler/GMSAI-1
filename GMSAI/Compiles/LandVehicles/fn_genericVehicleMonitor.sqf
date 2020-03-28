@@ -1,5 +1,16 @@
 /*
+	GMSAI_fnc_genericVehicleMonitor 
+
+	Purpose: 
+
+	Parameters: 
+
+	Returns: none 
+
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes:
+		TODO: not sure this is used
 */
 
 diag_log format["[GMSAI] genericVehicleMonitor called at %1",diag_tickTime];

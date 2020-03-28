@@ -1,14 +1,14 @@
 /*
-	Scope global 
-	Only fires on the machin to which the object is local. 
-	This function needs to be available on every machine in some way if HC and distribution to clients is to be supported.
-*/
+	GMSAI_fnc_vehicleCrewGetOut 
 
-params["_vehicle"];
-if (local _vehicle) then 
-{
-	if ({alive _x} count (crew _vehicle) isEqualTo 0) then
-	{
-		[_vehicle] call GMSAI_fnc_processEmptyVehicle;
-	};
-};
+	Purpose: called locally when the vehicles getOut EH fires 
+			It is designed to activate any code needed by GMSAI to handle empty vehicles.
+			At present it is not needed as this is handled by GMS. 
+
+	Parameters:  per https://community.bistudio.com/wiki/Arma_3:_Event_Handlers#GetOut 
+
+	Returns: none 
+
+	Notes: 
+		Revisit as more progress is made. 
+*/
