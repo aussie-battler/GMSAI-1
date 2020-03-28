@@ -1,5 +1,16 @@
 /*
+	GMSAI_fnc_initializeUAVPatrols 
+
+	Purpose: setup UAV patrols that roam the map. 
+
+	Parameters: none 
+
+	Returns: none 
+
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes:
+		TODO: need to think about area-based varients of this function.
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 

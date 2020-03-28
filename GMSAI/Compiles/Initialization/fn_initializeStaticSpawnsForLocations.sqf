@@ -1,4 +1,12 @@
 /*
+	GMSAI_fnc_initializeStaticSpawnsForLocations 
+
+	Purpose: set up the static spawns at capitals, cities towns and others .
+
+	Parameters: None 
+
+	Returns: the list of locations for which static spawns were defined. 
+
 	Copyright 2020 Ghostrider-GRG-
 */
 

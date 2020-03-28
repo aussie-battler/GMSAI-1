@@ -1,5 +1,17 @@
 /*
+	GMSAI_fnc_initializeStaticVehicleSpawns 
+
+	Purpose: set up spawns for vehicle patrols that work within prespecified areas. 
+
+	Parameters: None 
+
+	Returns: None 
+	
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes: 
+		- not sure what this was supposed to do.
+		- It should be setting up area patrols for land vehicles which are user defined
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 

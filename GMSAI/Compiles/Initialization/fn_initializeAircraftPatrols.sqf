@@ -1,5 +1,16 @@
 /*
+	GMSAI_fnc_initializeAircraftPatrols 
+
+	Purpose: initialize the randomly spawn aircraft patrols 
+
+	Parameters: none 
+
+	Returns: none 
+
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes:
+		TODO: think about how to add also the patrols that are user defined
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 

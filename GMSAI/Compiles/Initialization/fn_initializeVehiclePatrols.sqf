@@ -1,5 +1,16 @@
 /*
+	GMSAI_fnc_initializeVehiclePatrols 
+
+	Purpose: initialize vehicle patrols that run beteween locations and could span the whole map. 
+
+	Parameters: none 
+
+	Returns: none 
+
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes: 
+		TODO: think about area-based versions of this script
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 

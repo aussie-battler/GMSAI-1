@@ -1,5 +1,16 @@
 /*
+	GMSAI_fnc_initializeUGVPatrols 
+
+	Purpose: setup location-based UGV patrols that could roam the entire map. 
+
+	Parameters: none 
+
+	Returns: none 
+
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes: 
+		TODO: think about area-based functions for UGVs
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 

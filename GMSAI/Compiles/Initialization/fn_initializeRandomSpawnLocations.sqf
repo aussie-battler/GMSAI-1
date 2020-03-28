@@ -1,5 +1,16 @@
 /*
+	GMSAI_fnc_initializeRandomSpawnLocations 
+
+	Purpose: set up random spawn locations around the map between capitals, cities, towns etc 
+
+	Parameters: _locations, the list of locations used for location-based static spawns (I think)
+
+	Returns: none 
+
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes:
+		TODO: confirm the meaning of _locations here 
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 
