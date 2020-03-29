@@ -94,7 +94,11 @@ for "_i" from 1 to (count GMSAI_vehiclePatrols) do
 					//diag_log format["[GMSAI] _initializeVehiclePatrols: _pos = %1",_pos];
 				};
 				// TODO: Add remaing parameters here				
-				private _newPatrol = [_pos] call GMSAI_fnc_spawnVehiclePatrol;
+				private _newPatrol = [
+					(selectRandomWeighted GMSAI_vehiclePatroDifficulty),
+					(selectRandomWeighted GMSAI_patrolVehicles), 
+					_pos
+				] call GMSAI_fnc_spawnVehiclePatrol;
 				_vehiclePatrol set[0,_newPatrol select 0];
 				_vehiclePatrol set[1,_newPatrol select 1];
 				_vehiclePatrol set[2,diag_tickTime];

@@ -45,8 +45,9 @@ for "_i" from 1 to (count GMSAI_airPatrols) do
 			if (_respawnAt > -1 && diag_tickTime > _respawnAt) then
 			{
 				private _pos = [nil,["water"] /*+ any blacklisted locations*/] call BIS_fnc_randomPos;
-				// TODO: Add remaing parameters here				
-				private _newPatrol = [_pos] call GMSAI_fnc_spawnHelicoptorPatrol;
+				// TODO: Add remaing parameters here
+				// Keep this way to provide randomness for map-wide roaming aircraft				
+				private _newPatrol = [(selectRandomWeighted GMSAI_aircraftTypes), _pos] call GMSAI_fnc_spawnHelicoptorPatrol;
 				_airPatrol set[0,_newPatrol select 0];
 				_airPatrol set[1,_newPatrol select 1];
 				_airPatrol set[2,diag_tickTime];

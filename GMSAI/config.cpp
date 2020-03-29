@@ -48,7 +48,6 @@ class CfgFunctions {
 		class Functions {
 			//  Core and generic support functions.
 			file = "addons\GMSAI\Compiles\Functions";
-			class addStaticSpawnInfantry {};
 			class mainThread {};  // This is a scheduler for all of the events that must happen for spawns, despawns and such.
 			class monitorEmptyVehicles {};
 			class monitorDeadUnits {};  // This can be handled by GMSCore
@@ -104,7 +103,11 @@ class CfgFunctions {
 		};	
 		class staticSpawns {
 			// These functions monitor and spawn infantry groups as fixed locations as players approach or leave these areas.
-			file = "addons\GMSAI\Compiles\staticSpawns";		
+			file = "addons\GMSAI\Compiles\staticSpawns";
+			class addBlacklistedArea {};
+			class addStaticSpawn {};
+			class addCustomVehicleSpawn {};
+			class addCustomInfantrySpawn {};					
 			class monitorActiveAreas {};
 			class monitorInactiveAreas {};
 		};			

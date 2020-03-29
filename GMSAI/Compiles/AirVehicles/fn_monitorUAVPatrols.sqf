@@ -8,6 +8,9 @@
 	Returns: None 
 
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes:
+		TODO: consider additional targeting commands as specified in _monitorAirPatrols
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 
@@ -28,6 +31,7 @@ for "_i" from 1 to (count GMSAI_uavPatrols) do
 			};
 			//  Do a check for spawning paratroops
 			[_crewGroup,_aircraft] spawn GMSAI_fnc_spawnParatroops;
+			//  ?? Not sure about this; think _spawnParatroops should be setting this variable.
 			_crewGroup setVariable["respawnParaDropAt", diag_tickTime + GMSAI_paratroopRespawnTimer];
 		} else {
 			_uavPatrol set[4,diag_tickTime + ([GMSAI_UAVRespawnTime] call GMS_fnc_getNumberFromRange)];
@@ -41,7 +45,9 @@ for "_i" from 1 to (count GMSAI_uavPatrols) do
 			{
 				private _pos = [nil,["water"] /*+ any blacklisted locations*/] call BIS_fnc_randomPos;
 				// TODO: Add remaing parameters here
-				private _newPatrol = [_pos] call GMSAI_fnc_spawnHelicoptorPatrol;
+				// TODO: Why not spawnUAVPatrol ??
+				// Keep this way to provide randomness to the map-wide roaming UAVs
+				private _newPatrol = [(selectRandomWeighted GMSAI_UAVTypes), _pos] call GMSAI_fnc_spawnUAVPatrol;
 				_uavPatrol set[0,_newPatrol select 0];
 				_uavPatrol set[1,_newPatrol select 1];
 				_uavPatrol set[2,diag_tickTime];

@@ -24,7 +24,7 @@ for "_i" from 1 to GMSAI_StaticSpawnsRandom do
 	if !(_pos isEqualTo [0,0]) then
 	{
 		private _m = "";
-		if (GMSAI_debug > 1) then
+		if (GMSAI_debug >= 1) then
 		{
 			_m = createMarker[format["GMSAI_Random%1",_i],_pos];
 			_m setMarkerShape "RECTANGLE";
@@ -36,7 +36,7 @@ for "_i" from 1 to GMSAI_StaticSpawnsRandom do
 			_m setMarkerShapeLocal "RECTANGLE";
 			_m setMarkerSizeLocal [500,500];
 		};
-		[_m,GMSAI_staticRandomSettings] call GMSAI_fnc_addStaticSpawnInfantry;
+		[_m,GMSAI_staticRandomSettings] call GMSAI_fnc_addStaticSpawn;
 		//diag_log format["_ConfigureRandomeSpanwLocations: adding spawn area #%2 at %1",_pos,_i];
 		_blacklistedAreas pushBack _m;
 	};

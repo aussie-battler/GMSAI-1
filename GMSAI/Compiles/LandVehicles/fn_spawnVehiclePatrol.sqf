@@ -27,22 +27,25 @@
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp"
 params[
-		"_pos",				// Random position for patrols that roam the whole map 
+		"_difficulty",
+		"_classname",			// className of vehicle to spawn
+		"_pos",					// Random position for patrols that roam the whole map 
 								// or center of the area to be patrolled for those that are restricted to a smaller region
-		["_patrolType","Map"],  // "Map" will direct the vehicle to patrol the entire map, "Region", a smaller portion of the map.
-		["_blackListed",[]],  // areas to avoid within the patrol region
-							 // These parameters are ignored if the vehicle will patrol the entire map.
-		["_center",[0,0,0]],  // center of the area to be patroled
-		["_size",[200,200]],  // size of the area to be patroled, either a value or array of 2 values
-		["_shape","RECTANGLE"],  // "RECTANGLE" or "ELLIPSE"
+		["_patrolArea","Map"],  // "Map" will direct the vehicle to patrol the entire map, "Region", a smaller portion of the map.
+		["_blackListed",[]],  	// areas to avoid within the patrol region
+							 	// These parameters are ignored if the vehicle will patrol the entire map.
+		//  DefinedByPatrolArea, a marker ["_center",[0,0,0]],  	// center of the area to be patroled
+		//  DefinedByPatrolArea, a marker["_size",[200,200]],  	// size of the area to be patroled, either a value or array of 2 values
+		//  DefinedByPatrolArea, a marker["_size",[200,200]],  	// size of the area to be patroled, either a value or array of 2 values
+		//  DefinedByPatrolArea, a marker["_shape","RECTANGLE"], // "RECTANGLE" or "ELLIPSE"
 		["_timeout",300],		// The time that must elapse before the antistuck function takes over.]];
-		["_isSubmersible",false]
+		["_isSubmersible",false]  //  when true, the swimIndepth will be set to (ASL - AGL)/2
 	];  
-
-private _vehicle = createVehicle [selectRandomWeighted GMSAI_patrolVehicles, _pos, [], 10, "NONE"];
+// selectRandomWeighted GMSAI_patrolVehicles
+private _vehicle = createVehicle [_className, _pos, [], 10, "NONE"];
 [_vehicle] call GMS_fnc_emptyObjectInventory;
 private _crewCount = [GMSAI_patroVehicleCrewCount] call GMS_fnc_getIntegerFromRange;
-private _difficulty = selectRandomWeighted GMSAI_vehiclePatroDifficulty;
+//private _difficulty = selectRandomWeighted GMSAI_vehiclePatroDifficulty;
 private _group = [
 	[0,0,0],
 	[_crewCount] call GMS_fnc_getIntegerFromRange,
@@ -80,23 +83,23 @@ if (_isSubmersible) then
 	// set the swimindept to 1/2 the height of surface level above ground leve of the driver of the vehicle
 	_driver swimInDepth (((getPosATL(ASLtoATL(getPosASL(driver _vehicle))) ) select 2)/2);
 };
-if (_patrolType isEqualTo "Map") then 
+if (_patrolArea isEqualTo "Map") then 
 {
 	(driver _vehicle) call GMSAI_fnc_initializeVehicleWaypoints;
 } else {
-		/*
-		params["_group",  // group for which to configure / initialize waypoints
-		["_blackListed",[]],  // areas to avoid within the patrol region
-		["_center",[0,0,0]],  // center of the area to be patroled
-		["_size",[200,200]],  // size of the area to be patroled, either a value or array of 2 values
-		["_shape","RECTANGLE"],  // "RECTANGLE" or "ELLIPSE"
-		["_timeout",300]];  // The time that must elapse before the antistuck function takes over.
-	*/
 	#define addGrouptoMonitoredGroups true
-	if (_center isEqualTo [0,0,0]) then {_center - _pos};
+	if (_center isEqualTo [0,0,0]) then {_center = _pos};
 	[format["[]Patrol _center for vehicle group %1 was undefined and was set to %2",_group,_pos],"warning"] call GMSAI_fnc_log;
 	// TODO: Revisit to update for area patrols
-	[_group,_blacklisted,_center,_size,_shape,_timeout] call GMS_fnc_initializeWaypoints;
+	// Leverage the ability of GMS to run ANY group's waypoints within an area proscribed by a local map marker
+	/*
+		params["_group",  // group for which to configure / initialize waypoints
+				["_blackListed",[]],  // areas to avoid within the patrol region
+				["_patrolAreaMarker",""],  // a marker defining the patrol area center, size and shape
+				["_timeout",300]
+			]; 
+	*/
+	[_group,_blacklisted,_patrolArea,_timeout] call GMS_fnc_initializeWaypointsAreaPatrol;
 	// Note: the group is added to the list of groups monitored by GMS. Empty groups are deleted, 'stuck' groups are identified.
 };
 

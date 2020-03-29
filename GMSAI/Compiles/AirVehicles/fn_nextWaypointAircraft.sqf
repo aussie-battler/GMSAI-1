@@ -12,6 +12,7 @@
 	Notes:
 		Uses a location-based method for finding waypoings so that those pesky helis will circle overhead at interesting objectives for a bit. 
 		Includes a hunting function by which helis will pursue targets until killed or called back.
+		TODO: Consider adding a target command when the group knows about a player and can see them
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 
@@ -114,7 +115,7 @@ if !(isNull _nearestEnemy) then
 	// just in case they were changed before this waypoint was completed.
 	[_group,""] call GMS_fnc_setGroupBehaviors;  
 	_group setSpeedMode "LIMITED";
-	
+
 	private _wp = [_group, 0];
 	_wp setWaypointPosition [_pos,5];
 	_wp setWaypointSpeed "LIMITED";

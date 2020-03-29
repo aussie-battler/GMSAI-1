@@ -53,7 +53,7 @@ _fn_setupLocationType = {
 		//diag_log format["village location %1 being evaluated",text _x];
 		_marker = [_x,_markerIndex,_markerColor] call _fn_createMarker;
 		_markerIndex = _markerIndex + 1;
-		[_marker,_aiDescriptor] call GMSAI_fnc_addStaticSpawnInfantry;
+		[_marker,_aiDescriptor] call GMSAI_fnc_addStaticSpawn;
 		_configuredAreas pushBack _marker;
 	} forEach nearestLocations [getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition"), [_locationType], worldSize];	
 	//diag_log format["[GMSAI] _fn_setupLocationType: %1 locations found searcing for %2",count _configuredAreas,_locationType];
