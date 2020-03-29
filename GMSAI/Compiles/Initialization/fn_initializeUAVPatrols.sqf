@@ -26,7 +26,11 @@ for "_i" from 1 to GMSAI_numberOfUAVPatrols do
 	};
 	if !(_pos isEqualTo [0,0]) then
 	{
-		private _uavPatrol = [_pos] call GMSAI_fnc_spawnUAVPatrol;
+		private _uavPatrol = [
+			[selectRandomWeighted GMSAI_UAVDifficulty] call GMS_fnc_getIntegerFromRange,
+			selectRandomWeighted GMSAI_UAVTypes,
+			_pos
+		] call GMSAI_fnc_spawnUAVPatrol;
 		_driver = driver (_uavPatrol select 1);
 		GMSAI_UAVPatrols pushBack [_uavPatrol select 0,_uavPatrol select 1,diag_tickTime,0,-1,-1];
 	};

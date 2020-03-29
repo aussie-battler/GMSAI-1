@@ -26,7 +26,11 @@ for "_i" from 1 to GMSAI_numberOfAircraftPatrols do
 	};
 	if !(_pos isEqualTo [0,0]) then
 	{
-		private _heliPatrol = [_pos] call GMSAI_fnc_spawnHelicoptorPatrol;
+		private _heliPatrol = [
+			[selectRandomWeighted GMSAI_aircraftPatrolDifficulty] call GMS_fnc_getIntegerFromRange,
+			selectRandomWeighted GMSAI_aircraftTypes,
+			_pos
+		] call GMSAI_fnc_spawnHelicoptorPatrol;
 		GMSAI_airPatrols pushBack [_heliPatrol select 0,_heliPatrol select 1,diag_tickTime,0,-1,-1];
 	};
 };

@@ -31,5 +31,5 @@ private _m = createMarkerLocal [_name,_pos];
 _m setMarkerShapeLocal _shape;
 _m setMarkerSizeLocal _size;	
 
-_aiDescriptor = [_groups,_units,_difficulty,_chance,_respawns,_cooldown,GMSAI_staticDespawnTime,_classname,_isSubmerged];
+_aiDescriptor = [_groups,_units,_difficulty,_chance,_respawns,_cooldown,GMSAI_staticDespawnTime,_classname,_isSubmerged,_className];
 [_m,_aiDescriptor] call GMSAI_fnc_addStaticSpawn;

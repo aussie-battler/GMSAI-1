@@ -23,9 +23,10 @@
 #define GMSAI_dynamicDespawnDistance 400  //  TODO: further develop this
 #define GMSAI_alertAIDistance 300  //  TODO: further develop this
 #define GMSAI_intelligence 0.5  //  TODO: further develop this
-params["_spawnPos", // center of the patrol area
+params[
+		"_difficulty",
+		"_spawnPos", // center of the patrol area
 		"_units",  // units to spawn, can be integer, [1], or range [2,3]
-		"_difficulty",  //  number corresponding to he difficulty range 0-3
 		["_patrolAreaMarker",""]
 	];
 

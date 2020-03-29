@@ -26,15 +26,12 @@
 #include "\addons\GMSAI\init\GMSAI_defines.hpp"  
 diag_log format["[GMSAI] _fnc_spawnUAVPatrol: _this = %1",_this];
 params[
+		"_difficulty",
 		"_drone",				// classname of the drone to use
 		"_pos",					// Random position for patrols that roam the whole map 
 								// or center of the area to be patrolled for those that are restricted to a smaller region
 		["_patrolArea","Map"],  // "Map" will direct the chopper to patrol the entire map, "Region", a smaller portion of the map.
 		["_blackListed",[]],  	// areas to avoid within the patrol region
-							 	// These parameters are ignored if the chopper will patrol the entire map.
-		["_center",[0,0,0]],  	// center of the area to be patroled
-		["_size",[200,200]],  	// size of the area to be patroled, either a value or array of 2 values
-		["_shape","RECTANGLE"], // "RECTANGLE" or "ELLIPSE"
 		["_timeout",300]  		// The time that must elapse before the antistuck function takes over.]];
 ];
 

@@ -8,18 +8,8 @@
 	Returns: none 
 
 	Copyright 2020 Ghostrider-GRG-
-	
+
 	Notes: 
-	call this as: 
-	GMSAI_fnc_addInfantrySpawn[
-			_pos,	Center of the patrol area
-			_shape,  ["RECCTANGLE","ELLIPSE"] 
-			_size,	 [[sizeA,sizeB]/Radius]
-			_units,  can be [_min,_max],  [_min], or _min
-			_difficulty,  can be 1..N per GMSAI configs.
-			_respawns,  0..N, -1 for infinite respawns 
-			_cooldown  time in seconds until group respawns
-		];
 
 	GMSAI_fnc_addStaticSpawn expects the following parameters 
 	params["_areaDescriptor","_staticAiDescriptor"];
