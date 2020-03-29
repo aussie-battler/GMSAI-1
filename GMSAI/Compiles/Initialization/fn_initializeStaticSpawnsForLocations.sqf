@@ -40,7 +40,7 @@ _fn_createMarker = {
 	_m  
 };
 
-GMSAI_markerIndex = 0;
+private _markerIndex = 0;
 
 _fn_setupLocationType = {
 	params[
@@ -51,8 +51,8 @@ _fn_setupLocationType = {
 	private _configuredAreas = [];
 	{	
 		//diag_log format["village location %1 being evaluated",text _x];
-		_marker = [_x,GMSAI_markerIndex,_markerColor] call _fn_createMarker;
-		GMSAI_markerIndex = GMSAI_markerIndex + 1;
+		_marker = [_x,_markerIndex,_markerColor] call _fn_createMarker;
+		_markerIndex = _markerIndex + 1;
 		[_marker,_aiDescriptor] call GMSAI_fnc_addStaticSpawnInfantry;
 		_configuredAreas pushBack _marker;
 	} forEach nearestLocations [getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition"), [_locationType], worldSize];	
@@ -68,6 +68,5 @@ private _marine = ["NameMarine",GMSAI_staticMarineSettings,"COLORBLUE"] call _fn
 private _other = ["NameLocal",GMSAI_staticOtherSettings,"COLORYELLOW"] call _fn_setupLocationType;
 private _airport = ["Airport",GMSAI_staticOtherSettings,"COLORGREEN"] call _fn_setupLocationType;
 
-GMSAI_markerIndes = nil;
 private _return = _villages + _cites + _capitals + _marine + _other + _airport;
 _return

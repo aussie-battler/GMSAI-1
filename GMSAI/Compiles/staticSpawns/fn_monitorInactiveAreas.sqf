@@ -6,8 +6,11 @@
 	Parameters: none 
 
 	Returns: none 
-	
+
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes:
+		Need to add code to track respawns here.
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 
@@ -24,20 +27,21 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 {
 	if (_i > (count GMSAI_StaticSpawns)) exitWith {};
 	private _area = GMSAI_StaticSpawns deleteAt 0;
+	_area params["_patrolAreaMarker","_staticAiDescriptor","_spawnType","_spawnedGroups","_respawnAt","_timesSpawned","_debugMarker"];	
+	_staticAiDescriptor params["_noGroupsToSpawn","_unitsPerGroup","_difficulty","_chance","_maxRespawns","_respawnTime", "_despawnTime"];	
 	if !(isNil "_area") then
 	{
-		if (GMSAI_staticRespawns == -1 || (_area select 5) < GMSAI_staticRespawns) then
+		if ((_timesSpawned < _maxRespawns) || (_maxRespawns isEqualTo -1)) then
 		{
-			if (diag_tickTime > (_area select respawnAt)) then
+			if (diag_tickTime > _respawnAt) then
 			{
-				private _players = allPlayers inAreaArray (_area select areaDescriptor);
+				private _players = allPlayers inAreaArray (_area select _patrolAreaMarker /*areaDescriptor*/);
 				if !(_players isEqualTo []) then 
 				{
 					//_area params["_patrolAreaMarker","_staticAiDescriptor","_spawnType","_spawnedGroups","_respawnAt","_timesSpawned"];
-					if (random(1) < ((_area select 1) select 3)) then
+					if (random(1) < (_chance) then
 					{
-						_area params["_patrolAreaMarker","_staticAiDescriptor","_spawnType","_spawnedGroups","_respawnAt","_timesSpawned","_debugMarker"];	
-						_staticAiDescriptor params["_noGroupsToSpawn","_unitsPerGroup","_difficulty","_chance"];	
+	
 						_area set[timesSpawned, (_timesSpawned + 1)];	
 						private _spawns = [_patrolAreaMarker,[_noGroupsToSpawn] call GMS_fnc_getIntegerFromRange,_players] call GMS_fnc_findRandomPosWithinArea;
 						private _m = "";
@@ -61,7 +65,7 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 								//[_group,_players select 0] call GMS_fnc_assignTargetAreaPatrol;
 								_group setVariable["groupParameters",_staticAiDescriptor];
 								_group setVariable["despawnDistance",GMSAI_staticDespawnDistance];
-								_group setVariable["despawnTime",GMSAI_staticDespawnTime];
+								_group setVariable["despawnTime",_despawnTime];
 								_group setVariable["patrolAreaMarker",_patrolAreaMarker];
 								_group setVariable["waypointSpeed","NORMAL"];
 								_group setVariable["waypointLoiterRadius",30];
@@ -78,7 +82,7 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 							GMSAI_activeStaticSpawns pushBack [_area,diag_tickTime];
 						};
 					} else {
-						_area set [respawnAt,diag_tickTime + (GMSAI_staticRespawnTime/2)];
+						_area set [respawnAt,diag_tickTime + (_respawnTime)];
 						GMSAI_StaticSpawns pushBack _area;
 					};
 				// Do something here to select locations for groups to be spawned and spawn them
