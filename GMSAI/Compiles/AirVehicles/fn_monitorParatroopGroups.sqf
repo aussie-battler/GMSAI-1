@@ -30,7 +30,7 @@ for "_i" from 1 to (count GMSAI_paratroopGroups) do
 	if (isNull _group || (units _group) isEqualTo []) then 
 	{
 		//if ( isNull _group) then {};
-		if (units _group) isEqualTo []) then {deleteGroup _group};  
+		if ((units _group) isEqualTo []) then {deleteGroup _group};  
 	} else {
 		private _target = _group getVariable "target";
 		if !(alive _target) then // continue hunting the target 
