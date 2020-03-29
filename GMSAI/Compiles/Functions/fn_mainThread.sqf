@@ -29,7 +29,8 @@ while {true} do
         [] call GMSAI_fnc_monitorInactiveAreas;  
         [] call GMSAI_fnc_dynamicAIManager;
         if (GMSAI_debug > 0) then {[] call GMSAI_fnc_monitorGroupDebugMarkers};
-        [] call GMSAI_fnc_monitorParatroopSpawns;
+        // TODO: Sort out which script to use here for monitoring groups spawned as paratroops.
+        //[] call GMSAI_fnc_monitorParatroopSpawns;
         _5sec = diag_tickTime + 5;
     };
     if (diag_tickTime > _60sec) then

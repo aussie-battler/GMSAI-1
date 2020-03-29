@@ -15,7 +15,12 @@
 	Notes: 
 */
 
-params["_center",["_shape","RECTANGLE"],["_size",[200,200]];
+params[
+	"_center",
+	["_shape","RECTANGLE"],
+	["_size",[200,200]]
+];
+
 private _m = createMarkerLocal [format["blacklist%1",count GMSAI_blackListedAreas],_center];
 _m setMarkerShapeLocal _shape;
 _m setMarkerSizeLocal _size;

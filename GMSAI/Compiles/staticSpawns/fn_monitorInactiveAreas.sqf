@@ -35,11 +35,11 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 		{
 			if (diag_tickTime > _respawnAt) then
 			{
-				private _players = allPlayers inAreaArray (_area select _patrolAreaMarker /*areaDescriptor*/);
+				private _players = allPlayers inAreaArray _patrolAreaMarker;
 				if !(_players isEqualTo []) then 
 				{
 					//_area params["_patrolAreaMarker","_staticAiDescriptor","_spawnType","_spawnedGroups","_respawnAt","_timesSpawned"];
-					if (random(1) < (_chance) then
+					if (random(1) < _chance) then
 					{
 	
 						_area set[timesSpawned, (_timesSpawned + 1)];	
@@ -67,7 +67,7 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 
 								if (_type isKindOf "Car" || _type isKindOf "Tank") then 
 								{
-									if (isUAV) then {
+									if (_isUAV) then {
 										_group = [
 											[_unitDifficulty] call GMS_fnc_getIntegerFromRange,												
 											_type,
@@ -92,7 +92,7 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 
 								if (_type isKindOf "Air") then 
 								{
-									if (isUAV) then 
+									if (_isUAV) then 
 									{
 										_group = [
 											[_unitDifficulty] call GMS_fnc_getIntegerFromRange,												
@@ -144,7 +144,7 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 							GMSAI_activeStaticSpawns pushBack [_area,diag_tickTime];
 						};
 					} else {
-						_area set [respawnAt,diag_tickTime + (_respawnTime)];
+						_area set [respawnAt,diag_tickTime + _respawnTime];
 						GMSAI_StaticSpawns pushBack _area;
 					};
 				// Do something here to select locations for groups to be spawned and spawn them
