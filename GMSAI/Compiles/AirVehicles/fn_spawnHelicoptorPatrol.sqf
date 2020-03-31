@@ -96,14 +96,7 @@ private _gunnerCount = if (_maxGunners > count _turrets) then {count _turrets} e
 // delete any excess crew not added to chopper 
 {deleteVehicle _x} forEach _crew;
 
-_heli addMPEventHandler["MPHit",{_this call GMSAI_fnc_processAircraftHit}];
-_heli addMPEventHandler["MPKilled",{_this call GMSAI_fnc_processVehicleKilled}];
-_heli addEventHandler["HandleDamage",{_this call GMSAI_fnc_vehicleHandleDamage}];
-{
-	_x addMPEventHandler ["MPKilled", {_this call GMSAI_fnc_processAircraftCrewKilledi;}];
-	_x addMPEventHandler ["MPHit", {_this call GMSAI_fnc_processAircraftCrewHit;}];
-	_x addEventHandler ["GetOut",{_this call GMSAI_fnc_processVehicleCrewGetOut;}]	
-} forEach (crew _heli);
+[_heli] call GMSAI_fnc_aircraftAddEventHandlers;
 
 if (_patrolArea isEqualTo "Map") then 
 {

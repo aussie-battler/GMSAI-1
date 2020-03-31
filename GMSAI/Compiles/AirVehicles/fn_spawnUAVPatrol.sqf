@@ -47,14 +47,8 @@ private _group = _uav call GMS_fnc_createUnmanedVehicleCrew;
 private _difficulty = selectRandomWeighted GMSAI_UAVDifficulty;
 [_group,GMSAI_unitDifficulty select (_difficulty)] call GMS_fnc_setupGroupSkills;
 [_group] call GMS_fnc_setupGroupBehavior;
-_uav addMPEventHandler["MPHit",{_this call GMSAI_fnc_processAircraftHit}];
-_uav addMPEventHandler["MPKilled",{_this call GMSAI_fnc_processVehicleKilled}];
-_uav addEventHandler["HandleDamage",{_this call GMSAI_fnc_vehicleHandleDamage}];
-{
-	_x addMPEventHandler ["MPKilled", {_this call GMSAI_fnc_processAircraftCrewKilledi;}];
-	_x addMPEventHandler ["MPHit", {_this call GMSAI_fnc_processAircraftCrewHit;}];
-	_x addEventHandler ["GetOut",{_this call GMSAI_fnc_processVehicleCrewGetOut;}]	
-} forEach (crew _uav);
+
+[_uav] call GMSAI_fnc_aircraftAddEventHandlers;
 
 if (_patrolArea isEqualTo "Map") then 
 {

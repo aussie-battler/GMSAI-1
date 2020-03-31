@@ -26,6 +26,7 @@ class CfgFunctions {
 		class AirVehicles {
 			// Everything having do with spawning and monitoring Air/UAV patrols is dealt with by these functions.
 			file = "addons\GMSAI\Compiles\AirVehicles";
+			class aircraftAddEventHandlers {};
 			class flyInReinforcements {};		
 			class initializeAircraftWaypoints {};
 			class monitorAirPatrols {};  
