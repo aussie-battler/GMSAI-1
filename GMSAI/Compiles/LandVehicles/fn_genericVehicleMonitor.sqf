@@ -66,7 +66,7 @@ for "_i" from 1 to (count GMSAI_airPatrols) do
 				_airPatrol set[4,diag_tickTime + [GMSAI_aircraftRespawnTime] call GMS_fnc_getNumberFromRange];
 				GMSAI_airPatrols pushBack _airPatrol;
 			} else {
-				if ({alive _x} count (crew _aircraft) isEqualTo 0) then
+				if ({alive _x} count (crew _aircraft) == 0) then
 				{
 					_airPatrol set[4,diag_tickTime + [GMSAI_aircraftRespawnTime] call GMS_fnc_getNumberFromRange];				
 					GMSAI_airPatrols pushBack _airPatrol;

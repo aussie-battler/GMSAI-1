@@ -333,11 +333,11 @@ GMSAI_gearBlue = [
 /****************************************************************************************************************************************************** */
 {
 	private _array = _x;
-	if (count (_array select 0) isEqualTo 1) then 
+	if (count (_array select 0) == 1) then 
 	{
 		_x = [_array] call GMS_fnc_checkClassNamesArray;
 	};
-	if (count (_array select 0) isEqualTo 1) then 
+	if (count (_array select 0) == 1) then 
 	{
 		_x = [_array] call GMS_fnc_checkClassNamesWeightArray;
 	};

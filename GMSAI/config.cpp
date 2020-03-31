@@ -44,7 +44,8 @@ class CfgFunctions {
 		class dynamicSpawns {
 			// Thesee functions monitor and spawn infantry groups in the vicinity of the player
 			file = "addons\GMSAI\Compiles\DynamicSpawns";
-			class dynamicAIManager {};				
+			class dynamicAIManager {};
+			//class monitorDynamicGroups {};			
 		};
 		class Functions {
 			//  Core and generic support functions.

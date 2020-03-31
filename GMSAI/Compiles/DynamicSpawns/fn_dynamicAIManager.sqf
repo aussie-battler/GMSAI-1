@@ -79,7 +79,7 @@ if (GMSAI_useDynamicSpawns) then
 				_player setVariable["maximumRespawns",_respawnsAllowed];
 			};
 			[format["_dynamicAIManger: no active dynamic group found for player %1, evaluating spawn parameters: _respawns = %2 | _respawnsAllowed = %3",_player,_respawns,_respawnsAllowed],"information"] call GMSAI_fnc_log;			
-			if (_respawnsAllowed isEqualTo -1 || _respawns <= _respawnsAllowed) then
+			if (_respawnsAllowed == -1 || _respawns <= _respawnsAllowed) then
 			{
 				private _lastSpawnedAt = _player getVariable["lastSpawnedAt",0];
 				private _respawnAt = _player getVariable "respawnAt";
@@ -200,7 +200,7 @@ if (GMSAI_useDynamicSpawns) then
 				deleteGroup _group;
 				deleteMarker _marker;
 			} else {
-				if (_group getVariable["deleteAt",0] isEqualTo 0) then  
+				if (_group getVariable["deleteAt",0] == 0) then  
 				{
 					_group setVariable["deleteAt",diag_tickTime + (_group getVariable["GMSAI_DespawnTime",120])];
 				};

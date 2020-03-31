@@ -31,7 +31,7 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 	_staticAiDescriptor params["_noGroupsToSpawn","_unitsPerGroup","_difficulty","_chance","_maxRespawns","_respawnTime", "_despawnTime","_type","_isSubmerged"];	
 	if !(isNil "_area") then
 	{
-		if ((_timesSpawned < _maxRespawns) || (_maxRespawns isEqualTo -1)) then
+		if ((_timesSpawned < _maxRespawns) || (_maxRespawns == -1)) then
 		{
 			if (diag_tickTime > _respawnAt) then
 			{
