@@ -10,6 +10,7 @@ GMSAI_StaticSpawns = [];
 GMSAI_inactiveStaticSpawns = [];
 GMSAI_activeStaticSpawns = [];
 GMSAI_groups = [];
+GMSAI_dynamicGroups = [];
 GMSAI_groupDebugMarkers = [];
 //GMSAI_infantryGroups = [];
 GMSAI_airPatrols = [];
