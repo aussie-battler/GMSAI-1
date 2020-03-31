@@ -6,7 +6,7 @@
 
 [] call compileFinal preprocessFileLineNumbers "addons\GMSAI\Variables\GMSAI_Variables.sqf";
 [] call compileFinal preprocessFileLineNumbers "addons\GMSAI\Configs\GMSAI_configs.sqf";
-[] call GMSAI_fnc_initializeStaticSpawnsForLocations] call GMSAI_fnc_initializeRandomSpawnLocations;
+[[] call GMSAI_fnc_initializeStaticSpawnsForLocations] call GMSAI_fnc_initializeRandomSpawnLocations;
 [] call GMSAI_fnc_initializeAircraftPatrols;
 [] call GMSAI_fnc_initializeUAVPatrols;
 [] call GMSAI_fnc_initializeUGVPatrols;

@@ -89,41 +89,42 @@ if (GMSAI_useDynamicSpawns) then
 					if (random(1) < GMSAI_dynamicRandomChance) then
 					{
 						private _dynamicAI = _player nearEntities["I_G_Sharpshooter_F",300];
-						diag_log format[" evaluating nearby units: _dynamicAIManger: _dynamicAI = %1",_dynamicAI];
+						[format["_dynamicAIManger: evaluating nearby units:  _dynamicAI = %1",_dynamicAI],"information"] call GMSAI_fnc_log;
 						if (_dynamicAI isEqualTo []) then  
 						//  Only spawn dynamic AI if there are no other roamers around. -- May want to rethink this
 						{	// TODO: add loop to spawn groups accordiing to number set in GMSAI_dynamicRandomGroups
 							private _spawnPos = (getPosATL _player) getPos[GMSAI_dynamicSpawnDistance,random(359)];	
-							private "_patrolAreaMarker";
+							[format["_dynamicAIManger: _spawnPos = %1",_spawnPos],"information"] call GMSAI_fnc_log;
+							private _dynamicPatrolMarker = "";
 							if (GMSAI_debug >= 1) then 
 							{										
-								_patrolAreaMarker = createMarker[format["GMSAI_dynamic%1",diag_tickTime],_spawnPos];
-								_patrolAreaMarker setMarkerShape "RECTANGLE";
-								_patrolAreaMarker setMarkerSize [GMSAI_dynamicSpawnDistance + 100,GMSAI_dynamicSpawnDistance + 100];
-								_patrolAreaMarker setMarkerColor "COLORBLACK";
-								_patrolAreaMarker setMarkerAlpha 0.4;
+								_dynamicPatrolMarker = createMarker[format["GMSAI_dynamic%1",diag_tickTime],_spawnPos];
+								_dynamicPatrolMarker setMarkerShape "RECTANGLE";
+								_dynamicPatrolMarker setMarkerSize [GMSAI_dynamicSpawnDistance + 100,GMSAI_dynamicSpawnDistance + 100];
+								_dynamicPatrolMarker setMarkerColor "COLORBLACK";
+								_dynamicPatrolMarker setMarkerAlpha 0.4;
 							} else {
-								_patrolAreaMarker = createMarkerLocal[format["GMSAI_dynamic%1",diag_tickTime],_spawnPos];
-								_patrolAreaMarker setMarkerShapeLocal "RECTANGLE";
-								_patrolAreaMarker setMarkerSizeLocal [GMSAI_dynamicSpawnDistance + 100,GMSAI_dynamicSpawnDistance + 100];
+								_dynamicPatrolMarker = createMarkerLocal[format["GMSAI_dynamic%1",diag_tickTime],_spawnPos];
+								_dynamicPatrolMarker setMarkerShapeLocal "RECTANGLE";
+								_dynamicPatrolMarker setMarkerSizeLocal [GMSAI_dynamicSpawnDistance + 100,GMSAI_dynamicSpawnDistance + 100];
 							};
-
-							[format["_patrolAreaMarker = %1 | typeName _patrolAreaMarker = %2",_patrolAreaMarker,typeName _patrolAreaMarker],"information"] call GMSAI_fnc_log;
+							[format["_dynamicAIManger: _dynamicPatrolMarker = %1 | typeName _dynamicPatrolMarker = %2",_dynamicPatrolMarker,typeName _dynamicPatrolMarker],"information"] call GMSAI_fnc_log;
 
 							/*
-							params[
-									"_difficulty",
-									"_spawnPos", // center of the patrol area
-									"_units",  // units to spawn, can be integer, [1], or range [2,3]
-									["_patrolAreaMarker",""]
-								];
-							*/							
+								params[
+										"_difficulty",
+										"_spawnPos", // center of the patrol area
+										"_units",  // units to spawn, can be integer, [1], or range [2,3]
+										["_patrolAreaMarker",""]
+									];
+							*/	
+							private _difficulty = selectRandomWeighted GMSAI_dynamicUnitsDifficulty;
+							private _units = [GMSAI_dynamicRandomUnits] call GMS_fnc_getIntegerFromRange;			
 							private _group = [
-								[selectRandomWeighted GMSAI_dynamicUnitsDifficulty] call GMS_fnc_getIntegerFromRange,
+								_difficulty,
 								_spawnPos,
-								[GMSAI_dynamicRandomUnits] call GMS_fnc_getIntegerFromRange,
-								GMSAI_dynamicUnitsDifficulty, // TODO: Check this
-								_patrolAreaMarker
+								_units,
+								_dynamicPatrolMarker
 							] call GMSAI_fnc_spawnInfantryGroup;
 
 							[format["_dynamicAIManager: _group Spawned = %1",_group],"information"] call GMSAI_fnc_log;
@@ -140,19 +141,19 @@ if (GMSAI_useDynamicSpawns) then
 								/*
 									params["_group",  // group for which to configure / initialize waypoints
 											["_blackListed",[]],  // areas to avoid within the patrol region
-											["_patrolAreaMarker",""],  // a marker defining the patrol area center, size and shape
+											["_dynamicPatrolMarker",""],  // a marker defining the patrol area center, size and shape
 											["_timeout",300]
 										]; 
 								*/
 								_group,
 								GMSAI_blackListedAreas,
-								_patrolAreaMarker,
+								_dynamicPatrolMarker,
 								GMSAI_waypointTimeout  //  Time in seconds within which the waypoint should be completed
 							] call GMS_fnc_initializeWaypointsAreaPatrol;	
 							
 							[_group,_player] call GMS_fnc_assignTargetAreaPatrol;
 							_player setVariable["group",_group,true];
-							_player setVariable["patrolAreaMarker",_patrolAreaMarker,true];
+							_player setVariable["patrolAreaMarker",_dynamicPatrolMarker,true];
 							if (GMSAI_debug >= 1) then {_player setVariable["GMSAI_groupDebugMarker",[_group] call GMSAI_fnc_getGroupDebugMarker]};
 							["notification",format["The target is %1 - seek and destroy",name _player]] call GMS_fnc_messagePlayers;
 						};

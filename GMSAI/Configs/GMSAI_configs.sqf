@@ -100,6 +100,7 @@ GMSAI_forbidenWeapons = ["LMG_RCWS","LMG_M200","HMG_127","HMG_127_APC","HMG_M2",
 /*********************************
 	Aircraft Patrol Spawn Configs
 *********************************/
+// TODO: aircraft could be spread out more on the map.
 GMSAI_numberOfAircraftPatrols = 1;
 GMSAI_aircraftPatrolDifficulty =  [GMSAI_difficultyBlue,0.90,GMSAI_difficultyRed,0.10];
 GMSAI_aircraftRespawnTime = [600,900];  //  Min, Max respawn time
@@ -129,7 +130,7 @@ GMSAI_aircraftPatrolDestinations = [
 	"Airport"  // self-evident
 ];
 
-GMSAI_numberOfUAVPatrols =1;
+GMSAI_numberOfUAVPatrols = 1;
 GMSAI_UAVTypes = [  //  note that faction may matter here.
 
 	// East 
@@ -213,7 +214,7 @@ GMSAI_removeNVG = false;
 GMSAI_runoverProtection = true;
 GMSAI_bodyDeleteTimer = 60;
 
-GMSAI_useDynamicSpawns = false;
+GMSAI_useDynamicSpawns = true;
 GMSAI_maximumDynamicRespawns = -1;  //  Set to 0 to spawn only once. Set to -1 to have infinite respawns (default).
 GMSAI_dynamicRespawnTime = 10;
 GMSAI_dynamicDespawnTime = 10;

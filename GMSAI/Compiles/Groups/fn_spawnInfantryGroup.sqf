@@ -8,7 +8,7 @@
 		_spawnPos, where the group should be centered
 		[_unit], number of units formated as [_min,_max], [_min] or _miin
 		_difficulty, a number 1 to N corresponding to the difficulty level for the group. 
-		_patrolAreaMarker, the marker describing the area within which the group should patrol. Set this to "" to ignore all that.
+		_patrolMarker, the marker describing the area within which the group should patrol. Set this to "" to ignore all that.
 	
 	Returns: _group, the group that was spawned. 
 
@@ -27,16 +27,36 @@ params[
 		"_difficulty",
 		"_spawnPos", // center of the patrol area
 		"_units",  // units to spawn, can be integer, [1], or range [2,3]
-		["_patrolAreaMarker",""]
+		"_patrolMarker"
 	];
 
-if (GMSAI_debug  >=1) then
+if (isNil "_patrolMarker") then {_patrolMarker =  ""; diag_log "_patrolMarker set to double quotes";};
+[format["GMSAI_fnc_spawnInfantryGroup: _this = %1",_this],"information"] call GMSAI_fnc_log;
 {
-	diag_Log format["GMSAI_fnc_spawnInfantryGroup: _this select %1 = %2",_forEachIndex,_x];
+	[format["GMSAI_fnc_spawnInfantryGroup: _this select %1 = %2",_forEachIndex,_x],"information"] call GMSAI_fnc_log;
 }forEach _this;
 
+diag_log format[" _GMSAI_fnc_spawnInfantryGroup: _difficulty = %1 | _spawnPos = %2 | _units = %3 | _patrolMarker = %4",_difficulty,_spawnPos,_units,_patrolMarker];
 
-// params["_pos","_units","_side",["_baseSkill",0.7],["_alertDistance",500],["_intelligence",0.5],["_monitor",false]];
+/*
+
+params[
+		"_pos",  // center of the area in which to spawn units
+		"_units",  // Number of units to spawn
+		["_side",GMS_side],
+		["_baseSkill",0.7],
+		["_alertDistance",500], 	 // How far GMS will search from the group leader for enemies to alert to the kiillers location
+		["_intelligence",0.5],  	// how much to bump knowsAbout after something happens
+		["_bodycleanuptimer",600],  // How long to wait before deleting corpses for that group
+		["_maxReloads",-1], 			// How many times the units in the group can reload. If set to -1, infinite reloads are available.
+		["_removeLaunchers",true],
+		["_removeNVG",true],
+		["_minDamageToHeal",0.4],
+		["_maxHeals",1],
+		["_smokeShell",""]
+	];
+
+*/
 private _group = [
 		_spawnPos,
 		[_units] call GMS_fnc_getIntegerFromRange,
@@ -53,7 +73,7 @@ private _group = [
 		GMSAI_unitSmokeShell  
 	] call GMS_fnc_spawnInfantryGroup;
 
-//[format["GMSAI_fnc_spawnInfantryGroup: _group returned = %1",_group]] call GMSAI_fnc_log;
+[format["GMSAI_fnc_spawnInfantryGroup: _group returned = %1",_group]] call GMSAI_fnc_log;
 //private _unitDifficulty = selectRandomWeighted GMSAI_dynamicUnitsDifficulty;
 
  [_group,GMSAI_skillbyDifficultyLevel select _difficulty] call GMS_fnc_setupGroupSkills;  // TODO: revisit this once a system for skills is determined - simpler the better
@@ -61,7 +81,8 @@ private _group = [
 [_group,_difficulty,GMSAI_money] call GMS_fnc_setupGroupMoney;
 //[_group,GMSAI_bodyDeleteTimer] call GMS_fnc_setGroupBodyDespawnTime;
 #define waypointTimeoutInfantryPatrols 180
-if !(_patrolAreaMarker isEqualTo "") then // setup waypoints using the information stored in the marker 
+[format["_spawnInfantryGroup: _patrolMarker = %1",_patrolMarker],"information"] call GMSAI_fnc_log;
+if !(_patrolMarker isEqualTo "") then // setup waypoints using the information stored in the marker 
 {
 	//[_group,_patrolAreaMaker] call GMS_fnc_setWaypointPatrolAreaMarker
 	[format["GMSAI_fnc_spawnInfantryGroup: _group %1: initializing waypoints",_group]] call GMSAI_fnc_log;
@@ -76,7 +97,7 @@ if !(_patrolAreaMarker isEqualTo "") then // setup waypoints using the informati
 		*/
 		_group,
 		GMSAI_blackListedAreas,
-		_patrolAreaMarker,
+		_patrolMarker,
 		waypointTimeoutInfantryPatrols
 	] call GMS_fnc_initializeWaypointsAreaPatrol;
 };
