@@ -77,7 +77,7 @@ for "_i" from 1 to (count GMSAI_UGVPatrols) do
 					(selectRandomWeighted GMSAI_UGVdifficulty),
 					(selectRandomWeighted GMSAI_UGVtypes), 
 					_pos
-				] call GMSAI_fnc_spawnVehiclePatrol;
+				] call GMSAI_fnc_spawnUGVPatrol;
 				_vehiclePatrol set[0,_newPatrol select 0];
 				_vehiclePatrol set[1,_newPatrol select 1];
 				_vehiclePatrol set[2,diag_tickTime];

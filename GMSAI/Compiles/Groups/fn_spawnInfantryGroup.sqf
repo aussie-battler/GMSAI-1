@@ -30,11 +30,11 @@ params[
 		["_patrolAreaMarker",""]
 	];
 
-/*
+if (GMSAI_debug  >=1) then
 {
 	diag_Log format["GMSAI_fnc_spawnInfantryGroup: _this select %1 = %2",_forEachIndex,_x];
 }forEach _this;
-*/
+
 
 // params["_pos","_units","_side",["_baseSkill",0.7],["_alertDistance",500],["_intelligence",0.5],["_monitor",false]];
 private _group = [

@@ -100,7 +100,7 @@ GMSAI_forbidenWeapons = ["LMG_RCWS","LMG_M200","HMG_127","HMG_127_APC","HMG_M2",
 /*********************************
 	Aircraft Patrol Spawn Configs
 *********************************/
-GMSAI_numberOfAircraftPatrols = 5;
+GMSAI_numberOfAircraftPatrols = 1;
 GMSAI_aircraftPatrolDifficulty =  [GMSAI_difficultyBlue,0.90,GMSAI_difficultyRed,0.10];
 GMSAI_aircraftRespawnTime = [600,900];  //  Min, Max respawn time
 GMSAI_aircraftDesapwnTime = 120;
@@ -129,7 +129,7 @@ GMSAI_aircraftPatrolDestinations = [
 	"Airport"  // self-evident
 ];
 
-GMSAI_numberOfUAVPatrols = 5;
+GMSAI_numberOfUAVPatrols =1;
 GMSAI_UAVTypes = [  //  note that faction may matter here.
 
 	// East 
@@ -161,7 +161,8 @@ GMSAI_paratroopAircraftTypes = [  // Note: this is a weighted array of vehicles 
 	"B_Heli_Transport_03_unarmed_F",5
 ];
 
-GMSAI_numberOfUGVPatrols = 5;
+// Throws error on spawn - probably in spawnUGVpatrols as everything runs properly up till then.
+GMSAI_numberOfUGVPatrols =1;
 GMSAI_UGVtypes = [  // note that faction matters here.  Not many choices in Arma at the moment.
 	// Stompers
 	"O_UGV_01_rcws_F",5 // east 
@@ -173,7 +174,8 @@ GMSAI_UGVrespawnTime = [600,900];  // Min, Max
 GMSAI_UGVdespawnTime = 10;
 GMSAI_UGVchanceOfParatroops = 0.9999;
 
-GMSAI_noVehiclePatrols = 5;
+// TODO: Check method for distributing spawns across the map; they seem to be clustered toward the center. 
+GMSAI_noVehiclePatrols = 1;
 GMSAI_patroVehicleCrewCount = [4];
 GMSAI_vehiclePatroDifficulty = [GMSAI_difficultyBlue,0.60,GMSAI_difficultyRed,0.40,GMSAI_difficultyGreen,0.05,GMSAI_difficultyOrange,0.05];
 GMSAI_vehiclePatrolDeleteTime = 10;
@@ -215,12 +217,12 @@ GMSAI_useDynamicSpawns = false;
 GMSAI_maximumDynamicRespawns = -1;  //  Set to 0 to spawn only once. Set to -1 to have infinite respawns (default).
 GMSAI_dynamicRespawnTime = 10;
 GMSAI_dynamicDespawnTime = 10;
-GMSAI_dynamicUnitsDifficulty = GMSAI_difficultyBlue;  // Set how are the AI are
+GMSAI_dynamicUnitsDifficulty = [GMSAI_difficultyBlue,0.10,GMSAI_difficultyRed,1,GMSAI_difficultyGreen,0.01,GMSAI_difficultyOrange,0.01];;  // Set how are the AI are
 GMSAI_dynamicRandomGroups = [1];
 GMSAI_dynamicRandomUnits = [3];
 GMSAI_dynamicRandomChance = 0.999;
 
-GMSAI_useStaticSpawns = true;
+GMSAI_useStaticSpawns = false;
 GMSAI_staticRespawns = -1;  //  Set to -1 to have infinite respawns (default). If set == 0 then there will be no spawns in towns/cities.
 GMSAI_staticRespawnTime = 10;
 GMSAI_staticDespawnTime = 10;

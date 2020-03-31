@@ -58,7 +58,8 @@ if (GMSAI_useDynamicSpawns) then
 					};
 				};
 			};
-		} else {  // no dynamic AI group has been spawned, lets check if one should be
+		} else {  
+			// no dynamic AI group has been spawned, lets check if one should be
 			private _respawns = _player getVariable "respawns";
 			if (isNil "_respawns") then
 			{
@@ -71,8 +72,8 @@ if (GMSAI_useDynamicSpawns) then
 				_respawnsAllowed = GMSAI_maximumDynamicRespawns;
 				_player setVariable["maximumRespawns",_respawnsAllowed];
 			};
-			diag_log format["_dynamicAIManger: no active dynamic group found for player %1, evaluating spawn parameters: _respawns = %2 | _respawnsAllowed = %3",_player,_respawns,_respawnsAllowed];			
-			if (_respawnsAllowed == -1 || _respawns <= _respawnsAllowed) then
+			[format["_dynamicAIManger: no active dynamic group found for player %1, evaluating spawn parameters: _respawns = %2 | _respawnsAllowed = %3",_player,_respawns,_respawnsAllowed],"information"] call GMSAI_fnc_log;			
+			if (_respawnsAllowed isEqualTo -1 || _respawns <= _respawnsAllowed) then
 			{
 				private _lastSpawnedAt = _player getVariable["lastSpawnedAt",0];
 				private _respawnAt = _player getVariable "respawnAt";
@@ -89,41 +90,67 @@ if (GMSAI_useDynamicSpawns) then
 					{
 						private _dynamicAI = _player nearEntities["I_G_Sharpshooter_F",300];
 						diag_log format[" evaluating nearby units: _dynamicAIManger: _dynamicAI = %1",_dynamicAI];
-						if (_dynamicAI isEqualTo []) then  //  Only spawn dynamic AI if there are no other roamers around.
+						if (_dynamicAI isEqualTo []) then  
+						//  Only spawn dynamic AI if there are no other roamers around. -- May want to rethink this
 						{	// TODO: add loop to spawn groups accordiing to number set in GMSAI_dynamicRandomGroups
-							private _spawnPos = (getPosATL _player) getPos[GMSAI_dynamicSpawnDistance,random(359)];											
-							private _patrolAreaMarker = createMarker[format["GMSAI_dynamic%1",diag_tickTime],_spawnPos];
-							_patrolAreaMarker setMarkerShape "RECTANGLE";
-							_patrolAreaMarker setMarkerSize [GMSAI_dynamicSpawnDistance + 100,GMSAI_dynamicSpawnDistance + 100];
-							//params["_spawnPos","_units","_difficulty",["_patrolAreaMarker",""]];
+							private _spawnPos = (getPosATL _player) getPos[GMSAI_dynamicSpawnDistance,random(359)];	
+							private "_patrolAreaMarker";
+							if (GMSAI_debug >= 1) then 
+							{										
+								_patrolAreaMarker = createMarker[format["GMSAI_dynamic%1",diag_tickTime],_spawnPos];
+								_patrolAreaMarker setMarkerShape "RECTANGLE";
+								_patrolAreaMarker setMarkerSize [GMSAI_dynamicSpawnDistance + 100,GMSAI_dynamicSpawnDistance + 100];
+								_patrolAreaMarker setMarkerColor "COLORBLACK";
+								_patrolAreaMarker setMarkerAlpha 0.4;
+							} else {
+								_patrolAreaMarker = createMarkerLocal[format["GMSAI_dynamic%1",diag_tickTime],_spawnPos];
+								_patrolAreaMarker setMarkerShapeLocal "RECTANGLE";
+								_patrolAreaMarker setMarkerSizeLocal [GMSAI_dynamicSpawnDistance + 100,GMSAI_dynamicSpawnDistance + 100];
+							};
+
+							[format["_patrolAreaMarker = %1 | typeName _patrolAreaMarker = %2",_patrolAreaMarker,typeName _patrolAreaMarker],"information"] call GMSAI_fnc_log;
+
+							/*
+							params[
+									"_difficulty",
+									"_spawnPos", // center of the patrol area
+									"_units",  // units to spawn, can be integer, [1], or range [2,3]
+									["_patrolAreaMarker",""]
+								];
+							*/							
 							private _group = [
+								[selectRandomWeighted GMSAI_dynamicUnitsDifficulty] call GMS_fnc_getIntegerFromRange,
 								_spawnPos,
 								[GMSAI_dynamicRandomUnits] call GMS_fnc_getIntegerFromRange,
 								GMSAI_dynamicUnitsDifficulty, // TODO: Check this
 								_patrolAreaMarker
 							] call GMSAI_fnc_spawnInfantryGroup;
-							[format["_dynamicAIManager: _group Spawned = %1",_group]] call GMSAI_fnc_log;
+
+							[format["_dynamicAIManager: _group Spawned = %1",_group],"information"] call GMSAI_fnc_log;
 							_player setVariable["GMSAI_Group",_group];
+
 							if (GMSAI_debug >= 1) then {[_group] call GMSAI_fnc_addGroupDebugMarker};		
 							
 							_group setVariable["despawnDistance",GMSAI_dynamicDespawnDistance];
 							_group setVariable["despawnTime",GMSAI_dynamicDespawnTime];	
-							_group reveal[_player,0.1];	
-							[_group,_player] call GMS_fnc_assignTargetAreaPatrol;					
+							_group reveal[_player,0.1];		
+
+							#define GMSAI_waypointTimeout 60
 							[
 								/*
-								params["_group",  // group for which to configure / initialize waypoints
-								["_blackListed",[]],  // areas to avoid within the patrol region
-								["_center",[0,0,0]],  // center of the area to be patroled
-								["_size",[200,200]],  // size of the area to be patroled, either a value or array of 2 values
-								["_shape","RECTANGLE"],  // "RECTANGLE" or "ELLIPSE"
-								["_timeout",300]];  // The time that must elapse before the antistuck function takes over.
+									params["_group",  // group for which to configure / initialize waypoints
+											["_blackListed",[]],  // areas to avoid within the patrol region
+											["_patrolAreaMarker",""],  // a marker defining the patrol area center, size and shape
+											["_timeout",300]
+										]; 
 								*/
 								_group,
 								GMSAI_blackListedAreas,
 								_patrolAreaMarker,
-								60  //  Time in seconds within which the waypoint should be completed
+								GMSAI_waypointTimeout  //  Time in seconds within which the waypoint should be completed
 							] call GMS_fnc_initializeWaypointsAreaPatrol;	
+							
+							[_group,_player] call GMS_fnc_assignTargetAreaPatrol;
 							_player setVariable["group",_group,true];
 							_player setVariable["patrolAreaMarker",_patrolAreaMarker,true];
 							if (GMSAI_debug >= 1) then {_player setVariable["GMSAI_groupDebugMarker",[_group] call GMSAI_fnc_getGroupDebugMarker]};

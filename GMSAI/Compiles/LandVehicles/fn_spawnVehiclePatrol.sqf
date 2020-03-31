@@ -68,15 +68,7 @@ diag_log format["GMSAI_fnc_spawnVehiclePatrol: _group = %1",_group];
 [_group, GMSAI_unitLoadouts select _difficulty, 0 /* launchers per group */, GMSAI_useNVG, GMSAI_blacklistedGear] call GMS_fnc_setupGroupGear;
 [_group,_difficulty,GMSAI_money] call GMS_fnc_setupGroupMoney;
 
-_vehicle addMPEventHandler["MPHit",{if (isServer) then {_this call GMSAI_fnc_processVehicleHit}}];
-_vehicle addMPEventHandler["MPKilled",{if (isServer) then {_this call GMSAI_fnc_processVehicleKilled}}];
-_vehicle addEventHandler["HandleDamage",{if (isServer) then {_this call GMSAI_fnc_vehicleHandleDamage}}];
-{
-	_x addMPEventHandler ["MPKilled", {if (isServer) then {_this call GMSAI_fnc_processVehicleCrewKilled}}];
-	_x addMPEventHandler ["MPHit", {if (isServer) then {_this call GMSAI_fnc_processVehicleCrewHit;}}];
-	_x addEventHandler["HandleDamage",{if (isServer) then {_this call GMSAI_fnc_vehicleCrewHandleDamage}}];
-	_x addEventHandler ["GetOut",{_this call GMSAI_fnc_processVehicleCcrewGetOut;}];
-} forEach (crew _vehicle);
+[_vehicle] call GMSAI_fnc_vehicleAddEventHandlers;
 
 if (_isSubmersible) then 
 {
@@ -90,15 +82,6 @@ if (_patrolArea isEqualTo "Map") then
 	#define addGrouptoMonitoredGroups true
 	if (_center isEqualTo [0,0,0]) then {_center = _pos};
 	[format["[]Patrol _center for vehicle group %1 was undefined and was set to %2",_group,_pos],"warning"] call GMSAI_fnc_log;
-	// TODO: Revisit to update for area patrols
-	// Leverage the ability of GMS to run ANY group's waypoints within an area proscribed by a local map marker
-	/*
-		params["_group",  // group for which to configure / initialize waypoints
-				["_blackListed",[]],  // areas to avoid within the patrol region
-				["_patrolAreaMarker",""],  // a marker defining the patrol area center, size and shape
-				["_timeout",300]
-			]; 
-	*/
 	[_group,_blacklisted,_patrolArea,_timeout] call GMS_fnc_initializeWaypointsAreaPatrol;
 	// Note: the group is added to the list of groups monitored by GMS. Empty groups are deleted, 'stuck' groups are identified.
 };

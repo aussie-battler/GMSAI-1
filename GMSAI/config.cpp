@@ -50,7 +50,7 @@ class CfgFunctions {
 			file = "addons\GMSAI\Compiles\Functions";
 			class mainThread {};  // This is a scheduler for all of the events that must happen for spawns, despawns and such.
 			class monitorEmptyVehicles {};
-			class monitorDeadUnits {};  // This can be handled by GMSCore
+			//class monitorDeadUnits {};  // This can be handled by GMSCore
 		};	
 		class Groups {
 			file = "addons\GMSAI\Compiles\Groups";
@@ -79,16 +79,17 @@ class CfgFunctions {
 			class monitorUGVPatrols {};						
 			class nextWaypointVehicles {};
 			//class loiterWaypointVehicles {};
+			class processEmptyVehicle {};
+			class spawnVehiclePatrol {};	
+			class spawnUGVPatrol {};			
+			class vehicleAddEventHandlers {};
+			class vehicleCrewGetOut {};	
+			class vehicleCrewHandleDamage {};						
 			class vehicleCrewHit {};
 			class vehicleCrewKilled {};
-			class vehicleCrewHandleDamage {};
-			class vehicleCrewGetOut {};
-			class processEmptyVehicle {};						
-			class vehicleHit {};
 			class vehicleKilled {};
 			class vehicleHandleDamage {};
-			class spawnVehiclePatrol {};	
-			class spawnUGVPatrol {};
+			class vehicleHit {};
 		};			
 		class main {
 			file = "addons\GMSAI\init";

@@ -27,7 +27,7 @@ for "_i" from 1 to GMSAI_numberOfUAVPatrols do
 	if !(_pos isEqualTo [0,0]) then
 	{
 		private _uavPatrol = [
-			[selectRandomWeighted GMSAI_UAVDifficulty] call GMS_fnc_getIntegerFromRange,
+			selectRandomWeighted GMSAI_UAVDifficulty,
 			selectRandomWeighted GMSAI_UAVTypes,
 			_pos
 		] call GMSAI_fnc_spawnUAVPatrol;

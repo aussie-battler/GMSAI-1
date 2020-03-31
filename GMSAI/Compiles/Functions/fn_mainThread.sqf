@@ -36,12 +36,12 @@ while {true} do
     if (diag_tickTime > _60sec) then
     {
        diag_log format["_mainThread: calling GMSAI_fnc_monitorAirPatrols at %1",diag_tickTime];
-        [] call GMSAI_fnc_monitorAirPatrols;
-        [] call GMSAI_fnc_monitorUAVPatrols;
+        //[]] call GMSAI_fnc_monitorAirPatrols;
+        //[] call GMSAI_fnc_monitorUAVPatrols;
         [] call GMSAI_fnc_monitorUGVPatrols;
         [] call GMSAI_fnc_monitorVehiclePatrols;
         [] call GMSAI_fnc_monitorEmptyVehicles;
-        [] call GMSAI_fnc_monitorDeadUnits;
+        //[] call GMSAI_fnc_monitorDeadUnits; // ? Needed
         //[] call GMSAI_fnc_monitorIActiveAreaMarkers;
         _60sec = diag_tickTime + 60;
         diag_log format[

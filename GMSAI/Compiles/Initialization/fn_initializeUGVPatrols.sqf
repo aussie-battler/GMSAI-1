@@ -26,13 +26,17 @@ for "_i" from 1 to GMSAI_numberOfUGVPatrols do
 	};
 	if !(_pos isEqualTo [0,0]) then
 	{
+		private _difficulty = selectRandomWeighted GMSAI_UGVdifficulty;
+		private _type = selectRandomWeighted GMSAI_UGVtypes;
+		[format["_initializeUGFPatrols: _difficulty = %1 | _type = %2",_difficulty,_type],"information"] call GMSAI_fnc_log;
+		private _def = if (isNil "GMSAI_fnc_spawnUGVPatrol") then {"nil"} else {"defined"};
+		[format["_initializeUGFPatrols: _def = %1 | _type = %2",_def],"information"] call GMSAI_fnc_log;
 		private _UGVPatrol = [
-			[selectRandomWeighted GMSAI_UGVdifficulty] call GMS_fnc_getIntegerFromRange,
-			selectRandomWeighted GMSAI_UGVtypes,
+			_difficulty,
+			_type,
 			_pos
 		] call GMSAI_fnc_spawnUGVPatrol;
 		//diag_log format["[GMSAI] _initializeUGVPatrols: _UGVPatrol = %1",_UGVPatrol];
-		//  _UGVPatrol params["_crewGroup","_vehicle","_lastSpawned","_timesSpawned","_respawnAt"];  //,"_spawned"];
 		GMSAI_UGVPatrols pushBack [_UGVPatrol select 0,_UGVPatrol select 1,diag_tickTime,0,-1,-1];
 	};
 };
