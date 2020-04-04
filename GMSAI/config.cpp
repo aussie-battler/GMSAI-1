@@ -98,7 +98,7 @@ class CfgFunctions {
 			class initialize {
 				postInit = 1;
 			};
-			class initializeConfigurations {};
+			class initializeConfiguration {};
 		};
 		class Players {
 			// Things that GMSAI does to players.

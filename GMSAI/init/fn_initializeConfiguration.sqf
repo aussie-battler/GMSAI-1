@@ -1,10 +1,24 @@
+/*
 
-
-#include "addons\GMSAI\Configs\GMSAI_configs.sqf";
-#include "addons\GMSAI\Configs\GMSAI_playerRewards.sqf";
-if (toLower(GMS_modType) isEqualTo "epoch") then {[] call compileFinal preprocessFileLineNumbers "addons\GMSAI\Configs\GMSAI_unitLoadoutEpoch.sqf"};
-if (toLower(GMS_modType) isEqualTo "exile") then {[] call compileFinal preprocessFileLineNumbers "addons\GMSAI\Configs\GMSAI_unitLoadoutExile.sqf"};
-if (toLower(GMS_modType) isEqualTo "default") then {[] call compileFinal preprocessFileLineNumbers "addons\GMSAI\Configs\GMSAI_unitLoadoutDefault.sqf"};
+*/
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
+diag_log format["{GMSAI} <BEGIN> _initializeConfigurations at %1",diag_tickTime];
+#include "\addons\GMSAI\Configs\GMSAI_configs.sqf";
+#include "\addons\GMSAI\Configs\GMSAI_playerRewards.sqf";
+diag_log format["{GMSAI} <BEGIN> _initializeConfigurations: GMSS_modType = %2 at %1",diag_tickTime,GMS_modType];
+if (toLower(GMS_modType) isEqualTo "epoch") then 
+{
+	[] call compileFinal preprocessFileLineNumbers "addons\GMSAI\Configs\GMSAI_unitLoadoutEpoch.sqf";
+};
+if (toLower(GMS_modType) isEqualTo "exile") then 
+{
+	[] call compileFinal preprocessFileLineNumbers "addons\GMSAI\Configs\GMSAI_unitLoadoutExile.sqf";
+};
+if (toLower(GMS_modType) isEqualTo "default") then 
+{
+	diag_log format["{GMSAI} <BEGIN> _initializeConfigurations: Loading Unit Configurations for GMS_modType = %2 at %1",diag_tickTime,GMS_modType];
+	#include "\addons\GMSAI\Configs\GMSAI_unitLoadoutDefault.sqf";
+};
 
 
 /******************************************************************************************************************************************************** */
@@ -64,11 +78,11 @@ GMSAI_gearBlue = [
 	[], // items and equipment
 	[] // launchers
 ];
-*/
-/****************************************************************************************************************************************************** */
 
+/****************************************************************************************************************************************************** */
+/*
 GMSAI_unitDifficulty = [GMSAI_skillBlue, GMSAI_skillRed, GMSAI_skillGreen, GMSAI_skillOrange];
-GMSAI_money = [_GMSAI_moneyBlue,_GMSAI_moneyRed,_GMSAI_moneyGreen,_GMSAI_moneyOrange];
+
 GMSAI_unitLoadouts = [GMSAI_gearBlue, GMSAI_gearRed, GMSAI_gearGreen, GMSAI_gearOrange];
 GMSAI_staticVillageSettings = [GMSAI_staticCityGroups,GMSAI_staticVillageUnitsPerGroup,GMSAI_staticVillageUnitsDifficulty,GMSAI_ChanceStaticCityGroups,GMSAI_staticRespawns, GMSAI_staticRespawnTime, GMSAI_staticDespawnTime,"Man"];
 GMSAI_staticCitySettings = [GMSAI_staticCityGroups,GMSAI_staticCityUnitsPerGroup,GMSAI_staticCityUnitsDifficulty,GMSAI_ChanceStaticCityGroups,GMSAI_staticRespawns, GMSAI_staticRespawnTime, GMSAI_staticDespawnTime,"Man"];
@@ -77,10 +91,12 @@ GMSAI_staticMarineSettings = [GMSAI_staticMarineGroups,GMSAI_staticMarineUnitsPe
 GMSAI_staticOtherSettings = [GMSAI_staticOtherGroups,GMSAI_staticOtherUnitsPerGroup,GMSAI_staticOtherUnitsDifficulty,GMSAI_ChanceStaticOtherGroups,GMSAI_staticRespawns, GMSAI_staticRespawnTime, GMSAI_staticDespawnTime,"Man"];
 GMSAI_staticRandomSettings = [GMSAI_staticRandomGroups,GMSAI_staticRandomUnits,GMSAI_staticRandomUnitsDifficulty,GMSAI_staticRandomChance,GMSAI_staticRespawns, GMSAI_staticRespawnTime, GMSAI_staticDespawnTime,"Man"];
 GMSAI_dynamicSettings = [GMSAI_dynamicRandomGroups,GMSAI_dynamicRandomUnits,GMSAI_dynamicUnitsDifficulty,GMSAI_dynamicRandomChance,GMSAI_staticRespawns, GMSAI_staticRespawnTime, GMSAI_staticDespawnTime,"Man"];
-
+*/
 /*
 	VERIFY CLASSNAMES FOR PLANES, HELIS, UAV, UGV, TANKS, APCS, TRUCKS, CARS, ETC
 */
+
+/*
 {
 	private _array = _x;
 	if (count (_array select 0) == 1) then 
@@ -98,3 +114,10 @@ GMSAI_dynamicSettings = [GMSAI_dynamicRandomGroups,GMSAI_dynamicRandomUnits,GMSA
 	GMSAI_UAVTypes,
 	GMSAI_UAVTypes
 	];
+*/
+while{isNil "gmsai_gearblue"} do 
+{
+	uiSleep 5;
+	diag_log format["{GMSAI} <Waiting> IN _initializeConfigurations for GMSAI_gearBlue at %1",diag_tickTime];
+};
+diag_log format["{GMSAI} <END> _initializeConfigurations at %1",diag_tickTime];

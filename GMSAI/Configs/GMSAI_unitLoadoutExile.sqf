@@ -2,10 +2,14 @@
 	Unit loadouts for exile 
 	Copyright 2020 Ghostrider-GRG-	
 */
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
+
 _GMSAI_moneyBlue = 30;
 _GMSAI_moneyRed = 45;
 _GMSAI_moneyGreen = 60;
 _GMSAI_moneyOrange = 75;
+/*   DO NOT TOUCH GMSAI_money  */
+GMSAI_money = [_GMSAI_moneyBlue,_GMSAI_moneyRed,_GMSAI_moneyGreen,_GMSAI_moneyOrange];
 
 _headgear = ["H_Shemag_khk","H_Shemag_olive","H_Shemag_olive_hs","H_Shemag_tan","H_ShemagOpen_khk","H_ShemagOpen_tan","H_TurbanO_blk"];
 _uniforms = ["U_IG_Guerilla1_1","U_IG_Guerilla2_1","U_IG_Guerilla2_2","U_IG_Guerilla2_3","U_IG_Guerilla3_1","U_IG_Guerilla3_2"];
@@ -56,4 +60,4 @@ _nvg = ["NVGoggles","NVGoggles_INDEP","NVGoggles_OPFOR"];
 /*
 	please do not touch below this line 
 */
-#include "addons\GMSAI\init\GMSAI_include_initializeUnitConfigs.sqf";
+#include initializeUnitConfigs;

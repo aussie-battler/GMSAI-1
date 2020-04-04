@@ -1,4 +1,8 @@
+/*
 
+*/
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
+diag_log format["[GMSAI] <BEGIN> _initializeUnitConfigurations.sqf at %1",diag_tickTime];
 
 	/*
 	The gear loading routine expects gear to be arranged in the following orderGetIn
@@ -186,6 +190,7 @@ if (GMSAI_useCfgPricingForLoadouts && !(GMS_mod isEqualTo "default")) then
 	//{diag_log format["[GMSAI] _unitLoadoutEpoch: GMSAI_gearOrange select %1 = %2",_forEachIndex,_x]} forEach GMSAI_gearOrange;	
 	diag_log "[GMSAI] CfgPricing-based loadouts used";
 } else {
+	diag_log "[GMSAI] Config-based loadouts used";
 	// Lets remove any blacklisted items that might have crept in here by accident
 	{
 		_x = [_x,_blacklistedGear] call GMS_fnc_removeBlacklistedItems;
@@ -241,3 +246,4 @@ if (GMSAI_useCfgPricingForLoadouts && !(GMS_mod isEqualTo "default")) then
 	//{diag_log format["[GMSAI] _unitLoadoutEpoch: GMSAI_gearOrange select %1 = %2",_forEachIndex,_x]} forEach GMSAI_gearOrange;	
 	diag_log "[GMSAI] classnames checked and invalid names excluded";
 };
+diag_log format["[GMSAI] <END> _initializeUnitConfigurations.sqf at %1",diag_tickTime];

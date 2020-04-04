@@ -4,9 +4,8 @@
 	Copyright 2020
 */
 #define GMSAI_difficultyBlue 0
-#define GMSAI_difficultyRed 1
-#define GMSAI_difficultyGreen 2
-#define GMSAI_difficultyOrange 3
+#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
+diag_log format["[GMSAI] <BEGIN> GMSAI_configs.sqf at %1",diag_tickTime];
 
 GMSAI_maxHeals = 1;  // Maximum # of times the AI can heal. Set to 0 to disable self heals.
 GMSAI_minDamageForSelfHeal = 0.4;  // The damage a unit must sustain to self-heal. 
@@ -18,6 +17,18 @@ GMSAI_baseSkilByDifficulty = [
 	0.75, // green 
 	0.9 // Orange 
 ];
+GMSAI_chanceThrowable = 0.5;  // Grenades, smoke, chemlights, whatever is in the config for this
+GMSAI_chanceHeadgear = 0.5;
+GMSAI_chanceUniform = 1;
+GMSAI_chanceVest = 1;
+GMSAI_chanceBackpack = 0.6;
+GMSAI_chanceLauncer = 0.6;	// Launcer (self-explanatory)
+GMSAI_chanceNVG = 1;	// NVG (when it is dark)
+GMSAI_chanceBinoc = 0.8;  // binocs, range finders, laser designators
+GMSAI_chanceFood = 0.8;  // Food and drink
+GMSAI_chanceMedical = 0.3;  // healing, defibs, etc
+GMSAI_chanceLoot = 0.5;  //  Things of value including building parts, gold, gems, or anything else
+
 GMSAI_money = [8, 12, 16, 20];
 GMSAI_defaultAlertDistance = 350;
 GMSA_alertDistanceByDifficulty = [200, 300,450,600];
@@ -269,3 +280,5 @@ GMSAI_staticRandomChance = 0.99940;
 
 */
 GMSAI_useNVG = true;
+
+diag_log format["[GMSAI] <END> GMSAI_configs.sqf at %1",diag_tickTime];
