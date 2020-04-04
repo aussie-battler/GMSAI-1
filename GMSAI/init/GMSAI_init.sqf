@@ -7,7 +7,8 @@ diag_log format["{GMSAI} <BEGIN> GMSAI_init.sqf at %1",diag_tickTime];
 diag_log format["[GMSAI] GMSAI_init.sqf:  Loading Variables at %1",diag_tickTime];
 [] call compileFinal preprocessFileLineNumbers "addons\GMSAI\Variables\GMSAI_Variables.sqf";
 diag_log format["[GMSAI] GMSAI_init.sqf:  Loading Configuration at %1",diag_tickTime];
-[] call GMSAI_fnc_initializeConfiguration;
+
+#include "\addons\GMSAI\init\fn_initializeConfiguration.sqf";
 
 while{isNil "GMSAI_unitLoadoutDefined"} do 
 { 
@@ -15,7 +16,7 @@ while{isNil "GMSAI_unitLoadoutDefined"} do
 	diag_log format["GMSAI] waiting for initialization of GMSAI_dynamicSettings at %1",diag_tickTime];
 };
 
-diag_log format["[GMSAI] Initializing Static Spawns at %1",diag_tickTime];
+diag_log format["[GMSAI] Initializing Static and Vehicle Spawns at %1",diag_tickTime];
 [[] call GMSAI_fnc_initializeStaticSpawnsForLocations] call GMSAI_fnc_initializeRandomSpawnLocations;
 [] call GMSAI_fnc_initializeAircraftPatrols;
 [] call GMSAI_fnc_initializeUAVPatrols;

@@ -3,12 +3,19 @@
 	Copyright 2020 Ghostrider-GRG-	
 */
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 
-#include "\addons\GMSAI\init\GMSAI_definePrivateVars.sqf"
+
+diag_log format["[GMSAI] <BEGIN> GMSAI_unitLoadoutEpoch.sqf at %1",diag_tickTime];
+/*
+	CONFIGUREATIONS BEGIN HERE
+*/
 _GMSAI_moneyBlue = 30;
 _GMSAI_moneyRed = 45;
 _GMSAI_moneyGreen = 60;
 _GMSAI_moneyOrange = 75;
+
+/*   DO NOT TOUCH GMSAI_money  */
 GMSAI_money = [_GMSAI_moneyBlue,_GMSAI_moneyRed,_GMSAI_moneyGreen,_GMSAI_moneyOrange];
+/*******************************/
 
 GMSAI_blackListedOptics = [];  //  Optics you do not want to allow
 GMSAI_blackListedPointers = [];  // Pointers you do not want to allow
@@ -78,10 +85,11 @@ _launchers = ["launch_RPG32_F"];
 _binoculars = ["Binocular","Rangefinder"];
 _nvg =  ["NVG_EPOCH"];
 
-
-
-
+/*
+	CONFIGURATIONS END HERE
+*/
 /*
 	please do not touch below this line 
 */
-#include initializeUnitConfigs;
+
+diag_log format["[GMSAI] <END> GMSAI_unitLoadoutEpoch.sqf at %1",diag_tickTime];

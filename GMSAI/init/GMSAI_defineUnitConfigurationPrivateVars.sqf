@@ -1,7 +1,7 @@
 
 
 
-_varNames = [
+private [
 	"_GMSAI_monyBlue",
 	"_GMSAI_moneyRed",
 	"_GMSAI_moneyGreen",
@@ -23,5 +23,5 @@ _varNames = [
 	"_binoculars",
 	"_nvg"
 	];
-	{private _x;} forEach _varNames;
+
 	diag_log "[GMSAI] definePrivateVars <LOADED>";

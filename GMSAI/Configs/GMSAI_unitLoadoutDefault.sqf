@@ -2,15 +2,18 @@
 	Default configurations for unit loadouts used when neither exile nor epoch are loaded. 
 	Copyright 2020 Ghostrider-GRG-
 */
-#include "\addons\GMSAI\init\GMSAI_defines.hpp" 
-diag_log format["[GMSAI] <BEGIN> GMSAI_unitLoadoutDefault.sqf at %1",diag_tickTime];
-#include "\addons\GMSAI\init\GMSAI_definePrivateVars.sqf"
 
+/*
+	CONFIGUREATIONS BEGIN HERE
+*/
 _GMSAI_moneyBlue = 30;
 _GMSAI_moneyRed = 45;
 _GMSAI_moneyGreen = 60;
 _GMSAI_moneyOrange = 75;
+
+/*   DO NOT TOUCH GMSAI_money  */
 GMSAI_money = [_GMSAI_moneyBlue,_GMSAI_moneyRed,_GMSAI_moneyGreen,_GMSAI_moneyOrange]; 
+/*******************************/
 
 GMSAI_blackListedOptics = [];  //  Optics you do not want to allow
 GMSAI_blackListedPointers = [];  // Pointers you do not want to allow
@@ -325,12 +328,11 @@ _nvg = [	"NVGoggles",
 _binoculars = ["Binocular",3,"Rangefinder",1,"Laserdesignator_02",0.5];
 
 
-
+/*
+	CONFIGURATIONS END HERE
+*/
 /*
 	please do not touch below this line 
 */
 
-#include "\addons\GMSAI\init\GMSAI_include_initializeUnitConfigs.sqf";
-
-GMSAI_unitLoadoutDefined = true;
 diag_log format["[GMSAI] <END> GMSAI_unitLoadoutDefault.sqf at %1",diag_tickTime];

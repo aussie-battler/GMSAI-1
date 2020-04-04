@@ -2,12 +2,12 @@
 
 */
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 
-#include "\addons\GMSAI\init\GMSAI_definePrivateVars.sqf"
+
 diag_log format["{GMSAI} <BEGIN> _initializeConfigurations at %1",diag_tickTime];
 #include "\addons\GMSAI\Configs\GMSAI_configs.sqf";
 #include "\addons\GMSAI\Configs\GMSAI_playerRewards.sqf";
 diag_log format["{GMSAI} <BEGIN> _initializeConfigurations: GMSS_modType = %2 at %1",diag_tickTime,GMS_modType];
-/*
+
 if (toLower(GMS_modType) isEqualTo "epoch") then 
 {
 	#include "\addons\GMSAI\Configs\GMSAI_unitLoadoutEpoch.sqf";
@@ -16,7 +16,7 @@ if (toLower(GMS_modType) isEqualTo "exile") then
 {
 	@include "\addons\GMSAI\Configs\GMSAI_unitLoadoutExile.sqf";
 };
-*/
+
 if (toLower(GMS_modType) isEqualTo "default") then {
 	diag_log format["[GMSAI] default mode detected loading unit paramters accordingly from %1","GMSAI_unitLoadoutDefault.sqf"];
 	#include "\addons\GMSAI\Configs\GMSAI_unitLoadoutDefault.sqf";
