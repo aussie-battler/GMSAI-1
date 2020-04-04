@@ -5,6 +5,20 @@
 
 GMSAI_money = [0];
  
+GMSAI_blackListedOptics = [];  //  Optics you do not want to allow
+GMSAI_blackListedPointers = [];  // Pointers you do not want to allow
+GMSAI_blackListedMuzzles = [];  // Muzzles you want to forbid
+GMSAI_blacklistedInventoryItems = [];  // Inventory fron NVG to GPS or FAK you want to disallow
+GMSAI_blacklistedBackpacks = [];
+GMSAI_blacklistedVests = [];
+GMSAI_blacklistedUniforms = [];
+GMSAI_blacklistedHeadgear = [];
+GMSAI_blacklistedPrimary = [];
+GMSAI_blacklistedSecondary = [];
+GMSAI_blackListedLauncher = [];
+GMSAI_blackListedThrowables = [];
+GMSAI_blacklistedMods = [];  // mods you dont want on the AI, examples ["CUP"], ["CUP","RHS"]
+
 _headgear = [
 			"H_Cap_blk",
 			"H_Cap_blk_Raven",
@@ -297,72 +311,11 @@ _nvg = [	"NVGoggles",
 			"NVGoggles_tna_F"
 		];
 _binoculars = ["Binocular",3,"Rangefinder",1,"Laserdesignator_02",0.5];
-	/*
-	The gear loading routine expects gear to be arranged in the following orderGetIn
-	#define GMS_primary 0
-	#define GMS_secondary 1
-	#define GMS_throwable 2
-	#define GMS_headgear 3
-	#define GMS_uniforms 4
-	#define GMS_vests 5
-	#define GMS_backpacks 6
-	#define GMS_launchers 7
-	#define GMS_nvg 8
-	#define GMS_binocs 9
-	#define GMS_foodAndDrinks 10
-	#define GMS_medical 11
-	#define GMS_loot 12
-
-	Note that there is a chance for each category and
-	for primary weapons and handguns the chance of each category of attachment is specified.
-	The chance of things being added is customizable for each AI difficulty
-	Certain items could be excluded just by omitting them or setting the chance to 0, or by doing an array subtraction of some sort to remove those items you do not wish to have in the Ai for that diffiuclty level.
-	*/
-
-	#define chancePrimary 1
-	#define chancePrimaryOptic 0.5
-	#define chancePrimaryMuzzle 0.5
-	#define chancePrimaryPointer 0.5
-	#define chancePrimaryUnderbarrel 0.5
-
-	#define chanceSecondary 1
-	#define chanceSecondaryOptic 0.5
-	#define chanceSeconaryPointer 0.5
-	#define chanceSecondaryMuzzle 0.5
-	#define chanceThrowable 0.4
-	#define chanceMedical 0.5
-	#define chanceHeadgear 0.999
-	#define chanceBinoc 0.5
-	#define chanceGPS 0.2
-	#define chanceUniform 1
-	#define chanceVest 0.5
-	#define chanceBackpack 1
-	#define chanceFood 0.6
-	#define chanceLoot 0.6
-	#define chanceThrowable 0.4
 
 
-GMSAI_gearBlue = [
-	[[_primary] call GMS_fnc_checkClassnamesArray,chancePrimary,chancePrimaryOptic,chancePrimaryMuzzle,chancePrimaryPointer,chancePrimaryUnderbarrel],  //[]  primary weapons
-	[[_handguns] call GMS_fnc_checkClassnamesArray, chanceSecondary, chanceSecondaryOptic, chanceSecondaryMuzzle, chanceSeconaryPointer], 				// [] secondary weapons
-	[[_throwableExplosives] call GMS_fnc_checkClassnamesArray,chanceThrowable],																			 // [] throwables
-	[[_headgear] call GMS_fnc_checkClassnamesArray, chanceHeadgear],																					//[] headgear
-	[[_uniforms] call GMS_fnc_checkClassnamesArray, chanceUniform],																						// [] uniformItems
-	[[_vests] call GMS_fnc_checkClassnamesArray, chanceVest],																							//[] vests
-	[[_backpacks] call GMS_fnc_checkClassnamesArray, chanceBackpack],																					//[] backpacks
-	[[_launchers] call GMS_fnc_checkClassnamesArray, 1],	
-	[[_nvg] call GMS_fnc_checkClassnamesArray,1],																										//  launchers
-	[[_binoculars] call GMS_fnc_checkClassnamesArray,chanceBinoc],
-	[[_food] call GMS_fnc_checkClassnamesArray,chanceFood],
-	[[_medicalItems] call GMS_fnc_checkClassnamesArray,chanceMedical],
-	[[_partsTools] call GMS_fnc_checkClassnamesArray,chanceLoot]
-];
 
-GMSAI_gearRed = GMSAI_gearBlue;
-GMSAI_gearGreen = GMSAI_gearBlue;
-GMSAI_gearOrange = GMSAI_gearBlue;	
-//{diag_log format["[GMSAI] _unitLoadoutDefault: GMSAI_gearBlue select %1 = %2",_forEachIndex,_x]} forEach GMSAI_gearBlue;
-//{diag_log format["[GMSAI] _unitLoadoutDefault: GMSAI_gearRed select %1 = %2",_forEachIndex,_x]} forEach GMSAI_gearRed;
-//{diag_log format["[GMSAI] _unitLoadoutDefault: GMSAI_gearGreen select %1 = %2",_forEachIndex,_x]} forEach GMSAI_gearGreen;		
-//{diag_log format["[GMSAI] _unitLoadoutDefault: GMSAI_gearOrange select %1 = %2",_forEachIndex,_x]} forEach GMSAI_gearOrange;	
-diag_log "[GMSAI] classnames checked and invalid names excluded";
+
+/*
+	please do not touch below this line 
+*/
+#include "addons\GMSAI\init\GMSAI_include_initializeUnitConfigs.sqf";

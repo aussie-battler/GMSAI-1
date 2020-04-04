@@ -11,6 +11,8 @@
 
 	Notes:
 		Need to add code to track respawns here.
+
+	TODO: Add check for UAV/UGV
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 
