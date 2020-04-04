@@ -62,8 +62,13 @@ if (GMSAI_useDynamicSpawns) then
 				_player setVariable["respawnAt",(diag_tickTime + GMSAI_dynamicRespawnTime)];
 				_patrolMarker = _player getVariable["patrolAreaMarker",""];
 				[format["_dynamicAIMonitor: cleaning up empty or null group | _player = %1 } _group = %2 | _patrolMarker = %3",_player,_group,_patrolMarker]] call GMSAI_fnc_log;
-				deleteMarkerLocal _patrolMarker;
-				if (GMSAI_debug >= 1) then {deleteMarker (_player getVariable["GMSAI_debugMarker",""])};;
+
+				if (GMSAI_debug >= 1) then {
+					deleteMarker (_player getVariable["GMSAI_debugMarker",""]);
+					deleteMarker _patrolMaker;	
+				} else {
+					deleteMarkerLocal _patrolMarker;
+				};
 			} else {
 				// Step 3. Player is in the area 
 				private _playersInArea = [_player] inAreaArray [getPos (leader _group),GMSAI_dynamicDespawnDistance,GMSAI_dynamicDespawnDistance];
@@ -92,9 +97,15 @@ if (GMSAI_useDynamicSpawns) then
 						{
 							private _patrolMarker = _player getVariable["patrolAreaMarker",""];
 							[format["_dynamicAImonitor:  (90)  _patrolMarker = %1",_patrolMarker]]  call GMSAI_fnc_log;
-							deleteMarkerLocal _patrolMarker;
+
 							[format["_dynamicAIManager: group alive&& no player near -> desapwn condition reached: deleting AI _patrolMarker = %1 for group %2",_patrolMarker,_group]] call GMSAI_fnc_log;
-							if (GMSAI_debug >= 1) then {deleteMarker (_player getVariable["GMSAI_debugMarker",""])};;
+							if (GMSAI_debug >= 1) then 
+							{
+								deleteMarker (_player getVariable["GMSAI_debugMarker",""]);
+								deleteMarker _patrolMarker;
+							} else {
+								deleteMarkerLocal _patrolMarker;
+							};
 							[_group] call GMS_fnc_despawnInfantryGroup;
 							_player setVariable["respawnAt", diag_tickTime + GMSAI_dynamicRespawnTime];
 						} else {
@@ -286,7 +297,12 @@ if (GMSAI_useDynamicSpawns) then
 		// Step 1
 		if (_group isEqualTo grpNull) then
 		{
-			deleteMarker _marker;
+			if (GMSAI_debug >= 1) then 
+			{
+				deleteMarker _marker;
+			} else {
+				deleteMarkerLocal _marker;
+			};
 		} else {
 			private _player = _group getVariable["player",objNull];
 			// Step 4. just keep monitoring
@@ -299,7 +315,12 @@ if (GMSAI_useDynamicSpawns) then
 				{
 					[format["_dynamicAImanager:  _dynamicGroups monitor: empty group unlinked from player found, deleting it ant its marker: _group = %1 | _marker = %2",_group,_marker]] call GMSAI_fnc_log;
 					[_group] call GMS_fnc_despawnInfantryGroup;
-					deleteMarker _marker;
+					if (GMSAI_debug >= 1) then 
+					{
+						deleteMarker _marker;
+					} else {
+						deleteMarkerLocal _marker;
+					};
 				} else {
 					// Step 3. ;	Original Player dead - look for nearby players / test for deletaAt conditions				
 					// test for players within 300 meters of the group leader 
@@ -312,7 +333,12 @@ if (GMSAI_useDynamicSpawns) then
 							{
 								[format["_dynamicAImanager: dynamic groups monitor: group alive no players near despawn conditions reached. deleting group %1 and its marker %2",_group,_marker]] call GMSAI_fnc_log;
 								[_group] call GMS_fnc_despawnInfantryGroup;
-								deleteMarker _marker;
+								if (GMSAI_debug >= 1) then 
+								{
+									deleteMarker _marker;
+								} else {
+									deleteMarkerLocal _marker;
+								};
 							};
 					// Step 3.b
 					} else {

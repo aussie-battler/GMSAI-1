@@ -73,7 +73,7 @@ private _group = [
 		GMSAI_unitSmokeShell  
 	] call GMS_fnc_spawnInfantryGroup;
 
-[format["GMSAI_fnc_spawnInfantryGroup: _group returned = %1",_group]] call GMSAI_fnc_log;
+//[format["GMSAI_fnc_spawnInfantryGroup: _group returned = %1",_group]] call GMSAI_fnc_log;
 //private _unitDifficulty = selectRandomWeighted GMSAI_dynamicUnitsDifficulty;
 
  [_group,GMSAI_skillbyDifficultyLevel select _difficulty] call GMS_fnc_setupGroupSkills;  // TODO: revisit this once a system for skills is determined - simpler the better
@@ -81,11 +81,11 @@ private _group = [
 [_group,_difficulty,GMSAI_money] call GMS_fnc_setupGroupMoney;
 //[_group,GMSAI_bodyDeleteTimer] call GMS_fnc_setGroupBodyDespawnTime;
 #define waypointTimeoutInfantryPatrols 180
-[format["_spawnInfantryGroup: _patrolMarker = %1",_patrolMarker],"information"] call GMSAI_fnc_log;
+//[format["_spawnInfantryGroup: _patrolMarker = %1",_patrolMarker],"information"] call GMSAI_fnc_log;
 if !(_patrolMarker isEqualTo "") then // setup waypoints using the information stored in the marker 
 {
 	//[_group,_patrolAreaMaker] call GMS_fnc_setWaypointPatrolAreaMarker
-	[format["GMSAI_fnc_spawnInfantryGroup: _group %1: initializing waypoints",_group]] call GMSAI_fnc_log;
+	//[format["GMSAI_fnc_spawnInfantryGroup: _group %1: initializing waypoints",_group]] call GMSAI_fnc_log;
 	[
 		/*
 		params["_group",  // group for which to configure / initialize waypoints
