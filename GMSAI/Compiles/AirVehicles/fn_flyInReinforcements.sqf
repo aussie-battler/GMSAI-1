@@ -41,7 +41,7 @@ private _paraGroup = [
 ] call GMS_fnc_spawnInfantryGroup;
 
 [_group,GMSAI_unitDifficulty select (_difficulty)] call GMS_fnc_setupGroupSkills;
-[_group, GMSAI_unitLoadouts select _difficulty, 0 /* launchers per group */, GMSAI_useNVG, GMSAI_blacklistedGear] call GMS_fnc_setupGroupGear;
+[_group, GMSAI_unitLoadouts select _difficulty, 0 /* launchers per group */, GMSAI_useNVG] call GMS_fnc_setupGroupGear;
 [_group,_difficulty,GMSAI_money] call GMS_fnc_setupGroupMoney;
 [_group,GMSAI_bodyDeleteTimer] call GMS_fnc_setGroupBodyDespawnTime;
 [_group] call GMSAI_fnc_addEventHandlersInfantry;

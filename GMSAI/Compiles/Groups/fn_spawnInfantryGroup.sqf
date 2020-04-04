@@ -77,7 +77,7 @@ private _group = [
 //private _unitDifficulty = selectRandomWeighted GMSAI_dynamicUnitsDifficulty;
 
  [_group,GMSAI_skillbyDifficultyLevel select _difficulty] call GMS_fnc_setupGroupSkills;  // TODO: revisit this once a system for skills is determined - simpler the better
-[_group, GMSAI_unitLoadouts select _difficulty, GMSAI_LaunchersPerGroup, GMSAI_useNVG, GMSAI_blacklistedGear] call GMS_fnc_setupGroupGear;
+[_group, GMSAI_unitLoadouts select _difficulty, GMSAI_LaunchersPerGroup, GMSAI_useNVG] call GMS_fnc_setupGroupGear;
 [_group,_difficulty,GMSAI_money] call GMS_fnc_setupGroupMoney;
 //[_group,GMSAI_bodyDeleteTimer] call GMS_fnc_setGroupBodyDespawnTime;
 #define waypointTimeoutInfantryPatrols 180

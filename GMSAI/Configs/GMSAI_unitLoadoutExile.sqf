@@ -3,13 +3,30 @@
 	Copyright 2020 Ghostrider-GRG-	
 */
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 
-
+#include "\addons\GMSAI\init\GMSAI_definePrivateVars.sqf"
 _GMSAI_moneyBlue = 30;
 _GMSAI_moneyRed = 45;
 _GMSAI_moneyGreen = 60;
 _GMSAI_moneyOrange = 75;
 /*   DO NOT TOUCH GMSAI_money  */
 GMSAI_money = [_GMSAI_moneyBlue,_GMSAI_moneyRed,_GMSAI_moneyGreen,_GMSAI_moneyOrange];
+
+GMSAI_blackListedOptics = [];  //  Optics you do not want to allow
+GMSAI_blackListedPointers = [];  // Pointers you do not want to allow
+GMSAI_blackListedMuzzles = [];  // Muzzles you want to forbid
+GMSAI_blacklistedInventoryItems = [];  // Inventory fron NVG to GPS or FAK you want to disallow
+GMSAI_blacklistedBackpacks = [];
+GMSAI_blacklistedVests = [];
+GMSAI_blacklistedUniforms = [];
+GMSAI_blacklistedHeadgear = [];
+GMSAI_blacklistedPrimary = [];
+GMSAI_blacklistedSecondary = [];
+GMSAI_blackListedLauncher = [];
+GMSAI_blackListedThrowables = [];
+GMSAI_blacklistedMedical = [];
+GMSAI_blacklistedFood = [];
+GMSAI_blacklistedBinocs = [];
+GMSAI_blacklistedNVG = [];
 
 _headgear = ["H_Shemag_khk","H_Shemag_olive","H_Shemag_olive_hs","H_Shemag_tan","H_ShemagOpen_khk","H_ShemagOpen_tan","H_TurbanO_blk"];
 _uniforms = ["U_IG_Guerilla1_1","U_IG_Guerilla2_1","U_IG_Guerilla2_2","U_IG_Guerilla2_3","U_IG_Guerilla3_1","U_IG_Guerilla3_2"];
@@ -46,16 +63,16 @@ _food = [
 	"Exile_Item_EMRE","Exile_Item_GloriousKnakworst","Exile_Item_Surstromming","Exile_Item_SausageGravy","Exile_Item_Catfood","Exile_Item_ChristmasTinner","Exile_Item_BBQSandwich","Exile_Item_Dogfood","Exile_Item_BeefParts",
 	"Exile_Item_Cheathas","Exile_Item_Noodles","Exile_Item_SeedAstics","Exile_Item_Raisins","Exile_Item_Moobar","Exile_Item_InstantCoffee"
 ];
-_medicalItems = ["Exile_Item_InstaDoc","Exile_Item_Bandage","Exile_Item_Vishpirin"];
-_partsTools = [
+_meds = ["Exile_Item_InstaDoc","Exile_Item_Bandage","Exile_Item_Vishpirin"];
+_partsAndValuables = [
 	"Exile_Item_ExtensionCord","Exile_Item_JunkMetal","Exile_Item_LightBulb","Exile_Item_MetalBoard","Exile_Item_MetalPole","Exile_Item_MetalScrews","Exile_Item_Cement","Exile_Item_Sand",
 	"Exile_Item_Matches","Exile_Item_CookingPot","Exile_Melee_Axe","Exile_Melee_SledgeHammmer","Exile_Item_Handsaw","Exile_Item_Pliers"
 ];
-_items = [_drinks + _food + _medicalItems + _partsTools];
+_items = [_drinks + _food + _meds + _partsAndValuables];
 // available launchers include: ["launch_NLAW_F","launch_RPG32_F","launch_B_Titan_F","launch_I_Titan_F","launch_O_Titan_F","launch_B_Titan_short_F","launch_I_Titan_short_F","launch_O_Titan_short_F"];
 _launchers = ["launch_RPG32_F"];
 _nvg = ["NVGoggles","NVGoggles_INDEP","NVGoggles_OPFOR"];
-
+_binoculars = ["Binocular","Rangefinder","Laserdesignator_02"];
 
 /*
 	please do not touch below this line 

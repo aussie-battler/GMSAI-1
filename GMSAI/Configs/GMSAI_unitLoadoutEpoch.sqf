@@ -3,11 +3,30 @@
 	Copyright 2020 Ghostrider-GRG-	
 */
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 
+#include "\addons\GMSAI\init\GMSAI_definePrivateVars.sqf"
 _GMSAI_moneyBlue = 30;
 _GMSAI_moneyRed = 45;
 _GMSAI_moneyGreen = 60;
 _GMSAI_moneyOrange = 75;
 GMSAI_money = [_GMSAI_moneyBlue,_GMSAI_moneyRed,_GMSAI_moneyGreen,_GMSAI_moneyOrange];
+
+GMSAI_blackListedOptics = [];  //  Optics you do not want to allow
+GMSAI_blackListedPointers = [];  // Pointers you do not want to allow
+GMSAI_blackListedMuzzles = [];  // Muzzles you want to forbid
+GMSAI_blacklistedInventoryItems = [];  // Inventory fron NVG to GPS or FAK you want to disallow
+GMSAI_blacklistedBackpacks = [];
+GMSAI_blacklistedVests = [];
+GMSAI_blacklistedUniforms = [];
+GMSAI_blacklistedHeadgear = [];
+GMSAI_blacklistedPrimary = [];
+GMSAI_blacklistedSecondary = [];
+GMSAI_blackListedLauncher = [];
+GMSAI_blackListedThrowables = [];
+GMSAI_blacklistedMedical = [];
+GMSAI_blacklistedFood = [];
+GMSAI_blacklistedBinocs = [];
+GMSAI_blacklistedNVG = [];
+
 _headgear = ["H_Shemag_khk","H_Shemag_olive","H_Shemag_olive_hs","H_Shemag_tan","H_ShemagOpen_khk","H_ShemagOpen_tan","H_TurbanO_blk"];
 _uniforms = ["U_IG_Guerilla1_1","U_IG_Guerilla2_1","U_IG_Guerilla2_2","U_IG_Guerilla2_3","U_IG_Guerilla3_1","U_IG_Guerilla3_2","junk3"];
 _vests = [

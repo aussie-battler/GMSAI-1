@@ -4,11 +4,14 @@
 */
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 
 diag_log format["[GMSAI] <BEGIN> GMSAI_unitLoadoutDefault.sqf at %1",diag_tickTime];
+#include "\addons\GMSAI\init\GMSAI_definePrivateVars.sqf"
+
 _GMSAI_moneyBlue = 30;
 _GMSAI_moneyRed = 45;
 _GMSAI_moneyGreen = 60;
 _GMSAI_moneyOrange = 75;
 GMSAI_money = [_GMSAI_moneyBlue,_GMSAI_moneyRed,_GMSAI_moneyGreen,_GMSAI_moneyOrange]; 
+
 GMSAI_blackListedOptics = [];  //  Optics you do not want to allow
 GMSAI_blackListedPointers = [];  // Pointers you do not want to allow
 GMSAI_blackListedMuzzles = [];  // Muzzles you want to forbid
@@ -304,11 +307,11 @@ _handguns = ["hgun_PDW2000_F",
 			"hgun_Pistol_heavy_02_F",
 			"hgun_Pistol_Signal_F"];
 _throwableExplosives = ["HandGrenade","MiniGrenade","1Rnd_HE_Grenade_shell","3Rnd_HE_Grenade_shell"];
-_drinks = [];
 _food = [];
-_medicalItems = ["FirstAidKit"];
-_partsTools = [];
-_items = [_drinks + _food + _medicalItems + _partsTools];
+_meds = ["FirstAidKit"];
+_partsandvaluables = [];
+_medicalItems = [];
+_items = [_medicalItems + _partsandvaluables];
 // available launchers include: ["launch_NLAW_F","launch_RPG32_F","launch_B_Titan_F","launch_I_Titan_F","launch_O_Titan_F","launch_B_Titan_short_F","launch_I_Titan_short_F","launch_O_Titan_short_F"];
 _launchers = ["launch_RPG32_F"];
 _nvg = [	"NVGoggles",
@@ -323,11 +326,11 @@ _binoculars = ["Binocular",3,"Rangefinder",1,"Laserdesignator_02",0.5];
 
 
 
-
 /*
 	please do not touch below this line 
 */
-#include initializeUnitConfigs;
+
+#include "\addons\GMSAI\init\GMSAI_include_initializeUnitConfigs.sqf";
 
 GMSAI_unitLoadoutDefined = true;
 diag_log format["[GMSAI] <END> GMSAI_unitLoadoutDefault.sqf at %1",diag_tickTime];

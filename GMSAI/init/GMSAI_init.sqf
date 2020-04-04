@@ -16,7 +16,6 @@ while{isNil "GMSAI_unitLoadoutDefined"} do
 };
 
 diag_log format["[GMSAI] Initializing Static Spawns at %1",diag_tickTime];
-
 [[] call GMSAI_fnc_initializeStaticSpawnsForLocations] call GMSAI_fnc_initializeRandomSpawnLocations;
 [] call GMSAI_fnc_initializeAircraftPatrols;
 [] call GMSAI_fnc_initializeUAVPatrols;

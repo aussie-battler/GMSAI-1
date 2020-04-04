@@ -65,7 +65,7 @@ diag_log format["GMSAI_fnc_spawnVehiclePatrol: _group = %1",_group];
 //uisleep 1;
 [_vehicle,units _group] call GMS_fnc_loadVehicleCrew;
 [_group,GMSAI_unitDifficulty select _difficulty] call GMS_fnc_setupGroupSkills;
-[_group, GMSAI_unitLoadouts select _difficulty, 0 /* launchers per group */, GMSAI_useNVG, GMSAI_blacklistedGear] call GMS_fnc_setupGroupGear;
+[_group, GMSAI_unitLoadouts select _difficulty, 0 /* launchers per group */, GMSAI_useNVG] call GMS_fnc_setupGroupGear;
 [_group,_difficulty,GMSAI_money] call GMS_fnc_setupGroupMoney;
 
 [_vehicle] call GMSAI_fnc_vehicleAddEventHandlers;
