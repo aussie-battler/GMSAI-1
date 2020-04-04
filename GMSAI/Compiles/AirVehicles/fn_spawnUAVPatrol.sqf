@@ -24,7 +24,7 @@
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp"  
-diag_log format["[GMSAI] _fnc_spawnUAVPatrol: _this = %1",_this];
+//diag_log format["[GMSAI] _fnc_spawnUAVPatrol: _this = %1",_this];
 params[
 		"_difficulty",
 		"_drone",				// classname of the drone to use
@@ -36,7 +36,7 @@ params[
 ];
 
 private _uav = createVehicle [_drone, _pos, [], 0, "FLY"];
-diag_log format["[GMSAI] _fnc_spawnUAVPatrol: UAV selected = %1",_uav];
+//diag_log format["[GMSAI] _fnc_spawnUAVPatrol: UAV selected = %1",_uav];
 _uav setFuel 1;
 _uav engineOn true;
 _uav flyInHeight 50;

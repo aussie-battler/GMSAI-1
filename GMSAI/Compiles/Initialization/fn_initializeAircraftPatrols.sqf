@@ -22,7 +22,7 @@ for "_i" from 1 to GMSAI_numberOfAircraftPatrols do
 	while {_pos isEqualTo [0,0]} do
 	{
 		_pos = [nil,_blacklistedAreas] call BIS_fnc_randomPos;
-		diag_log format["[GMSAI] _initializeAircraftPatrols: _pos = %1",_pos];
+		//diag_log format["[GMSAI] _initializeAircraftPatrols: _pos = %1",_pos];
 	};
 	if !(_pos isEqualTo [0,0]) then
 	{

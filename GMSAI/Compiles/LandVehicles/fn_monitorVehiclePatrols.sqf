@@ -11,7 +11,7 @@
 		-May want to take advantage of the setMode commands in GMS for these monitoring script for the case where the thing went outside the patrol area
 */
 
-diag_log format["[GMSAI] _monitorVehiclePatrols called at %1",diag_tickTime];
+//diag_log format["[GMSAI] _monitorVehiclePatrols called at %1",diag_tickTime];
 for "_i" from 1 to (count GMSAI_vehiclePatrols) do
 {
 	if (_i > (count GMSAI_vehiclePatrols)) exitWith {};

@@ -33,7 +33,6 @@ if (toLower(GMS_modType) isEqualTo "exile") then
 	#include "\addons\GMSAI\Configs\GMSAI_unitLoadoutExile.sqf";
 };
 if (toLower(GMS_modType) isEqualTo "default") then {
-	diag_log format["[GMSAI] default mode detected loading unit paramters accordingly from %1","GMSAI_unitLoadoutDefault.sqf"];
 	#include "\addons\GMSAI\Configs\GMSAI_unitLoadoutDefault.sqf";
 };
 
@@ -206,7 +205,7 @@ if (GMSAI_useCfgPricingForLoadouts && !(GMS_modType isEqualTo "default")) then
 	diag_log "[GMSAI] Config-based loadouts used";
 
 	// Lets remove any blacklisted items that might have crept in here by accident
-	diag_log format["fn_initialize: _blacklistedGear = %1",_blacklistedGear];
+	//diag_log format["fn_initialize: _blacklistedGear = %1",_blacklistedGear];
 	private _gearNames = [
 		'_primary',
 		'_handguns',
@@ -223,12 +222,8 @@ if (GMSAI_useCfgPricingForLoadouts && !(GMS_modType isEqualTo "default")) then
 		'_partsAndValuables'
 	];
 	{
-		//diag_log format["fn_initialize:  culling blacklisted gear line with _gearNames %2 = %1",_x,_gearNames select _forEachIndex];
 		_x = [_x,_blacklistedGear] call GMS_fnc_removeBlacklistedItems;
-		//diag_log format["fn_initialize: array = %1 after removing blacklisted items",_x];
-		//diag_log format["fn_initialize:  culling invalid classNames for gear with _gearNames %2 = %1",_x,_gearNames select _forEachIndex];		
 		_x = [_x] call GMS_fnc_checkClassnamesArray;
-		//diag_log format["fn_initialize:  array returned after removing invalid classnames: _x select 0 = %1 | _x = %2",_x select 0, _x];
 	} forEach [
 		_primary,
 		_handguns,
@@ -245,7 +240,6 @@ if (GMSAI_useCfgPricingForLoadouts && !(GMS_modType isEqualTo "default")) then
 		_partsAndValuables
 	];
 
-	diag_log format["fn_initialize: check class names for config-based loadouts"];
 	GMSAI_gearBlue = [
 		[_primary,
 			GMSAI_chancePrimary,
@@ -279,6 +273,28 @@ if (GMSAI_useCfgPricingForLoadouts && !(GMS_modType isEqualTo "default")) then
 	diag_log "[GMSAI] classnames checked and invalid names excluded";
 };
 
+{
+	private _array = _x;
+	if (count (_array select 0) == 1) then 
+	{
+		_x = [_array] call GMS_fnc_checkClassNamesArray;
+	};
+	if (count (_array select 0) == 1) then 
+	{
+		_x = [_array] call GMS_fnc_checkClassNamesArray;
+	};
+} forEach [GMSAI_patrolVehicles,GMSAI_paratroopAircraftTypes,GMSAI_UAVTypes,GMSAI_UAVTypes];
+
+GMSAI_unitDifficulty = [GMSAI_skillBlue, GMSAI_skillRed, GMSAI_skillGreen, GMSAI_skillOrange];
+GMSAI_unitLoadouts = [GMSAI_gearBlue, GMSAI_gearRed, GMSAI_gearGreen, GMSAI_gearOrange];
+GMSAI_staticVillageSettings = [GMSAI_staticCityGroups,GMSAI_staticVillageUnitsPerGroup,GMSAI_staticVillageUnitsDifficulty,GMSAI_ChanceStaticCityGroups,GMSAI_staticRespawns, GMSAI_staticRespawnTime, GMSAI_staticDespawnTime,"Man"];
+GMSAI_staticCitySettings = [GMSAI_staticCityGroups,GMSAI_staticCityUnitsPerGroup,GMSAI_staticCityUnitsDifficulty,GMSAI_ChanceStaticCityGroups,GMSAI_staticRespawns, GMSAI_staticRespawnTime, GMSAI_staticDespawnTime,"Man"];
+GMSAI_staticCapitalSettings = [GMSAI_staticCapitalGroups,GMSAI_staticCapitalUnitsPerGroup,GMSAI_staticCapitalUnitsDifficulty,GMSAI_ChanceCapitalGroups,GMSAI_staticRespawns, GMSAI_staticRespawnTime, GMSAI_staticDespawnTime,"Man"];
+GMSAI_staticMarineSettings = [GMSAI_staticMarineGroups,GMSAI_staticMarineUnitsPerGroup,GMSAI_staticMarineUnitsDifficulty,GMSAI_ChanceStaticMarineUnits,GMSAI_staticRespawns, GMSAI_staticRespawnTime, GMSAI_staticDespawnTime,"Man"];
+GMSAI_staticOtherSettings = [GMSAI_staticOtherGroups,GMSAI_staticOtherUnitsPerGroup,GMSAI_staticOtherUnitsDifficulty,GMSAI_ChanceStaticOtherGroups,GMSAI_staticRespawns, GMSAI_staticRespawnTime, GMSAI_staticDespawnTime,"Man"];
+GMSAI_staticRandomSettings = [GMSAI_staticRandomGroups,GMSAI_staticRandomUnits,GMSAI_staticRandomUnitsDifficulty,GMSAI_staticRandomChance,GMSAI_staticRespawns, GMSAI_staticRespawnTime, GMSAI_staticDespawnTime,"Man"];
+GMSAI_dynamicSettings = [GMSAI_dynamicRandomGroups,GMSAI_dynamicRandomUnits,GMSAI_dynamicUnitsDifficulty,GMSAI_dynamicRandomChance,GMSAI_staticRespawns, GMSAI_staticRespawnTime, GMSAI_staticDespawnTime,"Man"];
+
 diag_log format["[GMSAI] Initializing Static and Vehicle Spawns at %1",diag_tickTime];
 [[] call GMSAI_fnc_initializeStaticSpawnsForLocations] call GMSAI_fnc_initializeRandomSpawnLocations;
 [] call GMSAI_fnc_initializeAircraftPatrols;
@@ -289,10 +305,8 @@ diag_log format["[GMSAI] Initializing Static and Vehicle Spawns at %1",diag_tick
 
 private _build = getText(configFile >> "GMSAAI_Build" >> "build");
 private _buildDate = getText(configFile >> "GMSAAI_Build" >> "buildDate");
-diag_log format["GMSAI Verion %1 Build Date %2 Initialized",_build,_buildDate];
-GMSAI_Initialized = true;
-diag_log format["{GMSAI} <BEGIN> GMSAI_init.sqf at %1",diag_tickTime];
 
+GMSAI_Initialized = true;
 
 [] call compileFinal preprocessFileLineNumbers "\addons\GMSAI\Configs\GMSAI_custom.sqf";
-diag_log format["[GMSAI] Initialized at %1",diag_tickTime];
+diag_log format["GMSAI Verion %1 Build Date %2 Initialized at %3",_build,_buildDate,diag_tickTime];

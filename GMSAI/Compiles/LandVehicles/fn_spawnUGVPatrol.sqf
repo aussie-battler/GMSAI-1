@@ -47,7 +47,7 @@ if (_patrolArea isEqualTo "Map") then
 	(driver _ugv) call GMSAI_fnc_initializeVehicleWaypoints;
 } else {
 	if (_center isEqualTo [0,0,0]) then {_center = _pos};
-	[format["[]Patrol _center for UGV group %1 was undefined and was set to %2",_group,_pos],"warning"] call GMSAI_fnc_log;
+	//[format["[]Patrol _center for UGV group %1 was undefined and was set to %2",_group,_pos],"warning"] call GMSAI_fnc_log;
 	[_group,_blacklisted,_patrolArea,_timeout] call GMS_fnc_initializeWaypointsAreaPatrol;
 	// Note: the group is added to the list of groups monitored by GMS. Empty groups are deleted, 'stuck' groups are identified.
 };

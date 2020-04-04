@@ -35,7 +35,7 @@ while {true} do
     };
     if (diag_tickTime > _60sec) then
     {
-       diag_log format["_mainThread: calling GMSAI_fnc_monitorAirPatrols at %1",diag_tickTime];
+      // diag_log format["_mainThread: calling GMSAI_fnc_monitorAirPatrols at %1",diag_tickTime];
         //[]] call GMSAI_fnc_monitorAirPatrols;
         //[] call GMSAI_fnc_monitorUAVPatrols;
         [] call GMSAI_fnc_monitorUGVPatrols;

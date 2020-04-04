@@ -22,7 +22,7 @@ for "_i" from 1 to GMSAI_numberOfUAVPatrols do
 	while {_pos isEqualTo [0,0]} do
 	{
 		_pos = [nil,_blacklistedAreas] call BIS_fnc_randomPos;
-		diag_log format["[GMSAI] _initializeUAVPatrols: _pos = %1",_pos];
+		//diag_log format["[GMSAI] _initializeUAVPatrols: _pos = %1",_pos];
 	};
 	if !(_pos isEqualTo [0,0]) then
 	{
