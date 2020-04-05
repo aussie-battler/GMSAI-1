@@ -10,6 +10,9 @@
 	Return: none 
 	
 	Copyright 2020 Ghostrider-GRG-
+
+	Notes:
+		TODO: Need to revisit this to handle the case of a group inside a vehicle
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 
@@ -37,10 +40,7 @@ for "_i" from 1 to (count GMSAI_activeStaticSpawns) do
 		{
 			[format["monitorActiveAreas: _x = %1 | typneName _x = %2",_x, typeName _x]] call GMSAI_fnc_log;
 			private _group = _x;
-			if (
-				!(_group isEqualTo grpNull) && 
-				(({alive _x} count (units _group)) > 0)
-			) then 
+			if (!(_group isEqualTo grpNull) && (({alive _x} count (units _group)) > 0)) then 
 			{
 				_aliveGroups pushBack _group;
 				if (GMSAI_debug >= 1) then 
@@ -60,8 +60,20 @@ for "_i" from 1 to (count GMSAI_activeStaticSpawns) do
 				// Do something here to clean up any remaining groups and include a timestamp check.
 				//  ?? not needed ?  Groups are added to // so they are already monitored; just need to manage spawning of new groups in the area here. Must be sure spawn/respawn delay > despawn time to avoid multiple groups being spawned for an area
 				{
-					if (GMSAI_debug >= 1) then {[_x] call GMSAI_fnc_deleteGroupDebugMarker};
-					[_x] call GMS_fnc_despawnInfantryGroup;
+					if (GMSAI_debug >= 1) then 
+					{
+						[_x] call GMSAI_fnc_deleteGroupDebugMarker;
+					};
+					if (_x getVariable["GMSAI_paraGroup",false]) then 
+					{
+						GMSAI_paratroopGroupsSpawned = GMSAI_paratroopGroupsSpawned -1;
+					};
+					if ((_x getVariable["groupType","Man"]) isEqualTo "Man") then 
+					{
+						[_x] call GMS_fnc_despawnInfantryGroup;
+					} else {
+						[_x] call GMS_fnc_destroyVehicleAndCrew;
+					};
 				} forEach _aliveGroups;
 				_area set[4,diag_tickTime];
 				_area set[areaGroups,_aliveGroups];

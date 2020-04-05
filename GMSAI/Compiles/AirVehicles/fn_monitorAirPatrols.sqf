@@ -30,7 +30,7 @@ for "_i" from 1 to (count GMSAI_airPatrols) do
 			};
 			//  Do a check for spawning paratroops
 			[_crewGroup,_aircraft] spawn GMSAI_fnc_spawnParatroops;
-			_crewGroup setVariable["respawnParaDropAt", diag_tickTime + GMSAI_paratroopRespawnTimer];
+			
 		} else {
 			// handle the case where aircraft has been destroyed or crew killed.
 			_airPatrol set[4,diag_tickTime + ([GMSAI_aircraftRespawnTime] call GMS_fnc_getNumberFromRange)];
@@ -45,7 +45,7 @@ for "_i" from 1 to (count GMSAI_airPatrols) do
 			if (_respawnAt > -1 && diag_tickTime > _respawnAt) then
 			{
 				private _pos = [nil,["water"] /*+ any blacklisted locations*/] call BIS_fnc_randomPos;
-				// TODO: Add remaing parameters here
+
 				// Keep this way to provide randomness for map-wide roaming aircraft				
 				private _newPatrol = [(selectRandomWeighted GMSAI_aircraftTypes), _pos] call GMSAI_fnc_spawnHelicoptorPatrol;
 				_airPatrol set[0,_newPatrol select 0];

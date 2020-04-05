@@ -18,11 +18,10 @@
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 
-// TODO add difficulty-based alert distance and intelligence
+
 #define GMSAI_dynamicSpawnDistance 200    //  TODO: further develop this
 #define GMSAI_dynamicDespawnDistance 400  //  TODO: further develop this
-#define GMSAI_alertAIDistance 300  //  TODO: further develop this
-#define GMSAI_intelligence 0.5  //  TODO: further develop this
+
 params[
 		"_difficulty",
 		"_spawnPos", // center of the patrol area
@@ -31,12 +30,6 @@ params[
 	];
 
 if (isNil "_patrolMarker") then {_patrolMarker =  ""; diag_log "_patrolMarker set to double quotes";};
-[format["GMSAI_fnc_spawnInfantryGroup: _this = %1",_this],"information"] call GMSAI_fnc_log;
-{
-	[format["GMSAI_fnc_spawnInfantryGroup: _this select %1 = %2",_forEachIndex,_x],"information"] call GMSAI_fnc_log;
-}forEach _this;
-
-diag_log format[" _GMSAI_fnc_spawnInfantryGroup: _difficulty = %1 | _spawnPos = %2 | _units = %3 | _patrolMarker = %4",_difficulty,_spawnPos,_units,_patrolMarker];
 
 /*
 
@@ -62,8 +55,8 @@ private _group = [
 		[_units] call GMS_fnc_getIntegerFromRange,
 		GMSAI_side,
 		GMSAI_baseSkill,
-		GMSAI_alertAIDistance,
-		GMSAI_intelligence,
+		GMSA_alertDistanceByDifficulty select _difficulty,
+		GMSAI_intelligencebyDifficulty select _difficulty,
 		GMSAI_bodyDeleteTimer,
 		GMSAI_maxReloadsInfantry,
 		GMSAI_launcherCleanup,
@@ -72,7 +65,7 @@ private _group = [
 		GMSAI_maxHeals,
 		GMSAI_unitSmokeShell  
 	] call GMS_fnc_spawnInfantryGroup;
-
+// TODO: Add GMSAI Event Handlers when these are ready.
 //[format["GMSAI_fnc_spawnInfantryGroup: _group returned = %1",_group]] call GMSAI_fnc_log;
 //private _unitDifficulty = selectRandomWeighted GMSAI_dynamicUnitsDifficulty;
 

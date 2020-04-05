@@ -67,7 +67,7 @@ private _group = [
 	GMSAI_maxHeals,
 	GMSAI_unitSmokeShell 
 ] call GMS_fnc_spawnInfantryGroup;
-
+// TODO: Add GMSAI Event Handlers when these are ready.
 private _crew = units _group;
 private _pilot = _crew deleteAt 0;
 _pilot assignAsDriver _heli;

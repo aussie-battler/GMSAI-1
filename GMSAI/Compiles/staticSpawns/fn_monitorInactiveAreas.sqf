@@ -65,7 +65,13 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 										_patrolAreaMarker
 									] call GMSAI_fnc_spawnInfantryGroup;
 								};
-								private _isUav = isNumber(configFile >> "CfgVehicles" >> _type >> "isUav");
+
+								/*
+									if _type is not Man then it is the className of the vehicle in which the group is patrolling.
+									We need to treat UAV/UGV as a special case though.
+									So use this handly little function that checks the configs to see if the vehicle is a UAV/UGV
+								*/
+								private _isUav = _type call GMS_fnc_isUAV;
 
 								if (_type isKindOf "Car" || _type isKindOf "Tank") then 
 								{
@@ -126,7 +132,7 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 								};
 								[format["_fnc_monitorInactiveAreas: _group spawned = %1",_group]] call GMSAI_fnc_log;
 								// TODO: think about whether to have these hunt or, instead, have encounters be random.
-								//[_group,_players select 0] call GMS_fnc_assignTargetAreaPatrol;
+								// The current logic is probably fine except maybe for tweaks to hunting algorythm.
 								_group setVariable["groupParameters",_staticAiDescriptor];
 								_group setVariable["despawnDistance",GMSAI_staticDespawnDistance];
 								_group setVariable["despawnTime",_despawnTime];

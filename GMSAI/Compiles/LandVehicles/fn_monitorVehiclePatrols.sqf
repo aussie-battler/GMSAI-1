@@ -93,7 +93,7 @@ for "_i" from 1 to (count GMSAI_vehiclePatrols) do
 					_pos = [nil,["water"]] call BIS_fnc_randomPos;
 					//diag_log format["[GMSAI] _initializeVehiclePatrols: _pos = %1",_pos];
 				};
-				// TODO: Add remaing parameters here				
+			
 				private _newPatrol = [
 					(selectRandomWeighted GMSAI_vehiclePatroDifficulty),
 					(selectRandomWeighted GMSAI_patrolVehicles), 

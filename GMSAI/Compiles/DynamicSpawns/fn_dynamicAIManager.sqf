@@ -19,7 +19,7 @@
 #define GMSAI_dynamicDespawnDistance 400
 #define GMSAI_alertAIDistance 300
 
-diag_log format["[GMSAI] running DYNAMIC AI MONITOR at %1 | count allPlayer = %2 | GMSAI_useDynamicSpawns = %4 | GMSAI_maximumDynamicRespawns = %3",diag_tickTime, count allPlayers, GMSAI_maximumDynamicRespawns,GMSAI_useDynamicSpawns];
+//diag_log format["[GMSAI] running DYNAMIC AI MONITOR at %1 | count allPlayer = %2 | GMSAI_useDynamicSpawns = %4 | GMSAI_maximumDynamicRespawns = %3",diag_tickTime, count allPlayers, GMSAI_maximumDynamicRespawns,GMSAI_useDynamicSpawns];
 if (GMSAI_useDynamicSpawns) then
 {
 
@@ -51,7 +51,7 @@ if (GMSAI_useDynamicSpawns) then
 				3. The player is in the area 
 					- > update waypoints and lastSeen
 			*/			
-			diag_log format["_dynamicAIManger: evaluating active group %1 for player %2 with group on side %3 and leader of the group on side %4",_group,_player,side _group, side (leader _group)];
+			//diag_log format["_dynamicAIManger: evaluating active group %1 for player %2 with group on side %3 and leader of the group on side %4",_group,_player,side _group, side (leader _group)];
 
 			// Step 1.
 			if (_group isEqualTo grpNull || {alive _x} count (units _group) == 0) then  
@@ -175,24 +175,24 @@ if (GMSAI_useDynamicSpawns) then
 				_player setVariable["respawns",_respawns];
 			};
 
-			[format["_dynamicAIManger: no active dynamic group found for player %1, evaluating spawn parameters: _respawns = %2 | _respawnAt = %3",_player,_respawns,_respawnAt],"information"] call GMSAI_fnc_log;	
+			//[format["_dynamicAIManger: no active dynamic group found for player %1, evaluating spawn parameters: _respawns = %2 | _respawnAt = %3",_player,_respawns,_respawnAt],"information"] call GMSAI_fnc_log;	
 
 			// Check 2.a 		
 			if (GMSAI_maximumDynamicRespawns == -1 || _respawns <= GMSAI_maximumDynamicRespawns) then
 			{
-				diag_log format["[GMSAI] _dynamicAIManger: _respawnAt = %1 | current time %2 | GMSAI_dynamicRespawnTime = %3",_respawnAt,diag_tickTime,GMSAI_dynamicRespawnTime];	
+				//diag_log format["[GMSAI] _dynamicAIManger: _respawnAt = %1 | current time %2 | GMSAI_dynamicRespawnTime = %3",_respawnAt,diag_tickTime,GMSAI_dynamicRespawnTime];	
 
 				// Check 2.b 	
 				if (diag_tickTime >_respawnAt && (vehicle _player == _player)) then
 				{
-					diag_log format["[GMSAI] _dynamicAIManger: spawn condition reached"];
+					//diag_log format["[GMSAI] _dynamicAIManger: spawn condition reached"];
 
 					// Check 2.c
 					if (random(1) < GMSAI_dynamicRandomChance) then
 					{
 						// Check 2.d
 						private _dynamicAI = _player nearEntities["I_G_Sharpshooter_F",300];
-						[format["_dynamicAIManger: evaluating nearby units:  _dynamicAI = %1",_dynamicAI],"information"] call GMSAI_fnc_log;
+						//[format["_dynamicAIManger: evaluating nearby units:  _dynamicAI = %1",_dynamicAI],"information"] call GMSAI_fnc_log;
 						if (_dynamicAI isEqualTo []) then  
 						{	// TODO: add loop to spawn groups accordiing to number set in GMSAI_dynamicRandomGroups
 
@@ -200,7 +200,7 @@ if (GMSAI_useDynamicSpawns) then
 
 							// Step 3.a define an area patrol marker deliniating the operating area for the group
 							private _spawnPos = (getPosATL _player) getPos[GMSAI_dynamicSpawnDistance,random(359)];	
-							[format["_dynamicAIManger: _spawnPos = %1",_spawnPos],"information"] call GMSAI_fnc_log;
+							//[format["_dynamicAIManger: _spawnPos = %1",_spawnPos],"information"] call GMSAI_fnc_log;
 							private _dynamicPatrolMarker = "";
 							if (GMSAI_debug >= 1) then 
 							{										
@@ -214,7 +214,7 @@ if (GMSAI_useDynamicSpawns) then
 								_dynamicPatrolMarker setMarkerShapeLocal "RECTANGLE";
 								_dynamicPatrolMarker setMarkerSizeLocal [GMSAI_dynamicSpawnDistance + 100,GMSAI_dynamicSpawnDistance + 100];
 							};
-							[format["_dynamicAIManger: _dynamicPatrolMarker = %1 | typeName _dynamicPatrolMarker = %2",_dynamicPatrolMarker,typeName _dynamicPatrolMarker],"information"] call GMSAI_fnc_log;
+							//[format["_dynamicAIManger: _dynamicPatrolMarker = %1 | typeName _dynamicPatrolMarker = %2",_dynamicPatrolMarker,typeName _dynamicPatrolMarker],"information"] call GMSAI_fnc_log;
 
 							// Steps 3.b and 3.c since GMSAI_fnc_spawnInfantryGroup will configure skills, gear, based on loot tables for that difficulty.
 							/*
@@ -234,7 +234,7 @@ if (GMSAI_useDynamicSpawns) then
 								_dynamicPatrolMarker
 							] call GMSAI_fnc_spawnInfantryGroup;
 
-							[format["_dynamicAIManager: _group Spawned = %1",_group],"information"] call GMSAI_fnc_log;
+							//[format["_dynamicAIManager: _group Spawned = %1",_group],"information"] call GMSAI_fnc_log;
 
 							// Step 3.d Initialize variables on _group, such as debug markers and store group info
 							_group setVariable["patrolAreaMarker",_dynamicPatrolMarker];
@@ -313,7 +313,7 @@ if (GMSAI_useDynamicSpawns) then
 				// Step 2. delete empty groups and their marker
 				if ({alive _x} count (units _group) == 0) then
 				{
-					[format["_dynamicAImanager:  _dynamicGroups monitor: empty group unlinked from player found, deleting it ant its marker: _group = %1 | _marker = %2",_group,_marker]] call GMSAI_fnc_log;
+					//[format["_dynamicAImanager:  _dynamicGroups monitor: empty group unlinked from player found, deleting it ant its marker: _group = %1 | _marker = %2",_group,_marker]] call GMSAI_fnc_log;
 					[_group] call GMS_fnc_despawnInfantryGroup;
 					if (GMSAI_debug >= 1) then 
 					{
@@ -331,7 +331,7 @@ if (GMSAI_useDynamicSpawns) then
 							// Step 3.a 
 							if (diag_tickTime > _deleteAt) then 
 							{
-								[format["_dynamicAImanager: dynamic groups monitor: group alive no players near despawn conditions reached. deleting group %1 and its marker %2",_group,_marker]] call GMSAI_fnc_log;
+								//[format["_dynamicAImanager: dynamic groups monitor: group alive no players near despawn conditions reached. deleting group %1 and its marker %2",_group,_marker]] call GMSAI_fnc_log;
 								[_group] call GMS_fnc_despawnInfantryGroup;
 								if (GMSAI_debug >= 1) then 
 								{

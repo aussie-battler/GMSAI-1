@@ -7,6 +7,8 @@
 
 	Notes: may be unused. 
 	TODO: test if this is used.
+	TODO: Add 'gunship' option that specifies that the heli will patrol the area and try to take out any players spotted.
+	TODO: Make sure this aircraft is added to monitoring
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 
@@ -76,3 +78,4 @@ _wp4 = _group addWaypoint[(position _unit) getPos[3000,(_unit getRelDir _spawnPo
 _wp4 setWaypointStatements["true","this call fn_cleanup;"];
 _wp4 setWaypointSpeed "NORMAL";
 _group setVariable["GMSAI_heliInbound",1];
+_group

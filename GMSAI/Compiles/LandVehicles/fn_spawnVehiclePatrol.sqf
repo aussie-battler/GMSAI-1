@@ -61,6 +61,8 @@ private _group = [
 	GMSAI_maxHeals,
 	GMSAI_unitSmokeShell  	
 ] call GMS_fnc_spawnInfantryGroup;
+// TODO: Add GMSAI Event Handlers when these are ready.
+
 diag_log format["GMSAI_fnc_spawnVehiclePatrol: _group = %1",_group];
 //uisleep 1;
 [_vehicle,units _group] call GMS_fnc_loadVehicleCrew;

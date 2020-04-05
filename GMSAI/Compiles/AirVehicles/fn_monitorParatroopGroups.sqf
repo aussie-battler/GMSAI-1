@@ -16,7 +16,7 @@
 	3. The target is down but other enemies are near and the group should hunt them. 
 	4. there are no enemies near and the target is down and the time elapsed is > than depawn timer
 
-
+	TODO: may not be needed because these are now set up as area-based controls.
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 

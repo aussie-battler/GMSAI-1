@@ -8,6 +8,8 @@
 #define GMSAI_difficultyGreen 2
 #define GMSAI_difficultyOrange 3
 
+#define GMSAI_infantry 1
+
 #define wpnAR 0
 #define wpnLMG 1
 #define wpnSMG 2
@@ -21,7 +23,7 @@
 #define pointers 10
 #define wpnUnderbarrel 11
 #define BinocularItems 12
-#define  GpsItems 13
+#define GpsItems 13
 #define NvgItems 14
 #define MapItems 15
 #define medicalItems 16

@@ -36,18 +36,17 @@ while {true} do
     if (diag_tickTime > _60sec) then
     {
       // diag_log format["_mainThread: calling GMSAI_fnc_monitorAirPatrols at %1",diag_tickTime];
-        //[]] call GMSAI_fnc_monitorAirPatrols;
-        //[] call GMSAI_fnc_monitorUAVPatrols;
+        [] call GMSAI_fnc_monitorAirPatrols;
+        [] call GMSAI_fnc_monitorUAVPatrols;
         [] call GMSAI_fnc_monitorUGVPatrols;
         [] call GMSAI_fnc_monitorVehiclePatrols;
         [] call GMSAI_fnc_monitorEmptyVehicles;
-        //[] call GMSAI_fnc_monitorDeadUnits; // ? Needed
-        //[] call GMSAI_fnc_monitorIActiveAreaMarkers;
+       // [] call GMSAI_fnc_monitorDeadUnits; // ? Needed
         _60sec = diag_tickTime + 60;
         diag_log format[
-            "GMSAI[timestamp %6]: %1 Infantry Groups | %2 Air Patrols | %3 Reinforcements | %4 Vehicle Patrols | %5 UAVs | ^5 UGVs", 
+            "GMSAI[timestamp %6]: %1 Infantry Groups | %2 Air Patrols | %3 Reinforcements | %4 Vehicle Patrols | %5 UAVs | %6 UGVs", 
             //count GMSAI_infantryGroups,
-            0,
+            -1,
             count GMSAI_airPatrols, 
             count GMSAI_paratroopGroups,
             count GMSAI_vehiclePatrols,

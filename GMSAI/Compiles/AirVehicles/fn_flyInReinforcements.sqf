@@ -14,8 +14,8 @@
 */
 
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 
-params["_dropPos","_group","_targetedPlayer"];
-[format["flyInReinforcements CALLED"]] call GMSAI_fnc_log;
+params["_dropPos","_group",["_targetedPlayer",ObjNull]];
+[format["flyInReinforcements CALLED: _dropPos = %1 | _group = %2 | _targetedPlayer = %3",_dropPos,_group,_targetedPlayer]] call GMSAI_fnc_log;
 /*
 	steps to follow for this script:
 	1. set a position under the aircraft detecting the player for dropoff 
@@ -24,11 +24,13 @@ params["_dropPos","_group","_targetedPlayer"];
 	3. pass the dropoff position and group info to the script in GSM core functions
 	4. once all units are on the ground, pass control of the group off to group manager and paratroop manager
 
+	TODO: test if this is used.
+	TODO: Add 'gunship' option that specifies that the heli will patrol the area and try to take out any players spotted.
 */
 
 // make sure no other reinforcements are called in for a while
-_group setVariable[respawnParaDropAt, diag_tickTime + GMSAI_paratroopRespawnTimer];
-private _dropPos = getPosATL(leader _group); // the drop pos would be near the location of the flight crew when reinforcements are called in. 
+
+//private _dropPos = getPosATL(leader _group); // the drop pos would be near the location of the flight crew when reinforcements are called in. 
 private _difficulty = selectRandomWeighted GMSAI_paratroopDifficulty;
 private _paraGroup = [
 	[0,0,0],
@@ -39,13 +41,15 @@ private _paraGroup = [
 	GMSAI_intelligencebyDifficulty select _difficulty,
 	false
 ] call GMS_fnc_spawnInfantryGroup;
-
+// TODO: Add GMSAI Event Handlers when these are ready
 [_group,GMSAI_unitDifficulty select (_difficulty)] call GMS_fnc_setupGroupSkills;
 [_group, GMSAI_unitLoadouts select _difficulty, 0 /* launchers per group */, GMSAI_useNVG] call GMS_fnc_setupGroupGear;
 [_group,_difficulty,GMSAI_money] call GMS_fnc_setupGroupMoney;
-[_group,GMSAI_bodyDeleteTimer] call GMS_fnc_setGroupBodyDespawnTime;
-[_group] call GMSAI_fnc_addEventHandlersInfantry;
 
-// spawn this function so it does not hold up other functions of GMSAI
-[_dropPos,selectRandomWeighted GMSAI_paratroopAircraftTypes, _group] call GMS_fnc_flyInCargoToLocation;
-GMSAI_paratroopGroups pushBack _paraGroup;
+private _transport = [_difficulty, selectRandomWeighted GMSAI_paratroopAircraftTypes, _dropPos] call GMSAI_spawnHelicoptorPatrol;
+_transport params["_transportCrew","_transportAircraft"];
+_transportCrew setVariable["dropPos",_dropPos];
+_transportCrew setVariable["target",_target];
+_transportCrew setVariable["gunship",GMSAI_paratroopTransportIsGunship];
+_transportCrew setVariable["difficulty",_difficulty];
+(leader _transportCrew) call GMSAI_getToDropWaypoint; 

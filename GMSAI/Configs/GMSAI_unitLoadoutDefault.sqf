@@ -5,6 +5,9 @@
 
 /*
 	CONFIGUREATIONS BEGIN HERE
+
+	NOTE: all arrays can be formated as simple or weighted arrays where weighted arrays are formated as "classname",weightValue,"className2",weightvalue2 ... 
+	See the following link for details: https://community.bistudio.com/wiki/selectRandomWeighted
 */
 _GMSAI_moneyBlue = 30;
 _GMSAI_moneyRed = 45;

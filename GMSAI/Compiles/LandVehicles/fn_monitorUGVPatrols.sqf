@@ -70,9 +70,8 @@ for "_i" from 1 to (count GMSAI_UGVPatrols) do
 				while {_pos isEqualTo [0,0]} do
 				{
 					_pos = [nil,["water"]] call BIS_fnc_randomPos;
-					//diag_log format["[GMSAI] _initializeVehiclePatrols: _pos = %1",_pos];
 				};
-				// TODO: Add remaing parameters here				
+				
 				private _newPatrol = [
 					(selectRandomWeighted GMSAI_UGVdifficulty),
 					(selectRandomWeighted GMSAI_UGVtypes), 

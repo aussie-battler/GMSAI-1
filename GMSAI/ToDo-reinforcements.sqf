@@ -18,6 +18,11 @@ Loggin is needed to better understand how/when it functions
 
 	Para logic should ignore other nearby groups from GMSAI or GMS 
 
+TODO: Add gunship option.
+TODO: Add debug markers.
+TODO: Make sure groups have a target.
+TODO: Make sure groups hunt target.
+
 
 
 

@@ -1,5 +1,9 @@
 TODO List:
 
+TODO:General 
+    Besure there is code to add the GMSAI event handlers 
+
+TODO: specifics to particular EH.
 	1. Unit MPKilled: 
 		a. Runover checks: 
 			if (vehicle _instigator != _instigator && driver(vehicle _instigator) == _instigator) then 
