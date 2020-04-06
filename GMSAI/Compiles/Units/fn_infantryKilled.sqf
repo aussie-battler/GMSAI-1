@@ -19,79 +19,131 @@
 		Note that the standard GMS hit EH puts the group on alert and I believe increases that groups knowsAbout for the player	
 */
 
+/*
+		b. Killstreak Checks 
+			Settings: 
+				Share with GMS / GMSAI ?
+				Killstreak Reward boosts: 
+					increment per N kills:
+					Value increased: respect/reputation, Tabs/crypto, both
+
+				
+		c. Distance Checks 
+			Distance Reward Boosts:
+				Increment per unit distance: (table or algorythm?)
+				Value increased: respect/reputation, Tabs/crypto, both
+			Notification styles (See messaging TODO, come back to this)
+
+		d. Weapons Checks:
+			Used secondary weapon?
+				Value increased: respect/reputation, Tabs/crypto, both
+
+		e. Set/Update killstreak value on player 
+			Set to 0 if no kills wihthin a certain time 
+			Increment otherwise 
+			Use GMS_killstreak if common with GMS otherwise use GMSAI_killstreak. 
+
+		f. calculate things needed for rewards 
+			calculate distance 
+			Check if weapon is secondary weapon 
+			Check AI Name 
+			Calculate bonus, changes to respect/reputation and tabs/crypto 
+
+		g. Pull unit name 
+			_name = name _unit; 
+
+		h. Message players with unit name, killstreak, bonus, changes to respect/reputation and tabs/crypto 
+*/
+
 #include "\addons\GMSAI\init\GMSAI_defines.hpp" 
-params["_unit","_killer"];
-private _isLegal = true;
-{format["nfantryKilled: typeOf _killer = %1  |  typeOf _killer = %2",typeOf _killer, typeOf _killer] call GMSAI_fnc_log;
-if (isPlayer _killer && GMSAI_runoverProtection && !(vehicle _killer isEqualTo _killer)) then
-{
-	[format["infantryKilled: unit %1 runover by player %2 so negating damage acrued",_unit,_killer] call GMSAI_fnc_log;
-	_unit setDamage 0;	
-	_isLegal = false;
-};
-//diag_log format["[GMSAI] processUnitKilled: _killer = %1  |  typeOf _killer = %2 | side killer = %3 | faction killer = %4",_killer, typeOf _killer,side _killer, faction _killer];
-//diag_log format["[GMSAI] processUnitKilled: Side _unit = %1 | side _killer = %2 | group = %3 | side group = %4",side _unit,side _killer, group _unit, side(group _unit)];
+params["_unit","_killer","_instigator"];
 
-_unit setVariable ["deleteAt", (diag_tickTime) + GMSAI_bodyDeleteTimer];
-private _group = group _unit;
-//_group call GMS_fnc_stripDeadorNullUnits;
-
-_group reveal[_killer,1];
-//diag_log format["[GMSAI] processUnitKilled: unit find nearest enemy position unit = %1",_unit findNearestEnemy (getPos _unit)];
-if !(isLegal) exitWith {};
-GMSAI_deadAI pushback _unit;
-[_unit] joinSilent grpNull;
-_group selectLeader (units _group select 0);
-//diag_log format["[GMSAI] processUnitKilled: combatMode _group = %1 | behavior leader = %2 | ",combatMode _group, behaviour (leader _group)];
-//diag_log "processUnitKilled: line 7 reached";
-if (count(units _group) < 1) then 
-{
-	deleteGroup _group;
-};
-//diag_log "processUnitKilled: line 12 reached";
-[_unit,["MPKilled","MPHit"]] call GMS_fnc_removeMPEventHandlers;
-//diag_log "processUnitKilled: line 16 reached";
-[_unit,["Reloaded"]] call GMS_fnc_removeEventHandlers;
-//diag_log "processUnitKilled: line 18 reached";
-if (GMSAI_removeNVG) then
-{
-	[_unit] call GMS_fnc_removeNVG;
-};
-//diag_log "processUnitKilled: line 23 reached";
-if (GMSAI_launcherCleanup) then
-{
-	[_unit] call GMS_fnc_removeLauncher;
-};
-//diag_log "processUnitKilled: line 28 reached";
-if (isPlayer _killer) then 
-{
-	_group setVariable["target",_killer];
-	if (_isLegal) then
+private _isLegal = if (vehicle _instigator != _instigator && driver(vehicle _instigator) == _instigator) then {false} else {true};
+// putting the body in the cue for deletion and doing normal cleanup of NVG and launchers is handled by GMS
+// Allerting nearby groups is handled by GMS according to a setting passed when the group was spawned.
+// deal with road kill situations.
+if !(isLegal) exitWith {
+	[_unit,_killer,_instigator,GMSAI_runoverPenalties] call GMS_fnc_unitRunover;
+	switch (GMSAI_modType) do 
 	{
-		_lastkill = _killer getVariable["timeOfLastkill",diag_tickTime];
-		_killer setVariable["timeOfLastkill",diag_tickTime];
-		_kills = (_killer getVariable["kills",0]) + 1;
-		if ((diag_tickTime - _lastkill) < 240) then
-		{
-			_killer setVariable["kills",_kills];
-		} else {
-			_killer setVariable["kills",0];
-		};
-		//[_unit, ["Eject", vehicle _unit]] remoteExec ["action",(owner _unit)];
-		if (GMSAI_useKillMessages) then
-		{
-			_weapon = currentWeapon _killer;
-			_killstreakMsg = format[" %1X KILLSTREAK",_kills];
-			private ["_message"];
-			if (GMSAI_useKilledAIName) then
+		case "epoch": {
+			if (GMSAI_runoverMoneyPenalty) then 
 			{
-				_message = format["%2: killed by %1 from %3m",name _killer,name _unit,round(_unit distance _killer)];
-			}else{
-				_message = format["%1 killed with %2 from %3 meters",name _killer,getText(configFile >> "CfgWeapons" >> _weapon >> "DisplayName"), round(_unit distance _killer)];
+				[_killer,GMSAI_runoverTabsPenalty] call GMS_fnc_giveTakeCrypto;
+				[GMSAI_runoverTabsPenalty] remoteExed["GMSAI_onRunoverMoneyRemovedPenalty",_killer];
 			};
-			_message =_message + _killstreakMsg;
-			[["aikilled",_message],allPlayers] call GMS_fnc_messageplayers;
 		};
-		[_killer,_unit distance _killer] call GMSAI_fnc_rewardPlayer;
+		case "exile": {
+				if (GMSAI_runoverMoneyPenalty != 0) then (
+				{
+					[_killer,GMSAI_runoverTabsPenalty] call GMS_fnc_giveTakeTabs;
+					[GMSAI_runoverTabsPenalty] remoteExed["GMSAI_onRunoverMoneyRemovedPenalty",_killer];
+				};
+
+				if (GMSAI_runoverRespectPenalty 1= 0) then 
+				{
+					[_killer,GMSAI_runoverRespectPenalty] call GMS_fnc_giveTakeRespect;
+					[GMSAI_runoverTabsPenalty] remoteExed["GMSAI_onRunoverTabRemovedPenalty",_killer];
+				};
+		};
+		default {};
 	};
 };
+
+/*
+The constants used below are defined in \GMSAI\Configs\GMSAI_playerRewards.sqf
+GMSAI_respectGainedPerKillBase = 5;
+GMSAI_respectBonusForDistance = 5;
+GMSAI_respectBonusForSecondaryKill = 25;
+GMSAI_respectBonusForKillstreaks = 5; 
+
+GMSAI_moneyGainedPerKillBase = 5;
+GMSAI_moneyGainedPerKillForDistance = 5;
+GMSAI_moneyGainedForSecondaryKill = 25;
+GMSAI_moneyGainedForKillstreaks = 5; // per kill of the current killstreak 
+
+GMSAI_killstreakTimeout = 300; // 5 min
+GMSAI_distantIncrementForCalculatingBonus = 100;	
+*/
+
+//  calculate rewards: 
+private _distance = _unit distance _killer;
+private _killstreak = _killer getVariable ["killstreak",0];
+private _weapon = currentWeapon _killer;
+private _secondary = secondaryWeapon _killer;
+
+/* RESPECT FIRST */ 
+private = "_respectBonus";
+if (toLower(GMSAI_modType) isEqualTo "exile") then 
+{
+	private _distanceBonus = if (_distance > 100) then {floor(round(_distance/100) * GMSAI_respectBonusForDistance = 5;)} else {0};
+	private _killStreakBonus = if (_killstreak > 0) then {_killstreak * GMSAI_respectBonusForKillstreaks} else {0};
+	private _pistolBonus = if (_weapon isEqualTo _secondary) then {GMSAI_respectBonusForSecondaryKill} else {0};
+	_respectBonus = GMSAI_respectGainedPerKillBase + _distanceBonus + _pistolBonus;
+	[_killer, _respectBonus] call GMS_fnc_giveTakeRespect;
+};
+
+// Now Money - its the same so just substitute 
+private _distanceBonus = if (_distance > 100) then {floor(round(_distance/100)) * GMSAI_moneyGainedPerKillForDistance} else {0};
+private _killStreakBonus = if (_killstreak > 0) then {_killstreak * GMSAI_moneyGainedForKillstreaks} else {0};
+private _pistolBonus = if (_weapon isEqualTo _secondary) then {GMSAI_moneyGainedForSecondaryKill} else {0};
+private _moneyBonus = GMSAI_moneyGainedPerKillBase + _distanceBonus + _pistolBonus;
+switch(toLower(GMSAI_modType)) do 
+{
+	case "epoch": {[_killer,  _moneyBonus] call GMS_fnc_giveTakeCrypto;}
+	case "exile": {[_killer,  _moneyBonus] call GMS_fnc_giveTakeTabs;};
+};
+
+/*
+	Now send the player the good news that a mighty AI oppenet was felled.
+	Info sent: 
+	unit name 
+	respect gained 
+	mondy gained 
+	killstreak
+*/
+
+[name _unit,_respectBonus,_moneyBonus,_killstreak] remoteExec["GMS_killNofication",_killer];
+_killer setVariable["killstreak",_killstreak + 1];
+[_unit,_killer,GMSAI_boostSkillsLastUnits] call GMSAI_fnc_boostOnNearbyUnitKilled;
+/*  END */

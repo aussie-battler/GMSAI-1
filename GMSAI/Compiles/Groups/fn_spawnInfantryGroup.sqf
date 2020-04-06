@@ -65,29 +65,18 @@ private _group = [
 		GMSAI_maxHeals,
 		GMSAI_unitSmokeShell  
 	] call GMS_fnc_spawnInfantryGroup;
-// TODO: Add GMSAI Event Handlers when these are ready.
-//[format["GMSAI_fnc_spawnInfantryGroup: _group returned = %1",_group]] call GMSAI_fnc_log;
-//private _unitDifficulty = selectRandomWeighted GMSAI_dynamicUnitsDifficulty;
 
- [_group,GMSAI_skillbyDifficultyLevel select _difficulty] call GMS_fnc_setupGroupSkills;  // TODO: revisit this once a system for skills is determined - simpler the better
+_group setVariable["difficulty",_difficulty];
+
+[_group,GMSAI_skillbyDifficultyLevel select _difficulty] call GMS_fnc_setupGroupSkills;  // TODO: revisit this once a system for skills is determined - simpler the better
 [_group, GMSAI_unitLoadouts select _difficulty, GMSAI_LaunchersPerGroup, GMSAI_useNVG] call GMS_fnc_setupGroupGear;
 [_group,_difficulty,GMSAI_money] call GMS_fnc_setupGroupMoney;
-//[_group,GMSAI_bodyDeleteTimer] call GMS_fnc_setGroupBodyDespawnTime;
+
 #define waypointTimeoutInfantryPatrols 180
-//[format["_spawnInfantryGroup: _patrolMarker = %1",_patrolMarker],"information"] call GMSAI_fnc_log;
+
 if !(_patrolMarker isEqualTo "") then // setup waypoints using the information stored in the marker 
 {
-	//[_group,_patrolAreaMaker] call GMS_fnc_setWaypointPatrolAreaMarker
-	//[format["GMSAI_fnc_spawnInfantryGroup: _group %1: initializing waypoints",_group]] call GMSAI_fnc_log;
 	[
-		/*
-		params["_group",  // group for which to configure / initialize waypoints
-		["_blackListed",[]],  // areas to avoid within the patrol region
-		["_center",[0,0,0]],  // center of the area to be patroled
-		["_size",[200,200]],  // size of the area to be patroled, either a value or array of 2 values
-		["_shape","RECTANGLE"],  // "RECTANGLE" or "ELLIPSE"
-		["_timeout",300]];  // The time that must elapse before the antistuck function takes over.
-		*/
 		_group,
 		GMSAI_blackListedAreas,
 		_patrolMarker,

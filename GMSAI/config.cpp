@@ -121,6 +121,7 @@ class CfgFunctions {
 		class Units {
 			// Stuff that happens when events fire on units in GMSAI; some of these are in addition to EH that fire on GMSCore
 			file = "addons\GMSAI\Compiles\Units";
+			class fn_boostOnNearbyUnitKilled {};
 			class infantryKilled {};
 			class infantryHit {};
 			class addEventHandlersInfantry {};

@@ -5,15 +5,16 @@
 diag_log format["[GMSAI] <BEGIN> GMSAI_playerRewards.sqf at %1",diag_tickTime];
 
 GMSAI_respectGainedPerKillBase = 5;
-GMSAI_bonusRespectForDistance = 5;
-GMSAI_bonusRespectForSecondaryKill = 25;
+GMSAI_respectBonusForDistance = 5;
+GMSAI_respectBonusForSecondaryKill = 25;
+GMSAI_respectBonusForKillstreaks = 5; 
 
-GMSAI_tabsGainedPerKillBase = 5;
-GMSAI_tabsGainedPerKillForDistance = 5;
-GMSA_bonusTabsForSecondaryKill = 25;
+GMSAI_moneyGainedPerKillBase = 5;
+GMSAI_moneyGainedPerKillForDistance = 5;
+GMSAI_moneyGainedForSecondaryKill = 25;
+GMSAI_moneyGainedForKillstreaks = 5; // per kill of the current killstreak 
 
-GMSAI_cryptoGainedPerKill = 5;
-GMSAI_cryptoForDistance = 5; // per 100 M 
-GMSAI_bonusCryptoForSecondaryKill = 25;
+GMSAI_killstreakTimeout = 300; // 5 min
+GMSAI_distantIncrementForCalculatingBonus = 100;
 
 diag_log format["[GMSAI] <END> GMSAI_playerRewards.sqf at %1",diag_tickTime];
